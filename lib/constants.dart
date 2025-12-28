@@ -1,3 +1,5 @@
 import 'dart:ui';
 
-const kPrimaryColor = Color(0xff100B20);
+import 'package:flutter/material.dart';
+
+const Color kPrimaryColor = Colors.deepOrange;
