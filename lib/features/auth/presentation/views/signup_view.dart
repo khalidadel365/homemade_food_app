@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
-import 'package:homemade_food_app/core/widgets/show_snack_bar.dart';
 import 'package:homemade_food_app/features/auth/presentation/manager/auth_states.dart';
-import 'package:homemade_food_app/features/home/presentation/views/home_page.dart';
-
+import '../../../../core/utilities/functions/show_snack_bar.dart';
 import '../manager/signup_cubit.dart';
 import 'login_view.dart';
 

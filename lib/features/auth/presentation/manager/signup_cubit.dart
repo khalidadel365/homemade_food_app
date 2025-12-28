@@ -1,12 +1,8 @@
-import 'dart:math';
-import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homemade_food_app/features/auth/data/models/auth_model.dart';
 import 'package:homemade_food_app/features/auth/presentation/manager/auth_states.dart';
-import 'package:http/http.dart';
+import '../../../../core/utilities/api_service.dart';
 
-import '../../../../core/utils/dio_helper.dart';
 
 class SignupCubit extends Cubit<SignupStates>{
   SignupCubit() :super(SignupInitialState());
@@ -15,7 +11,6 @@ class SignupCubit extends Cubit<SignupStates>{
 
 
   AuthModel? signupModel;
-  String baseUrl = "http://localhost:8000";
   SignupUser({
     required String? email,
     required String? password,
@@ -27,8 +22,8 @@ class SignupCubit extends Cubit<SignupStates>{
      double? address2 = 5.66;
      String? user_type = "consumer";
     emit(SignupLoadingState());
-    DioHelper.postData(
-        url: '/api/auth/signup/',
+    ApiService.postData(
+        endpoint: '/api/auth/signup/',
         data: {
           'first_name':firstName,
           'last_name':lastName,

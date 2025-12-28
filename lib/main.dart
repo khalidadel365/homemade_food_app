@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homemade_food_app/features/auth/presentation/manager/signup_cubit.dart';
 import 'package:homemade_food_app/features/auth/presentation/views/login_view.dart';
-import 'core/utils/dio_helper.dart';
+import 'core/utilities/api_service.dart';
 
 void main() {
-  DioHelper.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  ApiService.init();
   runApp(HomemadeFoodApp());
 }
 

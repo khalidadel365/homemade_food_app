@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class DioHelper {
+class ApiService {
   static Dio? dio ;
 
   static init (){
@@ -8,7 +8,6 @@ class DioHelper {
       BaseOptions(
         baseUrl: 'http://10.0.2.2:8000',
         receiveDataWhenStatusError: true
-        //receiveDataWhenStatusError: true,
       )
     );
   }
@@ -31,7 +30,7 @@ class DioHelper {
   // }
 
   static Future<Response>? postData({
-    required String url, //endpoint
+    required String endpoint, //endpoint
     required Map<String,dynamic> data,
     Map<String,dynamic>? query,
     String lang = 'en',
@@ -44,8 +43,15 @@ class DioHelper {
       'Content-Type' : 'application/json',
     };
     return dio?.post(
-        url,
+        endpoint,
         data: data,
     );
+  }
+  Future<Map<String,dynamic>> get ({
+    required String endPoint,
+  })async{
+    var response = await dio?.get('$endPoint');
+    print(response!.data);
+    return response.data;
   }
 }
