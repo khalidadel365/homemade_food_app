@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/app_router.dart';
-
 import '../../../../../core/utilities/assets.dart';
 import '../../../../../core/utilities/styles.dart';
 import '../../../../../core/widgets/custom_button.dart';

@@ -11,7 +11,7 @@ abstract class Styles{
   static var  textStyle14 = GoogleFonts.poppins(
   fontSize: 14,
   );
-  static var  textStyle28 = GoogleFonts.poppins(
+  static var   textStyle28 = GoogleFonts.poppins(
     fontSize: 28,
     fontWeight: FontWeight.bold,
     color: Colors.deepOrange,
