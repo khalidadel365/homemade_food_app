@@ -14,6 +14,10 @@ abstract class AppRouter {
             builder: (context, state) => LoginView()
         ),
         GoRoute(
+            path: '/loginView',
+            builder: (context, state) => LoginView()
+        ),
+        GoRoute(
             path: kHomeView,
             builder: (context, state) => HomeView()
         ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
 import 'package:homemade_food_app/features/auth/presentation/manager/auth_states.dart';
 import 'package:homemade_food_app/features/auth/presentation/views/widgets/sign_up_view_body.dart';
 
+import '../../../../core/utilities/app_router.dart';
 import '../../../../core/utilities/functions/show_snack_bar.dart';
 import '../manager/signup_cubit.dart';
 import 'login_view.dart';
@@ -25,20 +27,24 @@ class _SignupViewState extends State<SignupView> {
           print('loading');
         }
         if (state is SignupSuccessState) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => LoginView()),
-          );
+          showSnackBar(
+              context: context,
+              message: "Account created successfully!",
+              color: Colors.green);
+          Future.delayed(Duration(seconds: 1), () {
+            GoRouter.of(context).go(AppRouter.kLoginView);
+          });
+
         } else if (state is SignupErrorState) {
           showSnackBar(
               context: context,
-              message: 'email may be already in use',
+              message: state.error,
               color: Colors.red);
         }
       },
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Colors.orange[50],
+          backgroundColor: Color(0xffF8F6F5),
           body: const SafeArea(
             child: SignUpViewBody(),
           ),

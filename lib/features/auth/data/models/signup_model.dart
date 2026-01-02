@@ -1,9 +1,11 @@
-class AuthModel {
+import 'package:dio/dio.dart';
+
+class SignUpModel {
   int? id;
   UserData? userData;
 
 
-   AuthModel.fromJson(Map<String,dynamic> json){
+   SignUpModel.fromJson(Map<String,dynamic> json){
     id = json['id'];
     userData = json['data'] != null? UserData.fromJson(json['user']):null ;
   }
@@ -11,12 +13,13 @@ class AuthModel {
 
 
 class UserData {
+  int? id;
   String? firstName;
   String? lastName;
   String? email;
   String? password;
   String? phone;
-  int? id;
+  String? userType;
 
   UserData.fromJson(Map<String,dynamic> json){
     id = json['id'];
@@ -24,5 +27,6 @@ class UserData {
     lastName = json['last_name'];
     email = json['email'];
     phone = json['phone_number'];
+    userType = json['user_type'];
   }
 }
