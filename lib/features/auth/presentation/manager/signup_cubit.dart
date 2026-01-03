@@ -19,7 +19,7 @@ class SignupCubit extends Cubit<SignupStates>{
     required String? firstName,
     required String? lastName,
     required String? phone,
-  })async {
+  }) async {
      double? address1 = 1.556;
      double? address2 = 5.66;
      String? user_type = "consumer";
@@ -38,7 +38,6 @@ class SignupCubit extends Cubit<SignupStates>{
             'user_type':user_type,
           });
         print(response!.data);
-        print('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
         signupModel = SignUpModel.fromJson(response.data);
         print(signupModel!.id);
         emit(SignupSuccessState(signupModel!));

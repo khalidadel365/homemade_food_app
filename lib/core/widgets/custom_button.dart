@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
 
 class CustomButton extends StatelessWidget {

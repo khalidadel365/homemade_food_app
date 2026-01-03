@@ -26,14 +26,7 @@ class ServerFailure extends Failure{
       case DioExceptionType.connectionError:
         return ServerFailure('There is Connection Error');
       case DioExceptionType.unknown:
-      if(exception.message!.contains('SocketException')){
         return ServerFailure('No Internet Connection');
-      }
-      else{
-        return ServerFailure('No Internet Connection');
-      }
-      default:
-        return ServerFailure('Unexpected Error, please try again');
       }
   }
   factory ServerFailure.fromResponse(int statusCode,dynamic response){

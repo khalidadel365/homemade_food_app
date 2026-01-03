@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,11 +16,11 @@ class HomeView extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               "Homemade Food",
-              style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              // style: GoogleFonts.poppins(
+              //   color: Colors.white,
+              //   fontSize: 20,
+              //   fontWeight: FontWeight.bold,
+              // ),
             )
           ],
         ),
@@ -39,15 +38,13 @@ class HomeView extends StatelessWidget {
             },
             child: const CircleAvatar(
               radius: 18,
-              backgroundImage: AssetImage("assets/images/profile/user.jpg"), 
+              backgroundImage: AssetImage("assets/images/profile/user.jpg"),
               backgroundColor: Colors.white,
             ),
           ),
           const SizedBox(width: 12),
         ],
-
       ),
-
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -70,9 +67,11 @@ class HomeView extends StatelessWidget {
             const SizedBox(height: 24),
 
             // Popular Chefs Section
-            Text("Popular Chefs",
-                style: GoogleFonts.poppins(
-                    fontSize: 18, fontWeight: FontWeight.w600)),
+            Text(
+              "Popular Chefs",
+              // style: GoogleFonts.poppins(
+              //     fontSize: 18, fontWeight: FontWeight.w600)
+            ),
             const SizedBox(height: 12),
 
             SizedBox(
@@ -86,12 +85,14 @@ class HomeView extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 30,
-                        backgroundImage:
-                            AssetImage("assets/images/chef/chef${index + 1}.jpg"),
+                        backgroundImage: AssetImage(
+                            "assets/images/chef/chef${index + 1}.jpg"),
                       ),
                       const SizedBox(height: 6),
-                      Text("Chef ${index + 1}",
-                          style: GoogleFonts.poppins(fontSize: 14))
+                      Text(
+                        "Chef ${index + 1}",
+                        //style: GoogleFonts.poppins(fontSize: 14)
+                      )
                     ],
                   );
                 },
@@ -101,9 +102,11 @@ class HomeView extends StatelessWidget {
             const SizedBox(height: 24),
 
             // Recommended Dishes
-            Text("Recommended for You",
-                style: GoogleFonts.poppins(
-                    fontSize: 18, fontWeight: FontWeight.w600)),
+            Text(
+              "Recommended for You",
+              // style: GoogleFonts.poppins(
+              //     fontSize: 18, fontWeight: FontWeight.w600)
+            ),
             const SizedBox(height: 12),
 
             ListView.builder(
@@ -139,19 +142,22 @@ class HomeView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Delicious Dish ${index + 1}",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600)),
+                                  // style: GoogleFonts.poppins(
+                                  //     fontSize: 16,
+                                  //     fontWeight: FontWeight.w600)
+                              ),
                               const SizedBox(height: 4),
                               Text("by Chef ${index + 1}",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 14, color: Colors.grey[600])),
+                                  // style: GoogleFonts.poppins(
+                                  //     fontSize: 14, color: Colors.grey[600])
+                              ),
                               const SizedBox(height: 8),
                               Text("${(index + 1) * 20} ج",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.deepOrange)),
+                                  // style: GoogleFonts.poppins(
+                                  //     fontSize: 16,
+                                  //     fontWeight: FontWeight.bold,
+                                  //     color: Colors.deepOrange)
+                              ),
                             ],
                           ),
                         ),

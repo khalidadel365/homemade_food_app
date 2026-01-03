@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 abstract class Styles{
-  static var  textStyle18 = GoogleFonts.poppins(
+  static var  textStyle18 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
     color: Colors.white,
   );
 
-  static var  textStyle14 = GoogleFonts.poppins(
+  static var  textStyle14 = TextStyle(
   fontSize: 14,
   );
-  static var   textStyle28 = GoogleFonts.poppins(
+  static var   textStyle28 = TextStyle(
     fontSize: 28,
     fontWeight: FontWeight.bold,
     color: Colors.deepOrange,
   );
-  static var  textStyleBold =  GoogleFonts.poppins(
+  static var  textStyleBold =  TextStyle(
     fontWeight: FontWeight.bold,
     color: Colors.deepOrange,
   );
