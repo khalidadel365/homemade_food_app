@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class ApiService {
   static Dio? dio ;
 
-  static init (){
+  init (){
     dio = Dio(
       BaseOptions(
         //'http://10.0.2.2:8000'
@@ -30,7 +30,7 @@ class ApiService {
   //   );
   // }
 
-  static Future<Response>? postData({
+  Future<Response>? postData({
     required String endpoint, //endpoint
     required Map<String,dynamic> data,
     Map<String,dynamic>? query,

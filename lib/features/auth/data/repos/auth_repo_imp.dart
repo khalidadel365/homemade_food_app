@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:homemade_food_app/core/errors/failures.dart';
+import 'package:homemade_food_app/core/utilities/service_locator.dart';
 import 'package:homemade_food_app/features/auth/data/models/signup_model.dart';
 import 'package:homemade_food_app/features/auth/data/repos/auth_repo.dart';
 
@@ -13,6 +14,7 @@ class AuthRepoImp extends AuthRepo {
     // TODO: implement LoginUser
     throw UnimplementedError();
   }
+
   @override
   Future<Either<Failure, SignUpModel>> SignupUser(
       {required String? email,
@@ -21,8 +23,9 @@ class AuthRepoImp extends AuthRepo {
       required String? lastName,
       required String? phone}) async {
     try {
-      var response =
-          await ApiService.postData(endpoint: '/api/auth/signup/', data: {
+      var response = await getIt
+          .get<ApiService>()
+          .postData(endpoint: '/api/auth/signup/', data: {
         'first_name': firstName,
         'last_name': lastName,
         'email': email,

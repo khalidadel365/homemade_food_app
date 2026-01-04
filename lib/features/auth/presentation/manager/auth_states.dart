@@ -2,15 +2,15 @@
 import '../../data/models/login_model.dart';
 import '../../data/models/signup_model.dart';
 
-abstract class SignupStates {}
+abstract class AuthStates {}
 
-class SignupInitialState extends SignupStates{}
-class SignupLoadingState extends SignupStates{}
-class SignupSuccessState extends SignupStates{
+class SignupInitialState extends AuthStates{}
+class SignupLoadingState extends AuthStates{}
+class SignupSuccessState extends AuthStates{
   SignUpModel? authModel;
   SignupSuccessState(this.authModel);
 }
-class SignupErrorState extends SignupStates{
+class SignupErrorState extends AuthStates{
   final String error;
   SignupErrorState(this.error);
 }

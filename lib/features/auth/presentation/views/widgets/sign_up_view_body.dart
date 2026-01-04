@@ -156,7 +156,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   text: 'Sign Up',
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      SignupCubit.get(context).SignupUser(
+                      AuthCubit.get(context).SignupUser(
                           email: emailController.text,
                           password: passwordController.text,
                           firstName: firstNameController.text,

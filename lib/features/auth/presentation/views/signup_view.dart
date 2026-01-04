@@ -19,7 +19,7 @@ class SignupView extends StatefulWidget {
 class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignupCubit, SignupStates>(
+    return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if (state is SignupSuccessState) {
           showSnackBar(

@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+
+import '../../../../../core/utilities/assets.dart';
+
+class SplashViewBody extends StatefulWidget {
+  const SplashViewBody({super.key});
+
+  @override
+  State<SplashViewBody> createState() => _SplashViewBodyState();
+}
+
+class _SplashViewBodyState extends State<SplashViewBody> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Image.asset(
+          AssetsData.logo,
+          width: 400,
+          height: 400,
+        ),
+      ),
+    );;
+  }
+}
