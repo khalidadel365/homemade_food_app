@@ -1,4 +1,3 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homemade_food_app/constants.dart';
@@ -6,7 +5,6 @@ import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/utilities/service_locator.dart';
 import 'package:homemade_food_app/features/auth/data/repos/auth_repo_imp.dart';
 import 'package:homemade_food_app/features/auth/presentation/manager/auth_cubit.dart';
-import 'package:homemade_food_app/features/auth/presentation/views/login_view.dart';
 import 'bloc_observer.dart';
 import 'core/utilities/api_service.dart';
 
