@@ -15,14 +15,13 @@ class SignupErrorState extends AuthStates{
   SignupErrorState(this.error);
 }
 
-abstract class LoginStates {}
-class LoginInitialState extends LoginStates {}
-class LoginLoadingState extends LoginStates {}
-class LoginSuccessState extends LoginStates {
+class LoginInitialState extends AuthStates {}
+class LoginLoadingState extends AuthStates {}
+class LoginSuccessState extends AuthStates {
   final LoginModel loginModel;
   LoginSuccessState(this.loginModel);
 }
-class LoginErrorState extends LoginStates {
+class LoginErrorState extends AuthStates {
   final String error;
   LoginErrorState(this.error);
 }

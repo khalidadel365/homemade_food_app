@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:homemade_food_app/constants.dart';
-import 'package:homemade_food_app/core/utilities/assets.dart';
-import 'package:homemade_food_app/features/auth/presentation/views/login_view.dart';
-import 'package:homemade_food_app/features/auth/presentation/views/signup_view.dart';
-import 'package:homemade_food_app/features/home/presentation/views/home_view.dart';
 import 'package:homemade_food_app/features/splash/presentation/views/widgets/splash_view_body.dart';
 
 class SplashView extends StatefulWidget {
@@ -18,7 +13,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(milliseconds: 2500), () {
       GoRouter.of(context).go('/loginView');
     });
   }

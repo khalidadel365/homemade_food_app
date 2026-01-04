@@ -31,7 +31,9 @@ class ServerFailure extends Failure{
   }
   factory ServerFailure.fromResponse(int statusCode,dynamic response){
     if(statusCode == 400 || statusCode == 401 || statusCode == 403){
+      final loginError = response['detail'] != null ? response['detail'] : null;
       final emailError = response['email'] != null ? response['email'][0] : null;
+
       final phoneError = response['phone_number'] != null ? response['phone_number'][0] : null;
       String message;
       if (emailError != null && phoneError != null) {
@@ -41,6 +43,9 @@ class ServerFailure extends Failure{
         message = emailError;
       } else if (phoneError != null) {
         message = phoneError;
+      }// login handle if wrong email or pass
+      else if (loginError != null) {
+        message = loginError;
       } else {
         message = 'Authentication error';
       }

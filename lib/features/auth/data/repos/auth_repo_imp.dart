@@ -10,18 +10,32 @@ import '../models/login_model.dart';
 
 class AuthRepoImp extends AuthRepo {
   @override
-  Future<Either<Failure, LoginModel>> LoginUser() {
-    // TODO: implement LoginUser
-    throw UnimplementedError();
-  }
-
+  Future<Either<Failure, LoginModel>> LoginUser({
+    required String email,
+    required String password,
+  })async {
+    try {
+      var response =await getIt.get<ApiService>().postData(
+          endpoint: '/api/auth/login/',
+          data: {
+            'email': email,
+            'password': password,
+          });
+      return right(LoginModel.fromJson(response?.data));
+          } on Exception catch (e) {
+      if(e is DioException){
+        return left(ServerFailure.fromDioException(e));
+      }else{
+        return left(ServerFailure(e.toString()));
+      }
+    }
+    }
   @override
-  Future<Either<Failure, SignUpModel>> SignupUser(
-      {required String? email,
-      required String? password,
-      required String? firstName,
-      required String? lastName,
-      required String? phone}) async {
+  Future<Either<Failure, SignUpModel>> SignupUser({required String? email,
+    required String? password,
+    required String? firstName,
+    required String? lastName,
+    required String? phone}) async {
     try {
       var response = await getIt
           .get<ApiService>()

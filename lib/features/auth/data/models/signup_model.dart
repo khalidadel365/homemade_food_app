@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-
 class SignUpModel {
   final int? id;
   final UserData? userData;
@@ -7,7 +5,7 @@ class SignUpModel {
   factory SignUpModel.fromJson(Map<String,dynamic> json){
     return SignUpModel(
         id:  json['id'],
-        userData:  json['data'] != null? UserData.fromJson(json['user']):null,
+        userData:  json['user'] != null? UserData.fromJson(json['user']):null,
     );
   }
 }
