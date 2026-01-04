@@ -7,7 +7,7 @@ import 'package:homemade_food_app/features/auth/presentation/views/widgets/sign_
 import '../../../../core/utilities/app_router.dart';
 import '../../../../core/utilities/functions/show_snack_bar.dart';
 import '../../../../core/utilities/loading_view.dart';
-import '../manager/signup_cubit.dart';
+import '../manager/auth_cubit.dart';
 
 class SignupView extends StatefulWidget {
   SignupView({super.key});
@@ -41,7 +41,7 @@ class _SignupViewState extends State<SignupView> {
               body: SafeArea(child: SignUpViewBody()),
             ),
             if (state is SignupLoadingState)
-              LoadingView(),
+              const LoadingView(),
           ],
         );
       },

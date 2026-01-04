@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homemade_food_app/core/utilities/app_router.dart';
-import 'package:homemade_food_app/features/auth/presentation/manager/signup_cubit.dart';
+import 'package:homemade_food_app/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:homemade_food_app/features/auth/presentation/views/login_view.dart';
 import 'bloc_observer.dart';
 import 'core/utilities/api_service.dart';

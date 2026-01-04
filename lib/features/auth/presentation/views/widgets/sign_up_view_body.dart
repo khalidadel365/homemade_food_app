@@ -6,7 +6,7 @@ import 'package:homemade_food_app/core/utilities/assets.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import '../../../../../core/utilities/styles.dart';
 import '../../../../../core/widgets/custom_textformfield.dart';
-import '../../manager/signup_cubit.dart';
+import '../../manager/auth_cubit.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({
