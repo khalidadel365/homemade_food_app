@@ -1,139 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:homemade_food_app/constants.dart';
+import 'package:homemade_food_app/core/widgets/custom_button.dart';
+import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController searchController = TextEditingController();
+
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Search Bar
-            TextField(
-              decoration: InputDecoration(
-                hintText: "Search dishes or chefs...",
-                prefixIcon: const Icon(Icons.search),
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
+            Row(
+              children: [
+                Expanded(
+                  child: CustomTextFormField(
+                    controller: searchController,
+                    hintText:
+                        'search  Craving lasagna, cookies, or anything else...',
+                    hintTextStyle:
+                        TextStyle(color: Colors.grey.shade600, fontSize: 16),
+                    circularRadius: 14,
+                    verticalPadding: 13,
+                    horizontalPadding: 20,
+                    cursorWidth: 1.8,
+                    cursorHeight: 20,
+                    maxLines: 1,
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // Popular Chefs Section
-            Text(
-              "Popular Chefs",
-              // style: GoogleFonts.poppins(
-              //     fontSize: 18, fontWeight: FontWeight.w600)
-            ),
-            const SizedBox(height: 12),
-
-            SizedBox(
-              height: 90,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: 8, // later dynamic from BLoC
-                separatorBuilder: (_, __) => const SizedBox(width: 16),
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage: AssetImage(
-                            "assets/images/chef/chef${index + 1}.jpg"),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        "Chef ${index + 1}",
-                        //style: GoogleFonts.poppins(fontSize: 14)
-                      )
-                    ],
-                  );
-                },
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            // Recommended Dishes
-            Text(
-              "Recommended for You",
-              // style: GoogleFonts.poppins(
-              //     fontSize: 18, fontWeight: FontWeight.w600)
-            ),
-            const SizedBox(height: 12),
-
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 12, // later dynamic
-              itemBuilder: (context, index) {
-                return Card(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 3,
-                  child: Row(
-                    children: [
-                      // Dish Image
-                      ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          bottomLeft: Radius.circular(16),
-                        ),
-                        child: Image.asset(
-                          "assets/images/dish/dish${index + 1}.jpg",
-                          height: 100,
-                          width: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Delicious Dish ${index + 1}",
-                                // style: GoogleFonts.poppins(
-                                //     fontSize: 16,
-                                //     fontWeight: FontWeight.w600)
-                              ),
-                              const SizedBox(height: 4),
-                              Text("by Chef ${index + 1}",
-                                // style: GoogleFonts.poppins(
-                                //     fontSize: 14, color: Colors.grey[600])
-                              ),
-                              const SizedBox(height: 8),
-                              Text("${(index + 1) * 20} ج",
-                                // style: GoogleFonts.poppins(
-                                //     fontSize: 16,
-                                //     fontWeight: FontWeight.bold,
-                                //     color: Colors.deepOrange)
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.add_circle_outline,
-                            color: Colors.deepOrange),
-                        onPressed: () {
-                          // TODO: Add to cart
-                        },
-                      )
-                    ],
-                  ),
-                );
-              },
+                const SizedBox(
+                  width: 10,
+                ),
+                CustomButton(
+                    width: 50,
+                    height: 50,
+                    elevation: 0,
+                    backgroundColor: kPrimaryColor,
+                    borderRadius: 12,
+                    text: 'tune',
+                    onPressed: () {},
+                    textStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white)),
+              ],
             )
           ],
         ),

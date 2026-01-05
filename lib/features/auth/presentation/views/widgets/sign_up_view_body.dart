@@ -69,7 +69,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               //first name text field
               CustomTextFormField(
                 hintText: "First Name",
-                prefixIcon: Icons.person_outline,
+                prefixIcon: Icon(Icons.person_outline, size: 23,
+                  color: Colors.grey.shade700,),
                 validate: (value) {
                   if (value.isEmpty) {
                     return 'First name must not be empty';
@@ -82,7 +83,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               //last name text field
               CustomTextFormField(
                 hintText: "Last Name",
-                prefixIcon: Icons.person_outline,
+                prefixIcon: Icon(Icons.person_outline,size: 23,
+                  color: Colors.grey.shade700,),
                 validate: (value) {
                   if (value.isEmpty) {
                     return 'Last name must not be empty';
@@ -95,7 +97,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               // phone text field
               CustomTextFormField(
                 hintText: "Phone Number",
-                prefixIcon: Icons.phone_outlined,
+                prefixIcon: Icon(Icons.phone_outlined,size: 23,
+                  color: Colors.grey.shade700,),
                 validate: (value) {
                   if (value.isEmpty) {
                     return 'Phone number must not be empty';
@@ -108,7 +111,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               // email text field
               CustomTextFormField(
                 hintText: "Email Address",
-                prefixIcon: Icons.email_outlined,
+                prefixIcon: Icon(Icons.email_outlined,size: 22,
+                  color: Colors.grey.shade700,),
                 validate: (value) {
                   if (value.isEmpty) {
                     return 'Email must not be empty';
@@ -121,7 +125,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               // password text field
               CustomTextFormField(
                 hintText: "Password",
-                prefixIcon: Icons.lock_outline,
+                prefixIcon: Icon(Icons.lock_outline,size: 22,
+                  color: Colors.grey.shade700,),
                 obsecureText: true,
                 validate: (value) {
                   if (value.isEmpty) {
@@ -135,7 +140,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               // confirm Password text field
               CustomTextFormField(
                 hintText: "Confirm Password",
-                prefixIcon: Icons.lock_outline,
+                prefixIcon: Icon(Icons.lock_outline,size: 22,
+                  color: Colors.grey.shade700,),
                 controller: confirmPasswordController,
                 obsecureText: true,
                 validate: (value) {
@@ -150,8 +156,9 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               const SizedBox(height: 20),
               // sign up button
               CustomButton(
+                  width: double.infinity,
+                  height: 53,
                   backgroundColor: kPrimaryColor,
-                  textColor: Colors.white,
                   borderRadius: 12,
                   text: 'Sign Up',
                   onPressed: () {
@@ -166,7 +173,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       print('wrong');
                     }
                   },
-                  textStyle: Styles.textStyle18),
+                  textStyle: Styles.textStyle18
+              ),
               const SizedBox(height: 10),
               // Back to login
               Row(

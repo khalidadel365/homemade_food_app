@@ -1,48 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:homemade_food_app/constants.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({required this.controller,this.validate,this.prefixIcon,this.hintText,this.onChange,this.onSubmit,this.obsecureText = false});
+  const CustomTextFormField(
+      {required this.controller,
+      this.validate,
+      this.prefixIcon,
+      this.hintText,
+      this.onChange,
+      this.onSubmit,
+      this.obsecureText = false,
+      this.circularRadius,
+      this.verticalPadding,
+      this.horizontalPadding,
+      this.maxLines,
+      this.textInputType,
+      this.cursorHeight,
+      this.cursorWidth,
+      this.hintTextStyle});
+
   final String? hintText;
-  final IconData? prefixIcon;
+  final Icon? prefixIcon;
   final bool obsecureText;
   final Function(String)? onChange;
   final Function(String)? onSubmit;
   final FormFieldValidator? validate;
-  final TextEditingController controller;
+  final TextEditingController? controller;
+  final double? circularRadius;
+  final double? verticalPadding;
+  final double? horizontalPadding;
+  final int? maxLines;
+  final TextInputType? textInputType;
+  final double? cursorHeight;
+  final double? cursorWidth;
+  final TextStyle? hintTextStyle;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines ?? 1,
       controller: controller,
       obscureText: obsecureText,
       validator: validate,
       onFieldSubmitted: onSubmit,
-      onChanged: onChange, //input style
-      cursorColor: Colors.deepOrange,
+      onChanged: onChange,
+      cursorColor: kPrimaryColor,
       decoration: InputDecoration(
+        isDense: true,
+        contentPadding: EdgeInsets.symmetric(
+            vertical: verticalPadding ?? 15,
+            horizontal: horizontalPadding ?? 8),
         hintText: "$hintText",
-        prefixIcon:Icon(prefixIcon),
+        hintStyle: hintTextStyle,
+        prefixIcon: prefixIcon != null ? prefixIcon : null,
         filled: true,
         fillColor: Colors.white,
         focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.red, width: 2),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(circularRadius ?? 8),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey.shade300),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(circularRadius ?? 8),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey.shade300, width: 2),
-          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Colors.grey.shade300, width: 1.2),
+          borderRadius: BorderRadius.circular(circularRadius ?? 8),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.red),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(circularRadius ?? 8),
         ),
-
       ),
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: textInputType ?? TextInputType.text,
+      cursorHeight: cursorHeight ?? 21,
+      cursorWidth: cursorWidth ?? 2,
     );
   }
 }

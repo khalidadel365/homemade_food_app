@@ -5,40 +5,39 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.backgroundColor,
-    required this.textColor,
     required this.borderRadius,
     required this.text,
     required this.onPressed,
     required this.textStyle,
+    this.height,
+    this.width, this.elevation,
   });
 
   final Color backgroundColor;
-
-  final Color textColor;
 
   final double? borderRadius;
 
   final String text;
   final TextStyle textStyle;
   final void Function()? onPressed;
+  final double? height;
+  final double? width;
+  final double? elevation;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: width ?? double.infinity,
+      height: height ?? 50,
       child: ElevatedButton(
         onPressed: onPressed,
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const HomeView()),
-          // );
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
           padding: const EdgeInsets.symmetric(vertical: 14),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius!),
           ),
-          elevation: 4,
+          elevation: elevation,
         ),
         child: Text(
           "$text",

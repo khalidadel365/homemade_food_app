@@ -24,7 +24,11 @@ class HomemadeFoodApp extends StatelessWidget {
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primaryColor: kBackGroundColor),
+        theme: Theme.of(context).copyWith(
+          colorScheme: Theme.of(context).colorScheme.copyWith(
+            primary: kPrimaryColor,
+          ),
+        )
       ),
     );
   }
