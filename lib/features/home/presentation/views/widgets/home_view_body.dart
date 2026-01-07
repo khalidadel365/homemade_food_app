@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
+import 'package:homemade_food_app/features/home/data/models/categories_model.dart';
+
+import 'categories_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController searchController = TextEditingController();
-
+    final TextEditingController searchController = TextEditingController();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15),
@@ -45,13 +47,20 @@ class HomeViewBody extends StatelessWidget {
                     onPressed: () {},
                     textStyle: TextStyle(
                         fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white)),
+                        color: Colors.white,
+                    )
+                ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            CategoriesListView()
           ],
         ),
       ),
     );
   }
 }
+
+

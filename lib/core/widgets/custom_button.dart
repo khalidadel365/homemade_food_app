@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     required this.textStyle,
     this.height,
-    this.width, this.elevation,
+    this.width, this.elevation, this.verticalPadding, this.horizontalPadding,
   });
 
   final Color backgroundColor;
@@ -23,6 +23,8 @@ class CustomButton extends StatelessWidget {
   final double? height;
   final double? width;
   final double? elevation;
+  final double? verticalPadding;
+  final double? horizontalPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,9 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
-          padding: const EdgeInsets.symmetric(vertical: 14),
+          padding: EdgeInsets.symmetric(
+              vertical: verticalPadding ?? 0,
+              horizontal: horizontalPadding ?? 0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius!),
           ),
