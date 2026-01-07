@@ -98,7 +98,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 text: "Login",
                 backgroundColor: kPrimaryColor,
                 borderRadius: 12,
-                textStyle: Styles.textStyle18,
+                textStyle: Styles.textStyle18.copyWith(color: Colors.white),
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     AuthCubit.get(context).LoginUser(

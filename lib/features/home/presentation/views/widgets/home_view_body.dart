@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
+import '../../../../../core/utilities/styles.dart';
 import 'categories_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -56,7 +58,21 @@ class HomeViewBody extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            CategoriesListView()
+            const CategoriesListView(),
+            const SizedBox(
+              height: 18,
+            ),
+            Row(
+              children: [
+                Text('Fresh Nearby',style: Styles.textStyle20),
+                const SizedBox(width: 3.5),
+                const Icon(FontAwesomeIcons.mapPin,color: Colors.red,size: 18,)
+              ]
+            ),
+            const SizedBox(
+              height: 18,
+            ),
+
           ],
         ),
       ),
