@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
-import 'package:homemade_food_app/features/home/data/models/categories_model.dart';
-
 import 'categories_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -25,7 +23,10 @@ class HomeViewBody extends StatelessWidget {
                     hintText:
                         'search  Craving lasagna, cookies, or anything else...',
                     hintTextStyle:
-                        TextStyle(color: Colors.grey.shade600, fontSize: 16),
+                        TextStyle(
+                            color: Colors.grey.shade600,
+                            fontSize: 16,
+                        ),
                     circularRadius: 14,
                     verticalPadding: 13,
                     horizontalPadding: 20,
