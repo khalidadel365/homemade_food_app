@@ -5,18 +5,22 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.backgroundColor,
     required this.borderRadius,
-    required this.text,
+    this.text,
     required this.onPressed,
     this.textStyle,
     this.height,
-    this.width, this.elevation, this.verticalPadding, this.horizontalPadding,
+    this.width,
+    this.elevation,
+    this.verticalPadding,
+    this.horizontalPadding,
+    this.icon,
   });
 
   final Color backgroundColor;
-
+  final Icon? icon;
   final double? borderRadius;
 
-  final String text;
+  final String? text;
   final TextStyle? textStyle;
   final void Function()? onPressed;
   final double? height;
@@ -42,7 +46,7 @@ class CustomButton extends StatelessWidget {
           ),
           elevation: elevation,
         ),
-        child: Text(
+        child: icon ?? Text(
           "$text",
           style: textStyle,
         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
-
 import '../../../../../constants.dart';
 import 'chief_profile.dart';
 import 'custom_fresh_nearby_image.dart';
@@ -15,7 +14,7 @@ class FreshNearbyListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.19,
+      height: MediaQuery.of(context).size.height * 0.20,
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: BoxDecoration(
           color: Colors.white,
@@ -74,34 +73,29 @@ class FreshNearbyListViewItem extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 7,
-                ),
-                //no padding here
-                Expanded(
-                  child: Row(
-                    children: [
-                      Text(
-                        '\$18.00',
-                        style: Styles.textStyle17.copyWith(
-                            fontWeight: FontWeight.w600, color: kPrimaryColor),
-                      ),
-                      Spacer(),
-                      CustomButton(
-                        height: 30,
-                        width: 30,
-                        backgroundColor: kSecondaryColor,
-                        borderRadius: 60,
-                        text: '+',
-                        onPressed: (){},
-                      ),
-                    ],
-                  ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Text(
+                      '\$18.00',
+                      style: Styles.textStyle18.copyWith(
+                          fontWeight: FontWeight.w600, color: kPrimaryColor),
+                    ),
+                    Spacer(),
+                    CustomButton(
+                      height: 34,
+                      width: 34,
+                      backgroundColor: kSecondaryColor,
+                      borderRadius: 50,
+                      icon: Icon(Icons.add,color: kPrimaryColor,size: 22,),
+                      textStyle: TextStyle(fontSize: 23),
+                      onPressed: (){},
+                    ),
+                  ],
                 )
               ],
             ),
           ),
-
         ],
       ),
     );

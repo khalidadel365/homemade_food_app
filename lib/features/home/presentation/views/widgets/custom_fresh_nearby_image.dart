@@ -12,10 +12,10 @@ class CustomFreshNearbyImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(18),
+      borderRadius: BorderRadius.circular(20),
       child: SizedBox(
-        height: MediaQuery.of(context).size.width*0.4,
-        width: MediaQuery.of(context).size.width*0.25,
+        height: MediaQuery.of(context).size.width*0.29,
+        width: MediaQuery.of(context).size.width*0.27,
         child: CachedNetworkImage(
             fit: BoxFit.fill,
             placeholder: (context, url) => SpinKitFadingCircle(color: kPrimaryColor,),
