@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
+import 'package:homemade_food_app/features/home/presentation/views/widgets/fresh_nearby_list_view.dart';
 import '../../../../../core/utilities/styles.dart';
 import 'categories_list_view.dart';
 
@@ -16,6 +17,7 @@ class HomeViewBody extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -72,12 +74,14 @@ class HomeViewBody extends StatelessWidget {
             const SizedBox(
               height: 18,
             ),
-
+            const FreshNearbyListView(),
           ],
         ),
       ),
     );
   }
 }
+
+
 
 

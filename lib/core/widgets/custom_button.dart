@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:homemade_food_app/core/utilities/styles.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -8,7 +7,7 @@ class CustomButton extends StatelessWidget {
     required this.borderRadius,
     required this.text,
     required this.onPressed,
-    required this.textStyle,
+    this.textStyle,
     this.height,
     this.width, this.elevation, this.verticalPadding, this.horizontalPadding,
   });
@@ -18,7 +17,7 @@ class CustomButton extends StatelessWidget {
   final double? borderRadius;
 
   final String text;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
   final void Function()? onPressed;
   final double? height;
   final double? width;

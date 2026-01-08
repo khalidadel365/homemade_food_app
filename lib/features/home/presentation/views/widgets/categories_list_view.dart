@@ -26,6 +26,8 @@ class _CategoriesListViewState extends State<CategoriesListView> {
     return SizedBox(
       height: 38,
       child: ListView.separated(
+        shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemBuilder: (context,index){
             bool isSelected = index == selectedIndex;
