@@ -17,7 +17,7 @@ class LoginView extends StatelessWidget {
       listener: (context, state) {
         if(state is LoginSuccessState){
           print(state.loginModel.token);
-          GoRouter.of(context).go(AppRouter.kHomeView);
+          GoRouter.of(context).go(AppRouter.kMainView);
         }
         if(state is LoginErrorState){
           print(state.error);

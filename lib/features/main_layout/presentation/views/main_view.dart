@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homemade_food_app/constants.dart';
 import '../../../home/presentation/views/home_view.dart';
 import '../../../orders/presentation/views/orders_view.dart';
 import '../../../profile/presentation/views/profile_view.dart';
@@ -38,6 +39,10 @@ class _MainViewState extends State<MainView> {
           ),
         ],
         currentIndex: current_index,
+        selectedItemColor: kPrimaryColor,
+        unselectedItemColor: Colors.grey.shade600,
+        backgroundColor: Colors.white,
+        elevation: 10,
         onTap: (index){
           setState(() {
             current_index = index;
