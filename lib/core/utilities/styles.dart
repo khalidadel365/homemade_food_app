@@ -4,6 +4,9 @@ abstract class Styles{
   static var  textStyle11 = TextStyle(
     fontSize: 11,
   );
+  static var  textStyle13 = TextStyle(
+    fontSize: 13,
+  );
   static var  textStyle16 = TextStyle(
     fontSize: 12,
   );

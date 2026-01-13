@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import '../../../../../constants.dart';
@@ -13,90 +15,96 @@ class FreshNearbyListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.20,
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(
-            color: Colors.grey.shade200,
-            width: 1,
-          ),
-          borderRadius: BorderRadius.circular(16)),
-      child: Row(
-        children: [
-          const CustomFreshNearbyImage(),
-          const SizedBox(
-            width: 15,
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 60.0),
-                  child: Text(
-                    'Homemade Pepproni Pizza',
-                    overflow: TextOverflow.ellipsis,
-                    style: Styles.textStyle17,
-                    maxLines: 2,
-
+    return GestureDetector(
+      onTap: (){
+        GoRouter.of(context).push(AppRouter.kFreshNearbyDetailsView);
+      },
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.20,
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(
+              color: Colors.grey.shade200,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(16)),
+        child: Row(
+          children: [
+            const CustomFreshNearbyImage(),
+            const SizedBox(
+              width: 15,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60.0),
+                    child: Text(
+                      'Homemade Pepproni Pizza',
+                      overflow: TextOverflow.ellipsis,
+                      style: Styles.textStyle17,
+                      maxLines: 2,
+      
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 1,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 60.0),
-                  child: Text(
-                    'Made with fresh dough and homemade sauce',
-                    style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  const SizedBox(
+                    height: 1,
                   ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 60.0),
-                  child: Row(
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60.0),
+                    child: Text(
+                      'Made with fresh dough and homemade sauce',
+                      style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60.0),
+                    child: Row(
+                      children: [
+                        CheifProfile(),
+                        Spacer(),
+                        FoodRating(
+                          rating: 5,
+                          size: 13,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Spacer(),
+                  Row(
                     children: [
-                      CheifProfile(),
+                      Text(
+                        '\$18.00',
+                        style: Styles.textStyle18.copyWith(
+                            fontWeight: FontWeight.w600, color: kPrimaryColor),
+                      ),
                       Spacer(),
-                      FoodRating(
-                        rating: 5,
+                      CustomButton(
+                        height: 34,
+                        width: 34,
+                        backgroundColor: kSecondaryColor,
+                        borderRadius: 50,
+                        icon: Icon(Icons.add,color: kPrimaryColor,size: 22,),
+                        textStyle: TextStyle(fontSize: 23),
+                        onPressed: (){},
                       ),
                     ],
-                  ),
-                ),
-                const Spacer(),
-                Row(
-                  children: [
-                    Text(
-                      '\$18.00',
-                      style: Styles.textStyle18.copyWith(
-                          fontWeight: FontWeight.w600, color: kPrimaryColor),
-                    ),
-                    Spacer(),
-                    CustomButton(
-                      height: 34,
-                      width: 34,
-                      backgroundColor: kSecondaryColor,
-                      borderRadius: 50,
-                      icon: Icon(Icons.add,color: kPrimaryColor,size: 22,),
-                      textStyle: TextStyle(fontSize: 23),
-                      onPressed: (){},
-                    ),
-                  ],
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
