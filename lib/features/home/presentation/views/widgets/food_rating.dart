@@ -28,8 +28,9 @@ class FoodRating extends StatelessWidget {
           '$rating',
           style: TextStyle(
               fontSize: size,
-              fontWeight: FontWeight.w500,
-              color: Colors.grey.shade600),
+              fontWeight: FontWeight.bold,
+              color: Colors.black
+          ),
         ),
       ],
     );

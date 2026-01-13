@@ -15,7 +15,7 @@ class FoodInfoRow extends StatelessWidget {
     return Row(
       children: [
         Container(
-          height: 85,
+          height: 80,
           width: 170,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
@@ -56,7 +56,7 @@ class FoodInfoRow extends StatelessWidget {
         ),
         Spacer(),
         Container(
-          height: 85,
+          height: 80,
           width: 170,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),

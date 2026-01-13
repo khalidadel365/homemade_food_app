@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:homemade_food_app/constants.dart';
 
 import 'order_details_body.dart';
@@ -16,11 +18,13 @@ class FreshNearbyDetailsViewBody extends StatelessWidget {
             left: 0,
             right: 0,
             height: 280,
-            child: Image.network(
-              'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg',
-              fit: BoxFit.cover,
-            ),
-          ),
+            child: CachedNetworkImage(
+                fit: BoxFit.fill,
+                errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.red,),
+                placeholder: (context, url) => SpinKitFadingCircle(color: kPrimaryColor,),
+                imageUrl: 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Homemade-Pizza_EXPS_FT23_376_EC_120123_3.jpg',
+          )
+            ,),
           Positioned(
             top: 22,
             left: 10,
