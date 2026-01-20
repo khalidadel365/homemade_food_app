@@ -3,11 +3,17 @@ import '../../../../../constants.dart';
 
 import '../../../../../core/utilities/styles.dart';
 
-class FreshNearbyDetailsBottomNavBar extends StatelessWidget {
+class FreshNearbyDetailsBottomNavBar extends StatefulWidget {
   const FreshNearbyDetailsBottomNavBar({
     super.key,
   });
 
+  @override
+  State<FreshNearbyDetailsBottomNavBar> createState() => _FreshNearbyDetailsBottomNavBarState();
+}
+
+class _FreshNearbyDetailsBottomNavBarState extends State<FreshNearbyDetailsBottomNavBar> {
+  int counter = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,38 +34,54 @@ class FreshNearbyDetailsBottomNavBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(13)),
             child: Row(
               children: [
-                Container(
-                  alignment: Alignment.center,
-                  width: 28,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(7)),
-                  child: Icon(
-                    Icons.remove,
-                    size: 20,
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if(counter >0){
+                        counter--;
+                      }
+                    });
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 28,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(7)),
+                    child: Icon(
+                      Icons.remove,
+                      size: 20,
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: const Text(
-                    '1',
+                  child: Text(
+                    '$counter',
                     textAlign: TextAlign.center,
                     style:
                     TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  width: 28,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(7)),
-                  child: Icon(
-                    Icons.add,
-                    size: 20,
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      counter++;
+                    });
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 28,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(7)),
+                    child: Icon(
+                      Icons.add,
+                      size: 20,
+                    ),
                   ),
                 )
               ],
@@ -70,9 +92,8 @@ class FreshNearbyDetailsBottomNavBar extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              height: 55,
+              height: 53,
               padding: EdgeInsets.symmetric(horizontal: 10),
-              alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: kPrimaryColor,
                 shape: BoxShape.rectangle,
