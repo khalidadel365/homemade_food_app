@@ -3,13 +3,21 @@ import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/chief_profile.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/food_rating.dart';
+import 'package:homemade_food_app/features/home/presentation/views/widgets/spiness_list_view.dart';
 import 'package:readmore/readmore.dart';
-import 'custom_selection_option_button.dart';
+import 'custom_addon_option_button.dart';
 import 'details_options_title.dart';
 import 'food_info_row.dart';
 
-class OrderDetailsBody extends StatelessWidget {
+class OrderDetailsBody extends StatefulWidget {
   const OrderDetailsBody({super.key});
+
+  @override
+  State<OrderDetailsBody> createState() => _OrderDetailsBodyState();
+}
+
+class _OrderDetailsBodyState extends State<OrderDetailsBody> {
+  int selectedSpiciness = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -74,13 +82,26 @@ class OrderDetailsBody extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            CustomSelectionOptionButton(),
+            SpicinessListView(),
+            const SizedBox(
+              height: 30,
+            ),
+            const DetailsOptionsTitle(title: 'Add-Ons'),
+            const SizedBox(
+              height: 10,
+            ),
+            ListView.separated(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (index, context) => CustomAddOnOptionButton(),
+                separatorBuilder: (index, context) => const SizedBox(
+                      height: 10,
+                    ),
+                itemCount: 3)
           ],
         ),
       ),
     );
   }
 }
-
-
 
