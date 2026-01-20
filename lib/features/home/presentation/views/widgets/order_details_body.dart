@@ -5,7 +5,7 @@ import 'package:homemade_food_app/features/home/presentation/views/widgets/chief
 import 'package:homemade_food_app/features/home/presentation/views/widgets/food_rating.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/spiness_list_view.dart';
 import 'package:readmore/readmore.dart';
-import 'custom_addon_option_button.dart';
+import 'add_ons_list_view.dart';
 import 'details_options_title.dart';
 import 'food_info_row.dart';
 
@@ -17,8 +17,6 @@ class OrderDetailsBody extends StatefulWidget {
 }
 
 class _OrderDetailsBodyState extends State<OrderDetailsBody> {
-  int selectedSpiciness = 0;
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -90,18 +88,12 @@ class _OrderDetailsBodyState extends State<OrderDetailsBody> {
             const SizedBox(
               height: 10,
             ),
-            ListView.separated(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (index, context) => CustomAddOnOptionButton(),
-                separatorBuilder: (index, context) => const SizedBox(
-                      height: 10,
-                    ),
-                itemCount: 3)
+            AddOnsListView()
           ],
         ),
       ),
     );
   }
 }
+
 
