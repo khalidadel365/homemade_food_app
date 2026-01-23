@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/features/auth/presentation/views/login_view.dart';
 import 'package:homemade_food_app/features/auth/presentation/views/signup_view.dart';
+import 'package:homemade_food_app/features/cart/presentation/views/cart_view.dart';
 import 'package:homemade_food_app/features/home/presentation/views/fresh_nearby_details_view.dart';
 import 'package:homemade_food_app/features/home/presentation/views/home_view.dart';
 import 'package:homemade_food_app/features/main_layout/presentation/views/main_view.dart';
@@ -14,6 +15,7 @@ abstract class AppRouter {
   static const kLoginView = '/loginView';
   static const kSignUpView = '/signUpView';
   static const kSplashScreen = '/splashView';
+  static const kCartScreen = '/cartView';
   static final router = GoRouter(routes: [
     GoRoute(
       path: '/',
@@ -24,5 +26,6 @@ abstract class AppRouter {
     GoRoute(path: kHomeView, builder: (context, state) => HomeView()),
     GoRoute(path: kFreshNearbyDetailsView, builder: (context, state) => FreshNearbyDetailsView()),
     GoRoute(path: kSignUpView, builder: (context, state) => SignupView()),
+    GoRoute(path: kCartScreen, builder: (context, state) => CartView()),
   ]);
 }
