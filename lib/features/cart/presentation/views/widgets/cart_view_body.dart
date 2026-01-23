@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
+import 'package:homemade_food_app/core/widgets/custom_button.dart';
+
+import 'cart_bottom_nav_bar.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -9,8 +13,8 @@ class CartViewBody extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        surfaceTintColor: Colors.transparent,
         elevation: 2,
+        backgroundColor: Colors.white,
         shadowColor: Colors.black.withOpacity(0.3),
         leading: IconButton(
             onPressed: () {
@@ -23,6 +27,9 @@ class CartViewBody extends StatelessWidget {
         ),
       ),
       body: Text('body'),
+      bottomNavigationBar: CartBottomNavBar(),
     );
   }
 }
+
+
