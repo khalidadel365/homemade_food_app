@@ -9,8 +9,7 @@ class CartListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 240,
+    return Expanded(
       child: ListView.builder(
           padding: const EdgeInsets.only(left: 20,right: 15),
           physics: BouncingScrollPhysics(),

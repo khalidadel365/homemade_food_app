@@ -26,6 +26,8 @@ class HomemadeFoodApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: kBackGroundColor,
+          primaryColor: kPrimaryColor,
+          focusColor: kPrimaryColor,
           fontFamily: kFontFamily,
         )
       ),
