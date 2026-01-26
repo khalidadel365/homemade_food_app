@@ -1,0 +1,27 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import '../../../../../constants.dart';
+
+class CustomCartImage extends StatelessWidget {
+  const CustomCartImage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height*0.11,
+        width: MediaQuery.of(context).size.width*0.22,
+        child: CachedNetworkImage(
+            fit: BoxFit.fill,
+            placeholder: (context, url) => SpinKitFadingCircle(color: kPrimaryColor,),
+            errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.red,),
+            imageUrl: 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Homemade-Pizza_EXPS_FT23_376_EC_120123_3.jpg'),
+      ),
+    );
+  }
+}

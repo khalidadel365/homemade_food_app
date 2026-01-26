@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
-import 'package:homemade_food_app/core/widgets/custom_button.dart';
+import 'package:homemade_food_app/features/cart/presentation/views/widgets/cart_list_view_item.dart';
+import 'package:homemade_food_app/features/cart/presentation/views/widgets/preparation_time_section.dart';
 
 import 'cart_bottom_nav_bar.dart';
+import 'cart_list_view.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -13,8 +15,7 @@ class CartViewBody extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        elevation: 2,
-        backgroundColor: Colors.white,
+        backgroundColor: kBackGroundColor,
         shadowColor: Colors.black.withOpacity(0.3),
         leading: IconButton(
             onPressed: () {
@@ -22,11 +23,29 @@ class CartViewBody extends StatelessWidget {
             },
             icon: Icon(Icons.arrow_back)),
         title: Text(
-          'My Basket',
+          'My Cart',
           style: Styles.textStyle17,
         ),
       ),
-      body: Text('body'),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PreparationTimeSection(),
+          const SizedBox(height: 10,),
+          const Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: const Text(
+              'Items Added',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const CartListView(),
+
+        ],
+      ),
       bottomNavigationBar: CartBottomNavBar(),
     );
   }
