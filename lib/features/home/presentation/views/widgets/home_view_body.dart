@@ -8,6 +8,7 @@ import 'package:homemade_food_app/features/home/presentation/views/widgets/fresh
 import '../../../../../core/utilities/app_router.dart';
 import '../../../../../core/utilities/styles.dart';
 import 'categories_list_view.dart';
+import 'custom_home_appbar.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -21,40 +22,7 @@ class HomeViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: CustomTextFormField(
-                    controller: searchController,
-                    hintText:
-                        'search  Craving lasagna, cookies, or anything else...',
-                    hintTextStyle: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 16,
-                    ),
-                    circularRadius: 14,
-                    verticalPadding: 13,
-                    horizontalPadding: 20,
-                    cursorWidth: 1.8,
-                    cursorHeight: 20,
-                    maxLines: 1,
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                IconButton(
-                    onPressed: () {
-                      GoRouter.of(context).push(AppRouter.kCartScreen);
-                    },
-                    icon: Icon(
-                      Icons.shopping_cart_outlined,
-                      color: kPrimaryColor,
-                      size: 30,
-                    )
-                )
-              ],
-            ),
+            CustomHomeAppbar(searchController: searchController),
             const SizedBox(
               height: 15,
             ),
@@ -81,3 +49,5 @@ class HomeViewBody extends StatelessWidget {
     );
   }
 }
+
+

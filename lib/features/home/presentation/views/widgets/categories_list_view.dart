@@ -9,9 +9,10 @@ class CategoriesListView extends StatefulWidget {
   });
   static const List<CategoriesModel> categories = [
     CategoriesModel(icon: Icon(Icons.restaurant,size: 21,),name: 'All'),
-    CategoriesModel(icon: Icon(Icons.lunch_dining,size: 21,),name: 'Mains'),
-    CategoriesModel(icon: Icon(Icons.bakery_dining,size: 21,),name: 'Bakery'),
-    CategoriesModel(icon: Icon(Icons.cookie,size: 21,),name: 'Desserts'),
+    CategoriesModel(icon: Icon(Icons.local_pizza_rounded,size: 21,),name: 'Italian '),
+    CategoriesModel(icon: Icon(Icons.bakery_dining,size: 21,),name: 'Mexican '),
+    CategoriesModel(icon: Icon(Icons.rice_bowl_sharp,size: 21,),name: 'Asian'),
+    CategoriesModel(icon: Icon(Icons.cookie,size: 21,),name: 'American'),
   ];
 
 
