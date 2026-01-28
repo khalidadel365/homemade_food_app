@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../constants.dart';
+import '../../../../../core/utilities/app_router.dart';
 import '../../../../../core/utilities/styles.dart';
 
 class CartBottomNavBar extends StatelessWidget {
@@ -14,7 +16,7 @@ class CartBottomNavBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 25.0,horizontal: 15),
       child: GestureDetector(
         onTap: (){
-
+          GoRouter.of(context).push(AppRouter.kCheckoutScreen);
         },
         child: Container(
           height: 60,
