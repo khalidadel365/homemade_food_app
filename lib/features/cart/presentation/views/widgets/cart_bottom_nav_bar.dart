@@ -44,7 +44,7 @@ class CartBottomNavBar extends StatelessWidget {
                   color: Colors.white.withOpacity(0.3),
                 ),
                 child: Text(
-                  '150 EGY',
+                  '540 EGY',
                   style: Styles.textStyle14.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
