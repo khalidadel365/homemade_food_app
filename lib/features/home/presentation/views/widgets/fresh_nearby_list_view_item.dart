@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
+import 'package:homemade_food_app/features/home/data/models/dish_model.dart';
 import '../../../../../constants.dart';
 import 'chief_profile.dart';
 import 'custom_fresh_nearby_image.dart';
@@ -11,8 +12,9 @@ import 'food_rating.dart';
 class FreshNearbyListViewItem extends StatelessWidget {
   const FreshNearbyListViewItem({
     super.key,
+    required this.dishModel,
   });
-
+  final DishModel dishModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
