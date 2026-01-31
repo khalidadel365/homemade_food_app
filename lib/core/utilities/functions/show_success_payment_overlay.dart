@@ -11,7 +11,7 @@ void showSuccessOverlay(BuildContext context) {
     builder: (context) {
       Future.delayed(const Duration(milliseconds: 2400), () {
         Navigator.pop(context);
-        GoRouter.of(context).push(AppRouter.kHomeView);
+        GoRouter.of(context).go(AppRouter.kMainView);
       });
       return Center(
         child: Container(
