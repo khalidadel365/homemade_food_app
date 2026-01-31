@@ -17,7 +17,6 @@ class CartViewBody extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-
         backgroundColor: kBackGroundColor,
         shadowColor: Colors.black.withOpacity(0.3),
         leading: IconButton(

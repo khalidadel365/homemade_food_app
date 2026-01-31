@@ -5,6 +5,7 @@ import 'package:homemade_food_app/features/cart/presentation/views/widgets/payme
 import 'package:homemade_food_app/features/home/presentation/views/widgets/details_options_title.dart';
 
 import '../../../../../core/utilities/styles.dart';
+import 'checkout_bottom_nav_bar.dart';
 
 class CheckoutViewBody extends StatefulWidget {
   const CheckoutViewBody({super.key});
@@ -17,12 +18,26 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   @override
   Widget build(BuildContext context) {
-    // 3. الرسام بيشوف: لو العلبة لسه فاضية يعرض تحميل، لو مليانة يرسم
     return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: kBackGroundColor,
+          shadowColor: Colors.black.withOpacity(0.3),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back)),
+          title: Text(
+            'Checkout',
+            style: Styles.textStyle17,
+          ),
+        ),
+        bottomNavigationBar: checkout_bottom_nav_bar(),
         backgroundColor: kBackGroundColor,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 17),
+            padding: const EdgeInsets.symmetric(vertical: 13.0, horizontal: 17),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -31,7 +46,9 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                   height: 15,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal:20, ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
                   height: 70,
                   width: double.infinity,
                   color: Colors.white,
@@ -46,15 +63,27 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                             borderRadius: BorderRadius.circular(8),
                             color: kSecondaryColor,
                           ),
-                          child: Icon(Icons.home,size:25,color: kPrimaryColor,),
+                          child: Icon(
+                            Icons.home,
+                            size: 25,
+                            color: kPrimaryColor,
+                          ),
                         ),
-                        const SizedBox(width: 15,),
+                        const SizedBox(
+                          width: 15,
+                        ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text('Home'),
-                            const SizedBox(height: 3,),
-                            Text('123 Nile St,Cairo,Egypt',style: Styles.textStyle13.copyWith(color: Colors.grey[600]),),
+                            const SizedBox(
+                              height: 3,
+                            ),
+                            Text(
+                              '123 Nile St,Cairo,Egypt',
+                              style: Styles.textStyle13
+                                  .copyWith(color: Colors.grey[600]),
+                            ),
                           ],
                         ),
                         const Spacer(),
@@ -71,11 +100,14 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                 const SizedBox(
                   height: 15,
                 ),
-                DetailsOptionsTitle(title: 'Payment Method'),
+                const DetailsOptionsTitle(title: 'Payment Method'),
                 PaymentMethodsListView()
               ],
             ),
           ),
-        ));
+        )
+    );
   }
 }
+
+
