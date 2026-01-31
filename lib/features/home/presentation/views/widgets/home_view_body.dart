@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
-import 'package:homemade_food_app/constants.dart';
-import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/fresh_nearby_list_view.dart';
-
-import '../../../../../core/utilities/app_router.dart';
 import '../../../../../core/utilities/styles.dart';
 import 'categories_list_view.dart';
 import 'custom_home_appbar.dart';

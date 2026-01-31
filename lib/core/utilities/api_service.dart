@@ -1,58 +1,49 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  static Dio? dio ;
+  static Dio? dio;
 
-  init (){
+  void init() {
     dio = Dio(
       BaseOptions(
-        //'http://10.0.2.2:8000'
         baseUrl: 'http://10.0.2.2:8000',
-        receiveDataWhenStatusError: true
-      )
+        receiveDataWhenStatusError: true,
+      ),
     );
   }
 
-  // static Future<Response>? getData({
-  //   required String url,
-  //   Map<String, dynamic>? query,
-  //   String? lang = 'en',
-  //   String? token ,
-  // }){
-  //   dio?.options.headers = {
-  //     'lang' : lang,
-  //     'Authorization': token ?? '',
-  //     'Content-Type' : 'application/json',
-  //   };
-  //   return dio?.get(
-  //       url,  //Method (Which table will get from)
-  //       queryParameters: query
-  //   );
-  // }
+  Future<Map<String, dynamic>> get({
+    required String endPoint,
+    Map<String, dynamic>? queryParameters,
+    String? token,
+  }) async {
+    dio?.options.headers = {
+      if (token != null) 'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json',
+    };
+
+    var response = await dio!.get(
+      endPoint,
+      queryParameters: queryParameters,
+    );
+
+    return response.data;
+  }
 
   Future<Response>? postData({
-    required String endpoint, //endpoint
-    required Map<String,dynamic> data,
-    Map<String,dynamic>? query,
-    String lang = 'en',
-    String?  token
-  }
-      ){
-    dio?.options.headers={
-      'lang':lang,
-      'Authorization':token?? '', //mlosh lazma fe el login // lw feh het7at
-      'Content-Type' : 'application/json',
+    required String endpoint,
+    required Map<String, dynamic> data,
+    Map<String, dynamic>? query,
+    String? token,
+  }) {
+    dio?.options.headers = {
+      'Authorization': token ?? '',
+      'Content-Type': 'application/json',
     };
     return dio?.post(
-        endpoint,
-        data: data,
+      endpoint,
+      data: data,
+      queryParameters: query,
     );
-  }
-  Future<Map<String,dynamic>> get ({
-    required String endPoint,
-  })async{
-    var response = await dio?.get('$endPoint');
-    print(response!.data);
-    return response.data;
   }
 }
