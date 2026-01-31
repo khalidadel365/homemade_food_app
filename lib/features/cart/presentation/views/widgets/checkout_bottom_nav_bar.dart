@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../../constants.dart';
 
+import '../../../../../core/utilities/functions/show_success_payment_overlay.dart';
 import '../../../../../core/utilities/styles.dart';
 
 class checkout_bottom_nav_bar extends StatelessWidget {
@@ -34,7 +35,9 @@ class checkout_bottom_nav_bar extends StatelessWidget {
           const SizedBox(width: 20),
           Expanded(
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                showSuccessOverlay(context);
+              },
               child: Container(
                 height: 55,
                 padding: EdgeInsets.symmetric(
