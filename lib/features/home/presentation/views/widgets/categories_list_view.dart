@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/models/categories_model.dart';
+import '../../../data/models/category_ui_model.dart';
 import 'categories_list_view_item.dart';
 
 class CategoriesListView extends StatefulWidget {
   const CategoriesListView({
     super.key,
   });
-  static const List<CategoriesModel> categories = [
-    CategoriesModel(icon: Icon(Icons.restaurant,size: 21,),name: 'All'),
-    CategoriesModel(icon: Icon(Icons.local_pizza_rounded,size: 21,),name: 'Italian '),
-    CategoriesModel(icon: Icon(Icons.bakery_dining,size: 21,),name: 'Mexican '),
-    CategoriesModel(icon: Icon(Icons.rice_bowl_sharp,size: 21,),name: 'Asian'),
-    CategoriesModel(icon: Icon(Icons.cookie,size: 21,),name: 'American'),
+  static const List<CategoryUIModel> categories = [
+    CategoryUIModel(icon: Icon(Icons.restaurant,size: 21,),name: 'All'),
+    CategoryUIModel(icon: Icon(Icons.local_pizza_rounded,size: 21,),name: 'Italian '),
+    CategoryUIModel(icon: Icon(Icons.bakery_dining,size: 21,),name: 'Mexican '),
+    CategoryUIModel(icon: Icon(Icons.rice_bowl_sharp,size: 21,),name: 'Asian'),
+    CategoryUIModel(icon: Icon(Icons.cookie,size: 21,),name: 'American'),
   ];
 
 

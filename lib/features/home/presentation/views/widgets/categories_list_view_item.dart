@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:homemade_food_app/features/home/data/models/categories_model.dart';
+import 'package:homemade_food_app/features/home/data/models/category_ui_model.dart';
 
 import '../../../../../constants.dart';
 
@@ -10,7 +10,7 @@ class CategoriesListViewItem extends StatelessWidget {
     this.isSelected = false,
   });
 
-  final CategoriesModel categoriesModel;
+  final CategoryUIModel categoriesModel;
 
   final isSelected;
 
