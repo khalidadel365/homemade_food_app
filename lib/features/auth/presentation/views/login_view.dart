@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:homemade_food_app/core/utilities/api_constants.dart';
 import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:homemade_food_app/core/utilities/loading_view.dart';
@@ -16,7 +17,8 @@ class LoginView extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if(state is LoginSuccessState){
-          print(state.loginModel.token);
+          print('*************');
+          print(ApiConstants.token);
           GoRouter.of(context).go(AppRouter.kMainView);
         }
         if(state is LoginErrorState){

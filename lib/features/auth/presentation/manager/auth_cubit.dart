@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:homemade_food_app/core/utilities/api_constants.dart';
 import 'package:homemade_food_app/features/auth/data/repos/auth_repo.dart';
 import 'package:homemade_food_app/features/auth/presentation/manager/auth_states.dart';
 
@@ -42,7 +43,7 @@ class AuthCubit extends Cubit<AuthStates> {
     result.fold((failure){
       emit(LoginErrorState(failure.errorMessage));
     }, (loginModel){
-
+      ApiConstants.token = loginModel.token;
       emit(LoginSuccessState(loginModel));
     });
   }
