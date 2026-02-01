@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:homemade_food_app/constants.dart';
+
 import '../../manager/fresh_nearby_dishes_cubit/fresh_nearby_dishes_cubit.dart';
 import '../../manager/fresh_nearby_dishes_cubit/fresh_nearby_dishes_states.dart';
 import 'fresh_nearby_list_view_item.dart';
@@ -25,7 +28,10 @@ class FreshNearbyListView extends StatelessWidget {
         } else if (state is FreshNearbyDishesFailure) {
           return Center(child: Text(state.errMessage));
         } else {
-          return const CircularProgressIndicator();
+          return const SizedBox(
+              height: 200,
+              child:
+                  Center(child: SpinKitPulse(size: 45, color: kPrimaryColor)));
         }
       },
     );

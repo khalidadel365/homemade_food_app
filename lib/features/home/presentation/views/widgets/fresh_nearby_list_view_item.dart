@@ -22,7 +22,7 @@ class FreshNearbyListViewItem extends StatelessWidget {
         GoRouter.of(context).push(AppRouter.kFreshNearbyDetailsView);
       },
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.20,
+        height: MediaQuery.of(context).size.height * 0.225,
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         decoration: BoxDecoration(
             color: Colors.white,
@@ -44,11 +44,10 @@ class FreshNearbyListViewItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 60.0),
                     child: Text(
-                      'Homemade Pepproni Pizza',
+                      dishModel.name ?? '',
                       overflow: TextOverflow.ellipsis,
                       style: Styles.textStyle17,
                       maxLines: 2,
-      
                     ),
                   ),
                   const SizedBox(
@@ -57,26 +56,29 @@ class FreshNearbyListViewItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 60.0),
                     child: Text(
-                      'Made with fresh dough and homemade sauce',
+                      dishModel.description ?? '',
                       style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w500,
                           color: Colors.grey),
-                      maxLines: 1,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 60.0),
+                    padding: const EdgeInsets.only(right: 25.0),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CheifProfile(),
-                        Spacer(),
+                        ChefProfile(
+                          chefModel: dishModel.chef,
+                        ),
+                        const Spacer(),
                         FoodRating(
-                          rating: 5,
+                          rating: dishModel.averageRating!,
                           size: 13,
                         ),
                       ],

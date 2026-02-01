@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: BlocProvider(
-          create: (context)=>FreshNearbyDishesCubit(getIt.get<HomeRepoImp>()..fetchDishes()),
+          create: (context)=>FreshNearbyDishesCubit(getIt.get<HomeRepoImp>())..fetchFreshNearbyDishes(),
             child: const HomeViewBody())
     );
   }

@@ -12,7 +12,7 @@ class DishModel {
   final CategoryModel? category;
   final String? createdAt;
   final String? updatedAt;
-  final double? averageRating;
+  final num? averageRating;
 
   DishModel({
     this.id,

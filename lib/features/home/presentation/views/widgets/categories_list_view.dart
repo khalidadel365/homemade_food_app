@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/category_ui_model.dart';
+import '../../manager/fresh_nearby_dishes_cubit/fresh_nearby_dishes_cubit.dart';
 import 'categories_list_view_item.dart';
 
 class CategoriesListView extends StatefulWidget {
@@ -38,6 +40,10 @@ class _CategoriesListViewState extends State<CategoriesListView> {
                 setState(() {
                   selectedIndex = index;
                 });
+                String selectedName = CategoriesListView.categories[index].name;
+                String? categoryFilter = (selectedName == 'All') ? null : selectedName.trim();                BlocProvider.of<FreshNearbyDishesCubit>(context).fetchFreshNearbyDishes(
+                  category: categoryFilter,
+                );
               },
               child: CategoriesListViewItem(
                 categoriesModel: CategoriesListView.categories[index],

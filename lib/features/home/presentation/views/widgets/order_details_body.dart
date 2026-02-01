@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
+import 'package:homemade_food_app/features/home/data/models/cheif_model.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/chief_profile.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/food_rating.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/spiness_list_view.dart';
@@ -40,12 +41,12 @@ class _OrderDetailsBodyState extends State<OrderDetailsBody> {
             const SizedBox(height: 8),
             const Row(
               children: [
-                const CheifProfile(),
+                //const ChefProfile(chefModel: ChefModel(),),
                 const Spacer(),
-                const FoodRating(
-                  rating: 2.8,
-                  size: 15,
-                )
+                // const FoodRating(
+                //   rating: 2.8,
+                //   size: 15,
+                // )
               ],
             ),
             const SizedBox(
