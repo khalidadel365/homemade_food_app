@@ -46,10 +46,22 @@ class CustomButton extends StatelessWidget {
           ),
           elevation: elevation,
         ),
-        child: icon ?? Text(
-          "$text",
+        child: icon != null && text != null ? Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            icon!,
+            const SizedBox(
+              width: 5,
+            ),
+            Text(
+              text!,
+              style: textStyle,
+            )
+          ],
+        ): Text(
+          text!,
           style: textStyle,
-        ),
+        )
       ),
     );
   }

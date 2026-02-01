@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:homemade_food_app/core/utilities/custom_icon.dart';
+import 'package:homemade_food_app/features/cart/data/models/payment_methods_model.dart';
 import '../../../../../constants.dart';
 
 class CustomSelectionPaymentMethod extends StatelessWidget {
@@ -12,14 +13,17 @@ class CustomSelectionPaymentMethod extends StatelessWidget {
 
   final bool isSelected;
   final VoidCallback onTap;
-  final paymentMethodsModel;
+  final PaymentMethodsModel paymentMethodsModel;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
         height: 65,
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         decoration: BoxDecoration(
@@ -47,29 +51,24 @@ class CustomSelectionPaymentMethod extends StatelessWidget {
                 height: 5,
                 width: 5,
                 decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                BoxDecoration(shape: BoxShape.circle, color: Colors.white),
               ),
             ),
             const SizedBox(
               width: 10,
             ),
-            Container(
+            CustomIcon(
               height: 70,
               width: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.grey.withOpacity(0.2),
-              ),
-              child: Icon(
-                paymentMethodsModel.icon,
-                color: Colors.black.withOpacity(0.5),
-              ),
+              icon: paymentMethodsModel.icon,
+              background: Colors.grey.withOpacity(0.2),
+              iconColor: Colors.black.withOpacity(0.5),
             ),
             const SizedBox(
               width: 12,
             ),
-            Text('${paymentMethodsModel.title}',style: TextStyle(
-              fontWeight: FontWeight.w500
+            Text('${paymentMethodsModel.title}', style: TextStyle(
+                fontWeight: FontWeight.w500
             ),),
           ],
         ),
