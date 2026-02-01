@@ -23,7 +23,7 @@ class ProfileViewBody extends StatelessWidget {
         body: SizedBox(
           width: double.infinity,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 25),
+            padding: const EdgeInsets.only(top: 8.0, left: 25,right: 25,bottom:25 ),
             child: Column(
               children: [
                 CustomProfileImage(),
@@ -39,7 +39,7 @@ class ProfileViewBody extends StatelessWidget {
                       color: Colors.grey, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 Align(
                   alignment: Alignment.topLeft,
@@ -71,11 +71,29 @@ class ProfileViewBody extends StatelessWidget {
                 CustomProfileButton(
                     icon: Icons.lock, iconSize: 20, title: 'Change Password'),
                 const SizedBox(
-                  height: 15,
+                  height: 20,
                 ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Support',
+                    style: Styles.textStyle14.copyWith(
+                        color: Colors.grey, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                CustomProfileButton(
+                    icon: Icons.question_mark,
+                    iconSize: 20,
+                    title: 'Help & Support'),
+                const Spacer(),
                 CustomButton(
+                  width: double.infinity,
+                    elevation: 0,
                     backgroundColor: kSecondaryColor,
-                    borderRadius: 20,
+                    borderRadius: 15,
                     onPressed: (){},
                   icon: Icon(
                       Icons.logout,
@@ -86,7 +104,9 @@ class ProfileViewBody extends StatelessWidget {
                 textStyle: Styles.textStyle16.copyWith(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.bold
-                ),)
+                ),),
+
+
               ],
             ),
           ),

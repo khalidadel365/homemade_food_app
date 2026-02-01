@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:homemade_food_app/features/home/data/models/cheif_model.dart';
-import 'package:homemade_food_app/features/home/data/models/dish_model.dart';
 
 class FoodRating extends StatelessWidget {
   const FoodRating({
@@ -10,28 +8,28 @@ class FoodRating extends StatelessWidget {
     required this.size,
     required this.rating,
   });
-  final num rating ;
+  final num rating;
   final MainAxisAlignment mainAxisAlignment;
   final double size;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: mainAxisAlignment,
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Icon(
           FontAwesomeIcons.solidStar,
           color: const Color(0xffFFDD4F),
           size: size,
         ),
-        const SizedBox(width: 6),
+        const SizedBox(width: 4),
         Text(
-          '${rating}',
+          '$rating',
           style: TextStyle(
               fontSize: size,
               fontWeight: FontWeight.bold,
-              color: Colors.black
-          ),
+              color: Colors.black),
         ),
       ],
     );

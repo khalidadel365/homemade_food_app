@@ -14,99 +14,96 @@ class FreshNearbyListViewItem extends StatelessWidget {
     super.key,
     required this.dishModel,
   });
+
   final DishModel dishModel;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         GoRouter.of(context).push(AppRouter.kFreshNearbyDetailsView);
       },
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.225,
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+        height: MediaQuery.of(context).size.height * 0.215,
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
         decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(
-              color: Colors.grey.shade200,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.circular(16)),
+          color: Colors.white,
+          border: Border.all(
+            color: Colors.grey.shade200,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(16),
+        ),
         child: Row(
           children: [
             const CustomFreshNearbyImage(),
-            const SizedBox(
-              width: 15,
-            ),
+            const SizedBox(width: 15),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 60.0),
-                    child: Text(
-                      dishModel.name ?? '',
-                      overflow: TextOverflow.ellipsis,
-                      style: Styles.textStyle17,
-                      maxLines: 2,
+                  Text(
+                    dishModel.name ?? '',
+                    overflow: TextOverflow.ellipsis,
+                    style: Styles.textStyle17,
+                    maxLines: 1,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    dishModel.description ?? '',
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey,
                     ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(
-                    height: 1,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 60.0),
-                    child: Text(
-                      dishModel.description ?? '',
-                      style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 25.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ChefProfile(
-                          chefModel: dishModel.chef,
-                        ),
-                        const Spacer(),
-                        FoodRating(
-                          rating: dishModel.averageRating!,
-                          size: 13,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Spacer(),
+                  const SizedBox(height: 12),
                   Row(
                     children: [
-                      Text(
-                        '\$18.00',
-                        style: Styles.textStyle18.copyWith(
-                            fontWeight: FontWeight.w600, color: kPrimaryColor),
+                      Flexible(
+                        child: ChefProfile(
+                          chefModel: dishModel.chef,
+                        ),
                       ),
-                      Spacer(),
-                      CustomButton(
-                        height: 34,
-                        width: 34,
-                        backgroundColor: kSecondaryColor,
-                        borderRadius: 50,
-                        icon: Icon(Icons.add,color: kPrimaryColor,size: 22,),
-                        textStyle: TextStyle(fontSize: 23),
-                        onPressed: (){},
+                      const SizedBox(width: 30),
+                      FoodRating(
+                        rating: dishModel.averageRating?.toDouble() ?? 0.0,
+                        size: 13,
                       ),
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '\$${dishModel.price ?? '18.00'}',
+                          style: Styles.textStyle18.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: kPrimaryColor,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      CustomButton(
+                        height: 32,
+                        width: 32,
+                        backgroundColor: kSecondaryColor,
+                        borderRadius: 50,
+                        icon: const Icon(
+                          Icons.add,
+                          color: kPrimaryColor,
+                          size: 20,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
                 ],
               ),
-            ),
+            )
           ],
         ),
       ),

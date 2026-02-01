@@ -19,7 +19,6 @@ class CustomButton extends StatelessWidget {
   final Color backgroundColor;
   final Icon? icon;
   final double? borderRadius;
-
   final String? text;
   final TextStyle? textStyle;
   final void Function()? onPressed;
@@ -32,7 +31,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width ?? double.infinity,
+      width: width,
       height: height ?? 50,
       child: ElevatedButton(
         onPressed: onPressed,
@@ -42,27 +41,35 @@ class CustomButton extends StatelessWidget {
               vertical: verticalPadding ?? 0,
               horizontal: horizontalPadding ?? 0),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius!),
+            borderRadius: BorderRadius.circular(borderRadius ?? 12),
           ),
           elevation: elevation,
         ),
-        child: icon != null && text != null ? Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            icon!,
-            const SizedBox(
-              width: 5,
-            ),
-            Text(
-              text!,
-              style: textStyle,
-            )
-          ],
-        ): Text(
-          text!,
-          style: textStyle,
-        )
+        child: _buildButtonContent(),
       ),
     );
+  }
+
+  Widget _buildButtonContent() {
+    if (icon != null && text != null) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          icon!,
+          const SizedBox(width: 5),
+          Text(text!, style: textStyle),
+        ],
+      );
+    }
+    else if (icon != null) {
+      return icon!;
+    }
+    else {
+      return Text(
+        text ?? '',
+        style: textStyle,
+      );
+    }
   }
 }
