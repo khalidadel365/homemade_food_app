@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utilities/styles.dart';
 
 class PaymentSummarySection extends StatelessWidget {
@@ -11,28 +10,25 @@ class PaymentSummarySection extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text('Subtotal',style: Styles.textStyle14),
+            Text('Subtotal', style: Styles.textStyle14),
             const Spacer(),
-            Text('250 EGY',style: Styles.textStyle14.copyWith(fontWeight: FontWeight.bold)),
-
+            Text('250 EGP', style: Styles.textStyle14.copyWith(fontWeight: FontWeight.bold)),
           ],
         ),
-        const SizedBox(height: 10,),
+        const SizedBox(height: 10),
         Row(
           children: [
-            Text('Delivery Fee',style: Styles.textStyle14),
+            Text('Delivery Fee', style: Styles.textStyle14),
             const Spacer(),
-            Text('40 EGY',style: Styles.textStyle14.copyWith(fontWeight: FontWeight.bold)),
-
+            Text('40 EGP', style: Styles.textStyle14.copyWith(fontWeight: FontWeight.bold)),
           ],
         ),
-        const SizedBox(height: 10,),
+        const SizedBox(height: 10),
         Row(
           children: [
-            Text('Service Fee',style: Styles.textStyle14),
+            Text('Service Fee', style: Styles.textStyle14),
             const Spacer(),
-            Text('250 EGY',style: Styles.textStyle14.copyWith(fontWeight: FontWeight.bold)),
-
+            Text('10 EGP', style: Styles.textStyle14.copyWith(fontWeight: FontWeight.bold)),
           ],
         ),
       ],

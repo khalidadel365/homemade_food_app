@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/constants.dart';
+import 'package:homemade_food_app/core/utilities/api_constants.dart';
+import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 
 import '../../../../../core/utilities/styles.dart';
@@ -94,7 +97,11 @@ class ProfileViewBody extends StatelessWidget {
                     elevation: 0,
                     backgroundColor: kSecondaryColor,
                     borderRadius: 15,
-                    onPressed: (){},
+                    onPressed: (){
+                      //AuthCubit.get(context).signOut();
+                      ApiConstants.token = null;
+                     GoRouter.of(context).go(AppRouter.kLoginView);
+                    },
                   icon: Icon(
                       Icons.logout,
                     color: kPrimaryColor,
