@@ -6,7 +6,6 @@ import 'package:homemade_food_app/features/cart/presentation/views/checkout_view
 import 'package:homemade_food_app/features/home/presentation/views/fresh_nearby_details_view.dart';
 import 'package:homemade_food_app/features/home/presentation/views/home_view.dart';
 import 'package:homemade_food_app/features/main_layout/presentation/views/main_view.dart';
-
 import '../../features/splash/presentation/views/splash_view.dart';
 
 abstract class AppRouter {
@@ -15,20 +14,24 @@ abstract class AppRouter {
   static const kFreshNearbyDetailsView = '/freshNearbyDetailsView';
   static const kLoginView = '/loginView';
   static const kSignUpView = '/signUpView';
-  static const kSplashScreen = '/splashView';
+  static const kSplashScreen = '/';
   static const kCartScreen = '/cartView';
   static const kCheckoutScreen = '/checkoutView';
-  static final router = GoRouter(routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const SplashView(),
-    ),
-    GoRoute(path: kLoginView, builder: (context, state) => LoginView()),
-    GoRoute(path: kMainView, builder: (context, state) => MainView()),
-    GoRoute(path: kHomeView, builder: (context, state) => HomeView()),
-    GoRoute(path: kFreshNearbyDetailsView, builder: (context, state) => FreshNearbyDetailsView()),
-    GoRoute(path: kSignUpView, builder: (context, state) => SignupView()),
-    GoRoute(path: kCartScreen, builder: (context, state) => const CartView()),
-    GoRoute(path: kCheckoutScreen, builder: (context, state) => CheckoutView()),
-  ]);
+
+  static final router = GoRouter(
+    initialLocation: kSplashScreen,
+    routes: [
+      GoRoute(
+        path: kSplashScreen,
+        builder: (context, state) => const SplashView(),
+      ),
+      GoRoute(path: kLoginView, builder: (context, state) => const LoginView()),
+      GoRoute(path: kMainView, builder: (context, state) => const MainView()),
+      GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
+      GoRoute(path: kFreshNearbyDetailsView, builder: (context, state) => const FreshNearbyDetailsView()),
+      GoRoute(path: kSignUpView, builder: (context, state) => SignupView()),
+      GoRoute(path: kCartScreen, builder: (context, state) => const CartView()),
+      GoRoute(path: kCheckoutScreen, builder: (context, state) => const CheckoutView()),
+    ],
+  );
 }

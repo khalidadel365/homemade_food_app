@@ -154,7 +154,6 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 },
               ),
               const SizedBox(height: 20),
-              // sign up button
               CustomButton(
                   width: double.infinity,
                   height: 53,
@@ -173,10 +172,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       print('wrong');
                     }
                   },
-                  textStyle: Styles.textStyle18
+                  textStyle: Styles.textStyle18.copyWith(
+                    color: Colors.white
+                  )
               ),
               const SizedBox(height: 10),
-              // Back to login
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
