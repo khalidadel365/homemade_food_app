@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
-import 'package:homemade_food_app/features/home/data/models/cheif_model.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/chief_profile.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/food_rating.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/spiness_list_view.dart';
 import 'package:readmore/readmore.dart';
+import '../../../data/models/dish_model.dart';
 import 'add_ons_list_view.dart';
 import 'details_options_title.dart';
 import 'food_info_row.dart';
 
 class OrderDetailsBody extends StatefulWidget {
-  const OrderDetailsBody({super.key});
-
+  const OrderDetailsBody({super.key,required this.dishModel});
+  final DishModel dishModel;
   @override
   State<OrderDetailsBody> createState() => _OrderDetailsBodyState();
 }
@@ -31,29 +31,29 @@ class _OrderDetailsBodyState extends State<OrderDetailsBody> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Mom's Special\nLasagna", style: Styles.textStyle20),
+                Text('${widget.dishModel.name}', style: Styles.textStyle20),
                 Text(
-                  "150 EGY",
+                  "${widget.dishModel.price} EGY",
                   style: Styles.textStyle20.copyWith(color: kPrimaryColor),
                 ),
               ],
             ),
             const SizedBox(height: 8),
-            const Row(
+             Row(
               children: [
-                //const ChefProfile(chefModel: ChefModel(),),
+                ChefProfile(chefModel: widget.dishModel.chef),
                 const Spacer(),
-                // const FoodRating(
-                //   rating: 2.8,
-                //   size: 15,
-                // )
+                FoodRating(
+                  rating: widget.dishModel.averageRating ?? 0.0,
+                  size: 15,
+                )
               ],
             ),
             const SizedBox(
               height: 16,
             ),
-            const FoodInfoRow(
-              prepTime: '25m',
+            FoodInfoRow(
+              prepTime: '${widget.dishModel.preparationTime}',
               calories: '350',
             ),
             const SizedBox(
@@ -66,7 +66,7 @@ class _OrderDetailsBodyState extends State<OrderDetailsBody> {
               height: 10,
             ),
             ReadMoreText(
-              'Food is mainly composed of water, lipids, proteins, and carbohydrates. Oth food, substance consisting essentially of protein, carbohydrate, fat, and other nutrients used in the body of an organism to sustain growth and vital processes and to furnish energy',
+              '${widget.dishModel.description}',
               colorClickableText: kPrimaryColor,
               trimLines: 5,
               trimMode: TrimMode.Line,

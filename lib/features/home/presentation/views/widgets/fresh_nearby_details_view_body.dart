@@ -2,12 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:homemade_food_app/constants.dart';
+import 'package:homemade_food_app/features/home/data/models/dish_model.dart';
 
 import 'order_details_body.dart';
 
 class FreshNearbyDetailsViewBody extends StatelessWidget {
-  const FreshNearbyDetailsViewBody({super.key});
-
+  const FreshNearbyDetailsViewBody({super.key, required this.dishModel});
+  final DishModel dishModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +47,9 @@ class FreshNearbyDetailsViewBody extends StatelessWidget {
                 color: kBackGroundColor,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
               ),
-              child: const OrderDetailsBody(),
+              child:  OrderDetailsBody(
+                dishModel: dishModel,
+              ),
             ),
           ),
         ],

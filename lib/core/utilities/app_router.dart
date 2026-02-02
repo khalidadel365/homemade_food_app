@@ -6,6 +6,7 @@ import 'package:homemade_food_app/features/cart/presentation/views/checkout_view
 import 'package:homemade_food_app/features/home/presentation/views/fresh_nearby_details_view.dart';
 import 'package:homemade_food_app/features/home/presentation/views/home_view.dart';
 import 'package:homemade_food_app/features/main_layout/presentation/views/main_view.dart';
+import '../../features/home/data/models/dish_model.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
 abstract class AppRouter {
@@ -28,7 +29,9 @@ abstract class AppRouter {
       GoRoute(path: kLoginView, builder: (context, state) => const LoginView()),
       GoRoute(path: kMainView, builder: (context, state) => const MainView()),
       GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
-      GoRoute(path: kFreshNearbyDetailsView, builder: (context, state) => const FreshNearbyDetailsView()),
+      GoRoute(path: kFreshNearbyDetailsView, builder: (context, state) => FreshNearbyDetailsView(
+        dishModel: state.extra as DishModel,
+      )),
       GoRoute(path: kSignUpView, builder: (context, state) => SignupView()),
       GoRoute(path: kCartScreen, builder: (context, state) => const CartView()),
       GoRoute(path: kCheckoutScreen, builder: (context, state) => const CheckoutView()),

@@ -21,7 +21,8 @@ class FreshNearbyListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kFreshNearbyDetailsView);
+        GoRouter.of(context).push(
+            AppRouter.kFreshNearbyDetailsView,extra: dishModel);
       },
       child: Container(
         height: MediaQuery.of(context).size.height * 0.215,
