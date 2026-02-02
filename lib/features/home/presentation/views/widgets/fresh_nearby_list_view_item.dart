@@ -80,7 +80,7 @@ class FreshNearbyListViewItem extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          '\$${dishModel.price ?? '18.00'}',
+                          '${dishModel.price ?? 'none'} EGY',
                           style: Styles.textStyle18.copyWith(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,
