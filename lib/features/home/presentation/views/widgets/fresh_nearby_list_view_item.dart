@@ -64,7 +64,7 @@ class FreshNearbyListViewItem extends StatelessWidget {
                   Row(
                     children: [
                       Flexible(
-                        child: ChefProfile(
+                        child: ChefInfoRow(
                           chefModel: dishModel.chef,
                         ),
                       ),

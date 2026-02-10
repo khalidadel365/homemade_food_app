@@ -41,7 +41,7 @@ class _OrderDetailsBodyState extends State<OrderDetailsBody> {
             const SizedBox(height: 8),
              Row(
               children: [
-                ChefProfile(chefModel: widget.dishModel.chef),
+                ChefInfoRow(chefModel: widget.dishModel.chef),
                 const Spacer(),
                 FoodRating(
                   rating: widget.dishModel.averageRating ?? 0.0,

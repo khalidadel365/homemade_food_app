@@ -5,8 +5,8 @@ import '../../../../../constants.dart';
 import '../../../../../core/utilities/styles.dart';
 import '../../../data/models/cheif_model.dart';
 
-class ChefProfile extends StatelessWidget {
-  const ChefProfile({super.key, required this.chefModel});
+class ChefInfoRow extends StatelessWidget {
+  const ChefInfoRow({super.key, required this.chefModel});
 
   final ChefModel? chefModel;
 
