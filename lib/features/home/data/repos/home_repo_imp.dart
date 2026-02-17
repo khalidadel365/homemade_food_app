@@ -11,7 +11,6 @@ class HomeRepoImp extends HomeRepo {
   HomeRepoImp(this.apiService);
 
   @override
-  @override
   Future<Either<Failure, List<DishModel>>> fetchDishes({String? category}) async {
     try {
       var data = await apiService.get(

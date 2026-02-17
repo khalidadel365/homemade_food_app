@@ -18,7 +18,7 @@ class ApiService {
     String? token,
   }) async {
     dio?.options.headers = {
-      if (token != null) 'Authorization': 'Bearer $token',
+      if (token != null) 'Authorization': 'Token $token',
       'Content-Type': 'application/json',
     };
 
