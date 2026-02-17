@@ -17,11 +17,9 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 2500), () {
-      String? token = CacheHelper.getData(key: 'token');
-
-      ApiConstants.token = token;
-
-      if (token != null && token.isNotEmpty) {
+      ApiConstants.token= CacheHelper.getData(key: 'token');
+      ApiConstants.id = CacheHelper.getData(key: 'id');
+      if (ApiConstants.token != null) {
         GoRouter.of(context).go(AppRouter.kMainView);
       } else {
         GoRouter.of(context).go(AppRouter.kLoginView);

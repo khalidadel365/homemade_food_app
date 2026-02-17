@@ -5,7 +5,7 @@ import 'package:homemade_food_app/core/utilities/styles.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import 'package:homemade_food_app/features/home/data/models/dish_model.dart';
 import '../../../../../constants.dart';
-import 'chief_profile.dart';
+import 'chief_info_row.dart';
 import 'custom_fresh_nearby_image.dart';
 import 'food_rating.dart';
 

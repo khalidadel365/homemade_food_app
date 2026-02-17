@@ -3,6 +3,7 @@ import 'package:homemade_food_app/features/auth/presentation/views/login_view.da
 import 'package:homemade_food_app/features/auth/presentation/views/signup_view.dart';
 import 'package:homemade_food_app/features/cart/presentation/views/cart_view.dart';
 import 'package:homemade_food_app/features/cart/presentation/views/checkout_view.dart';
+import 'package:homemade_food_app/features/home/presentation/views/chef_profile_view.dart';
 import 'package:homemade_food_app/features/home/presentation/views/fresh_nearby_details_view.dart';
 import 'package:homemade_food_app/features/home/presentation/views/home_view.dart';
 import 'package:homemade_food_app/features/main_layout/presentation/views/main_view.dart';
@@ -18,6 +19,7 @@ abstract class AppRouter {
   static const kSplashScreen = '/';
   static const kCartScreen = '/cartView';
   static const kCheckoutScreen = '/checkoutView';
+  static const kChefProfileView = '/chefProfileView';
 
   static final router = GoRouter(
     initialLocation: kSplashScreen,
@@ -35,6 +37,7 @@ abstract class AppRouter {
       GoRoute(path: kSignUpView, builder: (context, state) => SignupView()),
       GoRoute(path: kCartScreen, builder: (context, state) => const CartView()),
       GoRoute(path: kCheckoutScreen, builder: (context, state) => const CheckoutView()),
+      GoRoute(path: kChefProfileView, builder: (context, state) => const ChefProfileView()),
     ],
   );
 }

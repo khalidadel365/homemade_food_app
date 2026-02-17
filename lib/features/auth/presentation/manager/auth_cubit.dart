@@ -43,7 +43,8 @@ class AuthCubit extends Cubit<AuthStates> {
     result.fold((failure){
       emit(LoginErrorState(failure.errorMessage));
     }, (loginModel){
-      ApiConstants.token = loginModel.token;
+      ApiConstants.token = loginModel.token!;
+      ApiConstants.id =loginModel.userData!.id!;
       emit(LoginSuccessState(loginModel));
     });
   }

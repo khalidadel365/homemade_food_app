@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -18,8 +20,13 @@ class LoginView extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if(state is LoginSuccessState){
+          print('*******************');
           print(ApiConstants.token);
+          print(ApiConstants.id);
           CacheHelper.saveData(key: 'token', value: ApiConstants.token).then((value){
+            GoRouter.of(context).go(AppRouter.kMainView);
+          });
+          CacheHelper.saveData(key: 'id', value: ApiConstants.id).then((value){
             GoRouter.of(context).go(AppRouter.kMainView);
           });
         }

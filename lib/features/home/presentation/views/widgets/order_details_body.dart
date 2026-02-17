@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
-import 'package:homemade_food_app/features/home/presentation/views/widgets/chief_profile.dart';
+import 'package:homemade_food_app/features/home/presentation/views/widgets/chief_info_row.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/food_rating.dart';
 import 'package:homemade_food_app/features/home/presentation/views/widgets/spiness_list_view.dart';
 import 'package:readmore/readmore.dart';

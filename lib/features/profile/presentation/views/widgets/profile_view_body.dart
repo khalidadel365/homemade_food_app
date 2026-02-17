@@ -101,7 +101,7 @@ class ProfileViewBody extends StatelessWidget {
                     onPressed: ()async{
                       //AuthCubit.get(context).signOut();
                       await CacheHelper.removeData(key: 'token');
-                      ApiConstants.token = null;
+                      //ApiConstants.token = null;
                      GoRouter.of(context).go(AppRouter.kLoginView);
                     },
                   icon: Icon(

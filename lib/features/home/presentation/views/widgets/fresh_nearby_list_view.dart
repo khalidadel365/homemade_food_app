@@ -30,8 +30,7 @@ class FreshNearbyListView extends StatelessWidget {
         } else {
           return const SizedBox(
               height: 200,
-              child:
-                  Center(child: SpinKitPulse(size: 45, color: kPrimaryColor)));
+              child: const Center(child: SpinKitPulse(size: 45, color: kPrimaryColor)));
         }
       },
     );

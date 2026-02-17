@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/constants.dart';
+import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/features/home/data/models/dish_model.dart';
 
 import 'order_details_body.dart';
@@ -34,7 +36,7 @@ class FreshNearbyDetailsViewBody extends StatelessWidget {
               child: IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: (){
-
+                  GoRouter.of(context).push(AppRouter.kChefProfileView);
                 },
               ),
             ),

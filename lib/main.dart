@@ -15,7 +15,6 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   setupServiceLocator();
   getIt.get<ApiService>().init();
-
   runApp(const HomemadeFoodApp());
 }
 

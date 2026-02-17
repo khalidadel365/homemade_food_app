@@ -14,7 +14,8 @@ class FreshNearbyDetailsView extends StatelessWidget {
         dishModel: dishModel,
       ),
       bottomNavigationBar: FreshNearbyDetailsBottomNavBar(),
-    ));
+    ),
+    );
   }
 }
 

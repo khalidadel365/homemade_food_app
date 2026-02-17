@@ -1,34 +1,31 @@
 class LoginModel {
   final String? token;
-  final ProfileData? profileData;
+  final UserData? userData;
 
-  LoginModel({this.token, this.profileData});
+  LoginModel({this.token, this.userData});
 
   factory LoginModel.fromJson(Map<String, dynamic> json) {
     return LoginModel(
       token: json['token'],
-      profileData: json['profile'] != null ? ProfileData.fromJson(json['profile']) : null,
+      userData: json['user'] != null ? UserData.fromJson(json['user']) : null,
     );
   }
 }
 
-class ProfileData {
+class UserData {
   final int? id;
   final AccountInfo? accountInfo;
-  final int? total_orders;
 
 
-  ProfileData({
+  UserData({
     required this.id,
     required this.accountInfo,
-    required this.total_orders
   });
 
-  factory ProfileData.fromJson(Map<String, dynamic> json) {
-    return ProfileData(
+  factory UserData.fromJson(Map<String, dynamic> json) {
+    return UserData(
       id: json['id'],
       accountInfo: json['user'] != null ? AccountInfo.fromJson(json['user']) : null,
-      total_orders: json['total_orders'] ?? 0,
     );
   }
 }
