@@ -5,8 +5,9 @@ import '../../../../../constants.dart';
 class CustomProfileImage extends StatelessWidget {
   const CustomProfileImage({
     super.key,
+    required this.profileImage
   });
-
+  final String profileImage;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -26,7 +27,7 @@ class CustomProfileImage extends StatelessWidget {
                     color: kPrimaryColor,
                   ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
-                  imageUrl: 'https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_648907024.jpg?itok=0hb44OrI')
+                  imageUrl: '${profileImage}')
           ),
         ),
         ClipRRect(

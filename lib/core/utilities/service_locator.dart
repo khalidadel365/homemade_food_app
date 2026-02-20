@@ -3,6 +3,7 @@ import 'package:homemade_food_app/features/auth/data/repos/auth_repo.dart';
 import 'package:homemade_food_app/features/auth/data/repos/auth_repo_imp.dart';
 import 'package:homemade_food_app/features/home/data/repos/home_repo.dart';
 import 'package:homemade_food_app/features/home/data/repos/home_repo_imp.dart';
+import 'package:homemade_food_app/features/profile/data/repo/profile_repo_imp.dart';
 
 import 'api_service.dart';
 
@@ -13,5 +14,8 @@ void setupServiceLocator(){
   getIt.registerSingleton(AuthRepoImp());
   getIt.registerSingleton(HomeRepoImp(
     getIt.get<ApiService>()
+  ));
+  getIt.registerSingleton(ProfileRepoImp(
+      getIt.get<ApiService>()
   ));
 }
