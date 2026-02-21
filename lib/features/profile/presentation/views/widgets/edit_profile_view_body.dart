@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:homemade_food_app/constants.dart';
+import 'package:homemade_food_app/core/widgets/custom_button.dart';
+import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
+import '../../../../../core/utilities/functions/show_snack_bar.dart';
+import '../../../../auth/data/models/account_info.dart';
 
 class EditProfileViewBody extends StatefulWidget {
-  const EditProfileViewBody({super.key});
+  const EditProfileViewBody({super.key, required this.user});
+
+  final AccountInfo user;
 
   @override
   State<EditProfileViewBody> createState() => _EditProfileViewBodyState();
@@ -15,42 +22,109 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          TextFormField(
-            controller: firstNameController,
-            decoration: const InputDecoration(labelText: 'First Name'),
-          ),
-          TextFormField(
-            controller: lastNameController,
-            decoration: const InputDecoration(labelText: 'Last Name'),
-          ),
-          TextFormField(
-            controller: phoneController,
-            decoration: const InputDecoration(labelText: 'Phone Number'),
-          ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              // هنا بنعمل الـ Map اللي فيها الداتا اللي اتغيرت بس (PATCH)
-              Map<String, dynamic> updatedData = {
-                "first_name": firstNameController.text,
-                "last_name": lastNameController.text,
-                "phone_number": phoneController.text,
-              };
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Edit Profile'),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding:
+            const EdgeInsets.only(top: 20.0, bottom: 80, right: 20, left: 20),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'First Name',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              CustomTextFormField(
+                controller: firstNameController,
+                hintText: widget.user.firstName,
+                hintTextStyle: TextStyle(
+                    color: Colors.grey
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const Text(
+                'Last Name',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              CustomTextFormField(
+                controller: lastNameController,
+                hintText: widget.user.lastName,
+                hintTextStyle: TextStyle(
+                    color: Colors.grey
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const Text(
+                'Phone Number',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              CustomTextFormField(
+                controller: phoneController,
+                hintText: widget.user.phone,
+                hintTextStyle: TextStyle(
+                  color: Colors.grey
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const Text(
+                'Email Address',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              CustomTextFormField(
+                controller: emailController,
+                hintText: widget.user.email,
+                hintTextStyle: TextStyle(
+                    color: Colors.grey
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              CustomButton(
+                width: double.infinity,
+                text: 'Save Changes',
+                backgroundColor: kPrimaryColor,
+                borderRadius: 10,
+                onPressed: () {
+                  Map<String, dynamic> updatedData = {};
+                  if (firstNameController.text != widget.user.firstName) {
+                    updatedData["first_name"] = firstNameController.text;
+                  }
+                  if (lastNameController.text != widget.user.lastName) {
+                    updatedData["last_name"] = lastNameController.text;
+                  }
 
-              // بننادي على الـ Cubit
-              BlocProvider.of<ProfileCubit>(context).editProfile(
-                token: 'YOUR_TOKEN', // هاته من الـ Cache أو الـ Constants
-                id: 5, // الـ ID بتاعك
-                updatedData: updatedData,
-              );
-            },
-            child: const Text('Save Changes'),
+                  if (phoneController.text != widget.user.phone) {
+                    updatedData["phone_number"] = phoneController.text;
+                  }
+                  if (updatedData.isNotEmpty) {
+                    // BlocProvider.of<ProfileCubit>(context).editProfile(
+                    //   token: ApiConstants.token,
+                    //   id: ApiConstants.id,
+                    //   updatedData: updatedData,
+                    // );
+                  } else {
+                    showSnackBar(
+                        color: Colors.red,
+                        context: context,
+                        message: "No changes made");
+                  }
+                },
+                textStyle: TextStyle(color: Colors.white),
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

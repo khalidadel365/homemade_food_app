@@ -37,6 +37,7 @@ class AuthRepoImp extends AuthRepo {
     required String? lastName,
     required String? phone}) async {
     try {
+
       var response = await getIt
           .get<ApiService>()
           .postData(endpoint: '/api/auth/signup/', data: {
@@ -49,8 +50,10 @@ class AuthRepoImp extends AuthRepo {
         'address_latitude': 5.66,
         'user_type': "consumer",
       });
+      print('done');
       return right(SignUpModel.fromJson(response?.data));
     } on Exception catch (e) {
+      print(e.toString());
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {

@@ -31,6 +31,7 @@ class _MapSectionState extends State<MapSection> {
       // نملأ العلبة وننور الشاشة
       setState(() {
         userPoint = LatLng(position.latitude, position.longitude);
+        print(userPoint);
       });
     }
   }

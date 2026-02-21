@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/api_constants.dart';
 import 'package:homemade_food_app/core/utilities/app_router.dart';
-import 'package:homemade_food_app/core/utilities/loading_view.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
-
 import '../../../../../core/utilities/cache_helper.dart';
 import '../../../../../core/utilities/functions/show_snack_bar.dart';
 import '../../../../../core/utilities/styles.dart';
@@ -27,7 +24,6 @@ class ProfileViewBody extends StatelessWidget {
           print('*******************');
           print(ApiConstants.token);
           print(ApiConstants.id);
-          print(state.profileModel.userData!.accountInfo!.lastName);
         }
 
         if (state is ProfileFailure) {
@@ -71,7 +67,7 @@ class ProfileViewBody extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${user?.email ?? ''}',
+                      '${user.email ?? ''}',
                       style: Styles.textStyle14.copyWith(
                         color: Colors.grey,
                         fontWeight: FontWeight.w500,
@@ -97,7 +93,9 @@ class ProfileViewBody extends StatelessWidget {
                       title: 'Edit Profile',
                       iconSize: 22,
                       onTap: (){
-                        GoRouter.of(context).push(AppRouter.kEditProfileView);
+                        GoRouter.of(context).push(
+                            AppRouter.kEditProfileView,
+                            extra: user);
                       },
                     ),
 
