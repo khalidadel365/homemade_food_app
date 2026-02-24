@@ -9,7 +9,7 @@ class CustomTextFormField extends StatelessWidget {
       this.hintText,
       this.onChange,
       this.onSubmit,
-      this.obsecureText = false,
+      this.obsecureText,
       this.circularRadius,
       this.verticalPadding,
       this.horizontalPadding,
@@ -17,11 +17,13 @@ class CustomTextFormField extends StatelessWidget {
       this.textInputType,
       this.cursorHeight,
       this.cursorWidth,
+        this.suffixIcon,
       this.hintTextStyle});
 
   final String? hintText;
   final Icon? prefixIcon;
-  final bool obsecureText;
+  final IconButton? suffixIcon;
+  final bool? obsecureText;
   final Function(String)? onChange;
   final Function(String)? onSubmit;
   final FormFieldValidator? validate;
@@ -40,12 +42,13 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       maxLines: maxLines ?? 1,
       controller: controller,
-      obscureText: obsecureText,
+      obscureText: obsecureText ?? false,
       validator: validate,
       onFieldSubmitted: onSubmit,
       onChanged: onChange,
       cursorColor: kPrimaryColor,
       decoration: InputDecoration(
+        suffixIcon: suffixIcon,
         isDense: true,
         contentPadding: EdgeInsets.symmetric(
             vertical: verticalPadding ?? 15,

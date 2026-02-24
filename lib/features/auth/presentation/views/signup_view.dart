@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/features/auth/presentation/manager/auth_states.dart';
 import 'package:homemade_food_app/features/auth/presentation/views/widgets/sign_up_view_body.dart';
 import '../../../../core/utilities/app_router.dart';
@@ -37,7 +36,7 @@ class _SignupViewState extends State<SignupView> {
       builder: (context, state) {
         return Stack(
           children: [
-            const Scaffold(
+            Scaffold(
               body: SafeArea(child: SignUpViewBody()),
             ),
             if (state is SignupLoadingState)

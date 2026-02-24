@@ -1,4 +1,4 @@
-import 'dart:math';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +41,7 @@ class LoginView extends StatelessWidget {
       builder: (context, state) {
         return Stack(
             children: [
-          const Scaffold(
+           Scaffold(
             body: SafeArea(child: LoginViewBody()),
           ),
           if (state is LoginLoadingState) const LoadingView()

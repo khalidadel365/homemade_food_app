@@ -4,6 +4,10 @@ import '../../data/models/signup_model.dart';
 
 abstract class AuthStates {}
 
+class changeLoginPasswordVisibilityState extends AuthStates{}
+class changeSignupPasswordVisibilityState extends AuthStates{}
+class changeConfirmPasswordVisibilityState extends AuthStates{}
+
 class SignupInitialState extends AuthStates{}
 class SignupLoadingState extends AuthStates{}
 class SignupSuccessState extends AuthStates{

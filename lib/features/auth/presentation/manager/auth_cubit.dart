@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homemade_food_app/core/utilities/api_constants.dart';
 import 'package:homemade_food_app/features/auth/data/repos/auth_repo.dart';
 import 'package:homemade_food_app/features/auth/presentation/manager/auth_states.dart';
-
 import '../../../../core/errors/failures.dart';
 import '../../data/models/signup_model.dart';
 
@@ -13,6 +12,26 @@ class AuthCubit extends Cubit<AuthStates> {
   static AuthCubit get(context) => BlocProvider.of(context);
 
   final AuthRepo authRepo;
+  bool loginPasswordVisible = true;
+  bool signupPasswordVisible  = true;
+  bool confirmPasswordVisible  = true;
+  void changeLoginPasswordVisibility() {
+    loginPasswordVisible = !loginPasswordVisible;
+    print(loginPasswordVisible);
+    emit(changeLoginPasswordVisibilityState());
+  }
+  void changeSignupPasswordVisibility() {
+    signupPasswordVisible = !signupPasswordVisible;
+    print(signupPasswordVisible);
+    emit(changeSignupPasswordVisibilityState());
+  }
+  void changeSignupConfirmPasswordVisibility() {
+    confirmPasswordVisible = !confirmPasswordVisible;
+    print(confirmPasswordVisible);
+    emit(changeConfirmPasswordVisibilityState());
+  }
+
+
 
   Future<void> SignupUser({
     required String? email,

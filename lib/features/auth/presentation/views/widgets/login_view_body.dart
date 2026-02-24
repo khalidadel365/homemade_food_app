@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/app_router.dart';
@@ -8,9 +9,10 @@ import '../../../../../core/utilities/styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_textformfield.dart';
 import '../../manager/auth_cubit.dart';
+import '../../manager/auth_states.dart';
 
 class LoginViewBody extends StatefulWidget {
-  const LoginViewBody({
+  LoginViewBody({
     super.key,
   });
 
@@ -65,7 +67,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   return null;
                 },
                 hintText: "Enter your email",
-                obsecureText: false,
                 prefixIcon: Icon(
                   Icons.email_outlined,
                   size: 20.5,
@@ -74,22 +75,38 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 cursorWidth: 2,
               ),
               const SizedBox(height: 16),
-              CustomTextFormField(
-                hintText: "Enter your password",
-                obsecureText: true,
-                prefixIcon: Icon(
-                  Icons.lock_outline,
-                  size: 20.5,
-                  color: Colors.grey.shade700,
-                ),
-                controller: passwordController,
-                validate: (value) {
-                  if (value.isEmpty) {
-                    return 'Password must not be empty';
-                  }
-                  return null;
-                },
-              ),
+            BlocBuilder<AuthCubit, AuthStates>(
+              builder: (context, state) {
+                final cubit = AuthCubit.get(context);
+
+                return CustomTextFormField(
+                  hintText: "Enter your password",
+                  obsecureText: cubit.loginPasswordVisible,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      cubit.loginPasswordVisible
+                          ? Icons.remove_red_eye_outlined
+                          : Icons.visibility_off_outlined,
+                    ),
+                    onPressed: () {
+                      cubit.changeLoginPasswordVisibility();
+                    },
+                  ),
+                  prefixIcon: Icon(
+                    Icons.lock_outline,
+                    size: 20.5,
+                    color: Colors.grey.shade700,
+                  ),
+                  controller: passwordController,
+                  validate: (value) {
+                    if (value.isEmpty) {
+                      return 'Password must not be empty';
+                    }
+                    return null;
+                  },
+                );
+              },
+            ),
               const SizedBox(height: 24),
               // Login Button
               CustomButton(

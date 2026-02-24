@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/utilities/assets.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
+import 'package:homemade_food_app/features/auth/presentation/manager/auth_states.dart';
 import '../../../../../core/utilities/styles.dart';
 import '../../../../../core/widgets/custom_textformfield.dart';
 import '../../manager/auth_cubit.dart';
@@ -83,7 +85,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               //last name text field
               CustomTextFormField(
                 hintText: "Last Name",
-                prefixIcon: Icon(Icons.person_outline,size: 23,
+                prefixIcon: Icon(Icons.person_outline, size: 23,
                   color: Colors.grey.shade700,),
                 validate: (value) {
                   if (value.isEmpty) {
@@ -97,7 +99,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               // phone text field
               CustomTextFormField(
                 hintText: "Phone Number",
-                prefixIcon: Icon(Icons.phone_outlined,size: 23,
+                prefixIcon: Icon(Icons.phone_outlined, size: 23,
                   color: Colors.grey.shade700,),
                 validate: (value) {
                   if (value.isEmpty) {
@@ -111,7 +113,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               // email text field
               CustomTextFormField(
                 hintText: "Email Address",
-                prefixIcon: Icon(Icons.email_outlined,size: 22,
+                prefixIcon: Icon(Icons.email_outlined, size: 22,
                   color: Colors.grey.shade700,),
                 validate: (value) {
                   if (value.isEmpty) {
@@ -123,34 +125,64 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               ),
               const SizedBox(height: 16),
               // password text field
-              CustomTextFormField(
-                hintText: "Password",
-                prefixIcon: Icon(Icons.lock_outline,size: 22,
-                  color: Colors.grey.shade700,),
-                obsecureText: true,
-                validate: (value) {
-                  if (value.isEmpty) {
-                    return 'Password must not be empty';
-                  }
-                  return null;
+              BlocBuilder<AuthCubit, AuthStates>(
+                builder: (context, state) {
+                  final cubit = AuthCubit.get(context);
+                  return CustomTextFormField(
+                    hintText: "Password",
+                    obsecureText: cubit.signupPasswordVisible,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        cubit.signupPasswordVisible
+                            ? Icons.remove_red_eye_outlined
+                            : Icons.visibility_off_outlined,
+                      ),
+                      onPressed: () {
+                        cubit.changeSignupPasswordVisibility();
+                      },
+                    ),
+                    prefixIcon: Icon(Icons.lock_outline, size: 22,
+                      color: Colors.grey.shade700,),
+                    validate: (value) {
+                      if (value.isEmpty) {
+                        return 'Password must not be empty';
+                      }
+                      return null;
+                    },
+                    controller: passwordController,
+                  );
                 },
-                controller: passwordController,
               ),
               const SizedBox(height: 15),
               // confirm Password text field
-              CustomTextFormField(
-                hintText: "Confirm Password",
-                prefixIcon: Icon(Icons.lock_outline,size: 22,
-                  color: Colors.grey.shade700,),
-                controller: confirmPasswordController,
-                obsecureText: true,
-                validate: (value) {
-                  if (value.isEmpty) {
-                    return 'Confirm password must not be empty';
-                  } else if (value != passwordController.text) {
-                    return 'Passwords do not match';
-                  } else
-                    return null;
+              BlocBuilder<AuthCubit, AuthStates>(
+                builder: (context, state) {
+                  final cubit = AuthCubit.get(context);
+                  return CustomTextFormField(
+                    hintText: "Confirm Password",
+                    obsecureText: cubit.confirmPasswordVisible,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        cubit.confirmPasswordVisible
+                            ? Icons.remove_red_eye_outlined
+                            : Icons.visibility_off_outlined,
+                      ),
+                      onPressed: () {
+                        cubit.changeSignupConfirmPasswordVisibility();
+                      },
+                    ),
+                    prefixIcon: Icon(Icons.lock_outline, size: 22,
+                      color: Colors.grey.shade700,),
+                    controller: confirmPasswordController,
+                    validate: (value) {
+                      if (value.isEmpty) {
+                        return 'Confirm password must not be empty';
+                      } else if (value != passwordController.text) {
+                        return 'Passwords do not match';
+                      } else
+                        return null;
+                    },
+                  );
                 },
               ),
               const SizedBox(height: 20),
@@ -173,7 +205,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     }
                   },
                   textStyle: Styles.textStyle18.copyWith(
-                    color: Colors.white
+                      color: Colors.white
                   )
               ),
               const SizedBox(height: 10),
@@ -186,8 +218,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       GoRouter.of(context).go(AppRouter.kLoginView);
                     },
                     child: Text(
-                      "Login",
-                      style: Styles.textStyleBold
+                        "Login",
+                        style: Styles.textStyleBold
                     ),
                   )
                 ],
