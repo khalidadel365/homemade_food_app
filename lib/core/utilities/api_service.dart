@@ -6,8 +6,7 @@ class ApiService {
   void init() {
     dio = Dio(
       BaseOptions(
-          baseUrl: 'http://192.168.137.1:8000'
-        ,
+          baseUrl: 'http://10.0.2.2:8000',
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
         receiveDataWhenStatusError: true,
@@ -44,6 +43,22 @@ class ApiService {
       'Content-Type': 'application/json',
     };
     return dio?.post(
+      endpoint,
+      data: data,
+      queryParameters: query,
+    );
+  }
+  Future<Response>? patchData({
+    required String endpoint,
+    required Map<String, dynamic> data,
+    Map<String, dynamic>? query,
+    required String? token,
+  }) {
+    dio?.options.headers = {
+      'Authorization': token,
+      'Content-Type': 'application/json',
+    };
+    return dio?.patch(
       endpoint,
       data: data,
       queryParameters: query,

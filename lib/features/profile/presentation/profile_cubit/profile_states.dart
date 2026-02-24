@@ -13,3 +13,13 @@ class ProfileSuccess extends ProfileStates {
   ProfileModel profileModel;
   ProfileSuccess(this.profileModel);
 }
+
+class EditProfileLoading extends ProfileStates {}
+class EditProfileFailure extends ProfileStates {
+  final String errMessage;
+  EditProfileFailure(this.errMessage);
+}
+class EditProfileSuccess extends ProfileStates {
+  ProfileModel profileModel;
+  EditProfileSuccess(this.profileModel);
+}

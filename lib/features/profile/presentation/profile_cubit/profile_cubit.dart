@@ -18,4 +18,17 @@ class ProfileCubit extends Cubit<ProfileStates> {
       emit(ProfileSuccess(profile));
     });
   }
+  Future<void> editProfile({required String token,required int id,required Map<String,dynamic> data}) async {
+    emit(EditProfileLoading());
+    var result =await profileRepo.editUserData(
+      token: token,
+      id: id,
+      data: data,
+    );
+    result.fold((failure){
+      emit(ProfileFailure(failure.errorMessage));
+    }, (profile){
+      emit(ProfileSuccess(profile));
+    });
+  }
 }
