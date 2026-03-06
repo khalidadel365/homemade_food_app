@@ -32,9 +32,9 @@ class ServerFailure extends Failure{
   factory ServerFailure.fromResponse(int statusCode,dynamic response){
     if(statusCode == 400 || statusCode == 401 || statusCode == 403){
       final editError = response['user'] != null ? response['user'] : null;
-
       final loginError = response['detail'] != null ? response['detail'] : null;
       final emailError = response['email'] != null ? response['email'][0] : null;
+      final changePasswordEmailError = response['detail'] != null ? response['detail'] : null;
 
       final phoneError = response['phone_number'] != null ? response['phone_number'][0] : null;
       String message;
@@ -50,7 +50,10 @@ class ServerFailure extends Failure{
         message = loginError;
       } else if(editError != null){
         message = editError['email'];
-      }else {
+      }else if (changePasswordEmailError != null) {
+        message = changePasswordEmailError;
+      }
+      else {
         message = 'Authentication error';
       }
 

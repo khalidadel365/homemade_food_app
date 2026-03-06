@@ -122,7 +122,14 @@ class ProfileViewBody extends StatelessWidget {
                       icon: Icons.lock,
                       iconSize: 20,
                       title: 'Change Password',
-                      onTap: (){},
+                      onTap: (){
+                        GoRouter.of(context).push(
+                          AppRouter.kChangePasswordView,
+                          extra: {
+                            'cubit': BlocProvider.of<ProfileCubit>(context),
+                          },
+                        );
+                      },
                     ),
 
                     const SizedBox(height: 20),

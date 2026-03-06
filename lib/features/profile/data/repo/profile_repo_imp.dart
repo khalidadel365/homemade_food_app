@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:homemade_food_app/features/auth/data/models/account_info.dart';
+import 'package:homemade_food_app/features/profile/data/models/password_reset_request_model.dart';
 import 'package:homemade_food_app/features/profile/data/repo/profile_repo.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/errors/failures.dart';
@@ -74,6 +75,28 @@ class ProfileRepoImp extends ProfileRepo {
       print('finish try call func');
 
       return right(accountInfoModel);
+    } on DioException catch (e) {
+      print(e.toString());
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, PasswordResetRequestModel>> resetPasswordRequest({required String token, required String email})async {
+    try {
+      final res = await apiService.postData(
+        endpoint: '/api/auth/password-reset/',
+        data: {
+          'email': email,
+        },
+        token: token,
+      );
+
+      final passwordResetRequest = PasswordResetRequestModel.fromJson(res!.data);
+
+      return right(passwordResetRequest);
     } on DioException catch (e) {
       print(e.toString());
       return left(ServerFailure.fromDioException(e));

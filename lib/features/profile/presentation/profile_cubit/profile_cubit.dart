@@ -47,4 +47,17 @@ class ProfileCubit extends Cubit<ProfileStates> {
       emit(UpdateProfileImageSuccess(accountInfo));
     });
   }
+  Future<void> resetPasswordRequest({required String token,required String email}) async {
+    emit(ResetPasswordRequestLoading());
+    var result =await profileRepo.resetPasswordRequest(
+      token: token,
+      email: email,
+    );
+    result.fold((failure){
+      print('^^^^^^^^ ${failure.errorMessage}');
+      emit(ResetPasswordRequestFailure(failure.errorMessage));
+    }, (resetPasswordModel){
+      emit(ResetPasswordRequestSuccess(resetPasswordModel));
+    });
+  }
 }

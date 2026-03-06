@@ -1,4 +1,5 @@
 import 'package:homemade_food_app/features/auth/data/models/account_info.dart';
+import 'package:homemade_food_app/features/profile/data/models/password_reset_request_model.dart';
 import 'package:homemade_food_app/features/profile/data/models/profile_model.dart';
 
 
@@ -32,4 +33,13 @@ class UpdateProfileImageFailure extends ProfileStates {
 class UpdateProfileImageSuccess extends ProfileStates {
   AccountInfo accountInfo;
   UpdateProfileImageSuccess(this.accountInfo);
+}
+class ResetPasswordRequestLoading extends ProfileStates {}
+class ResetPasswordRequestFailure extends ProfileStates {
+  final String errMessage;
+  ResetPasswordRequestFailure(this.errMessage);
+}
+class ResetPasswordRequestSuccess extends ProfileStates {
+  PasswordResetRequestModel resetRequest;
+  ResetPasswordRequestSuccess(this.resetRequest);
 }

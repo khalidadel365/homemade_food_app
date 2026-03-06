@@ -9,6 +9,7 @@ import 'package:homemade_food_app/features/home/presentation/views/fresh_nearby_
 import 'package:homemade_food_app/features/home/presentation/views/home_view.dart';
 import 'package:homemade_food_app/features/main_layout/presentation/views/main_view.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
+import 'package:homemade_food_app/features/profile/presentation/views/change_password_request_view.dart';
 import 'package:homemade_food_app/features/profile/presentation/views/edit_profile_view.dart';
 import '../../features/auth/data/models/account_info.dart';
 import '../../features/home/data/models/dish_model.dart';
@@ -25,6 +26,7 @@ abstract class AppRouter {
   static const kCheckoutScreen = '/checkoutView';
   static const kChefProfileView = '/chefProfileView';
   static const kEditProfileView = '/editProfileView';
+  static const kChangePasswordView = '/changePasswordView';
 
   static final router = GoRouter(
     initialLocation: kSplashScreen,
@@ -59,6 +61,16 @@ abstract class AppRouter {
               child: EditProfileView(
                 user: data['user'],
               ),
+            );
+          }
+      ),
+      GoRoute(
+          path: kChangePasswordView,
+          builder: (context, state) {
+            final data = state.extra as Map<String, dynamic>;
+            return BlocProvider.value(
+              value: data['cubit'] as ProfileCubit,
+              child: ChangePasswordView(),
             );
           }
       ),
