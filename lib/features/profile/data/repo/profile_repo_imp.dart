@@ -1,3 +1,4 @@
+import 'package:cross_file/src/types/interface.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:homemade_food_app/features/profile/data/repo/profile_repo.dart';
@@ -39,6 +40,30 @@ class ProfileRepoImp extends ProfileRepo {
           endpoint: '/api/auth/profile/$id/',
           data: userData,
           token: token,
+      );
+
+      final profileModel = ProfileModel.fromJson(res!.data);
+      print('finish try call func');
+
+      return right(profileModel);
+    } on DioException catch (e) {
+      print(e.toString());
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ProfileModel>> updateProfileImage({required String token, required XFile imageProfile}) async {
+
+    try {
+      final res = await apiService.postData(
+        endpoint: '/api/auth/profile-picture/',
+        data: {
+          'profile_picture': imageProfile,
+        },
+        token: token,
       );
 
       final profileModel = ProfileModel.fromJson(res!.data);

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:homemade_food_app/core/utilities/image_helper.dart';
 import '../../../../../constants.dart';
 
 class CustomProfileImage extends StatelessWidget {
@@ -32,18 +33,26 @@ class CustomProfileImage extends StatelessWidget {
         ),
         ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(70)),
-          child: Container(
-              height: 30,
-              width: 30,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: kPrimaryColor,
-              ),
-              child: Icon(
-                color: Colors.white,
-                Icons.edit,
-                size: 17,
-              )
+          child: InkWell(
+            onTap: (){
+             ImageHelper.pickImageWithChoice(context).then((value){
+               print(value!.path);
+               print(value);
+             });
+            },
+            child: Container(
+                height: 30,
+                width: 30,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: kPrimaryColor,
+                ),
+                child: Icon(
+                  color: Colors.white,
+                  Icons.edit,
+                  size: 17,
+                )
+            ),
           ),
         ),
       ],
