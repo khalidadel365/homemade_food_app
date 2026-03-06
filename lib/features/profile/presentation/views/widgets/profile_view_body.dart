@@ -20,12 +20,13 @@ class ProfileViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileStates>(
       listener: (context, state) {
-        if (state is ProfileSuccess) {
-          print('*******************');
-          print(ApiConstants.token);
-          print(ApiConstants.id);
-        }
 
+        if (state is EditProfileSuccess) {
+          ProfileCubit.get(context).fetchProfile(
+            token: ApiConstants.token!,
+            id: ApiConstants.id!,
+          );
+        }
         if (state is ProfileFailure) {
           showSnackBar(
             context: context,
@@ -35,12 +36,9 @@ class ProfileViewBody extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state is ProfileLoading) {
-          return const CircularProgressIndicator(color: kPrimaryColor,);
-        }
-        else if (state is ProfileSuccess) {
+        if (state is ProfileSuccess) {
+          print("-----> ${state.profileModel.userData!.accountInfo!.profilePicUrl}");
           final user = state.profileModel.userData?.accountInfo;
-
           return Scaffold(
             appBar: AppBar(
               title: Text('Profile', style: Styles.textStyle18),
@@ -58,7 +56,7 @@ class ProfileViewBody extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    CustomProfileImage(profileImage: user!.profilePicUrl??'',),
+                    CustomProfileImage(profileImage: user!.fullProfilePicUrl ??'',),
                     const SizedBox(height: 15),
                     Text(
                       '${user.firstName ?? ''} ${user.lastName ?? ''}',
@@ -94,8 +92,12 @@ class ProfileViewBody extends StatelessWidget {
                       iconSize: 22,
                       onTap: (){
                         GoRouter.of(context).push(
-                            AppRouter.kEditProfileView,
-                            extra: user);
+                          AppRouter.kEditProfileView,
+                          extra: {
+                            'user': user,
+                            'cubit': BlocProvider.of<ProfileCubit>(context),
+                          },
+                        );
                       },
                     ),
 
@@ -167,11 +169,13 @@ class ProfileViewBody extends StatelessWidget {
             ),
           );
         }
-        else {
-          return const Center(
-            child: Text('Something went wrong'),
-          );
+        else if(state is ProfileLoading) {
+        return const Center(child: const CircularProgressIndicator(color: kPrimaryColor,));
         }
+        else {
+          return SizedBox();
+        };
+
       },
     );
   }

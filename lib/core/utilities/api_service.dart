@@ -39,7 +39,7 @@ class ApiService {
     String? token,
   }) {
     dio?.options.headers = {
-      'Authorization': token ?? '',
+      'Authorization': token != null ? 'Token $token' : '',
       'Content-Type': 'application/json',
     };
     return dio?.post(
@@ -55,7 +55,7 @@ class ApiService {
     required String? token,
   }) {
     dio?.options.headers = {
-      'Authorization': token,
+      'Authorization': 'Token $token' ,
       'Content-Type': 'application/json',
     };
     return dio?.patch(

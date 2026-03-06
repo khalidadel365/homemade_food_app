@@ -30,17 +30,23 @@ class ProfileRepoImp extends ProfileRepo {
 
   @override
   Future<Either<Failure, ProfileModel>> editUserData({required String token, required Map<String, dynamic> data,required int? id})async {
+    Map<String,dynamic> userData = {
+      "user":data,
+    };
+
     try {
       final res = await apiService.patchData(
           endpoint: '/api/auth/profile/$id/',
-          data: data,
+          data: userData,
           token: token,
       );
 
       final profileModel = ProfileModel.fromJson(res!.data);
+      print('finish try call func');
 
       return right(profileModel);
     } on DioException catch (e) {
+      print(e.toString());
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
       return left(ServerFailure(e.toString()));

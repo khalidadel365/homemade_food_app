@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/features/auth/presentation/views/login_view.dart';
 import 'package:homemade_food_app/features/auth/presentation/views/signup_view.dart';
@@ -7,6 +8,7 @@ import 'package:homemade_food_app/features/home/presentation/views/chef_profile_
 import 'package:homemade_food_app/features/home/presentation/views/fresh_nearby_details_view.dart';
 import 'package:homemade_food_app/features/home/presentation/views/home_view.dart';
 import 'package:homemade_food_app/features/main_layout/presentation/views/main_view.dart';
+import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
 import 'package:homemade_food_app/features/profile/presentation/views/edit_profile_view.dart';
 import '../../features/auth/data/models/account_info.dart';
 import '../../features/home/data/models/dish_model.dart';
@@ -34,16 +36,32 @@ abstract class AppRouter {
       GoRoute(path: kLoginView, builder: (context, state) => const LoginView()),
       GoRoute(path: kMainView, builder: (context, state) => const MainView()),
       GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
-      GoRoute(path: kFreshNearbyDetailsView, builder: (context, state) => FreshNearbyDetailsView(
-        dishModel: state.extra as DishModel,
-      )),
+      GoRoute(
+          path: kFreshNearbyDetailsView,
+          builder: (context, state) =>
+              FreshNearbyDetailsView(
+                dishModel: state.extra as DishModel,
+              )),
       GoRoute(path: kSignUpView, builder: (context, state) => SignupView()),
       GoRoute(path: kCartScreen, builder: (context, state) => const CartView()),
-      GoRoute(path: kCheckoutScreen, builder: (context, state) => const CheckoutView()),
-      GoRoute(path: kChefProfileView, builder: (context, state) => const ChefProfileView()),
-      GoRoute(path: kEditProfileView, builder: (context, state) => EditProfileView(
-        user: state.extra as AccountInfo,
-      )),
+      GoRoute(
+          path: kCheckoutScreen,
+          builder: (context, state) => const CheckoutView()),
+      GoRoute(
+          path: kChefProfileView,
+          builder: (context, state) => const ChefProfileView()),
+      GoRoute(
+          path: kEditProfileView,
+          builder: (context, state) {
+            final data = state.extra as Map<String, dynamic>;
+            return BlocProvider.value(
+              value: data['cubit'] as ProfileCubit,
+              child: EditProfileView(
+                user: data['user'],
+              ),
+            );
+          }
+      ),
     ],
   );
 }

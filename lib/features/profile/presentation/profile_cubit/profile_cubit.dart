@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homemade_food_app/features/profile/data/repo/profile_repo.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
 
@@ -6,6 +7,8 @@ import 'package:homemade_food_app/features/profile/presentation/profile_cubit/pr
 class ProfileCubit extends Cubit<ProfileStates> {
   ProfileCubit(this.profileRepo) : super(ProfileInitial());
   final ProfileRepo profileRepo;
+  static ProfileCubit get(context) => BlocProvider.of(context);
+
   Future<void> fetchProfile({required String token,required int id}) async {
     emit(ProfileLoading());
     var result =await profileRepo.fetchUserData(
@@ -26,9 +29,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
       data: data,
     );
     result.fold((failure){
-      emit(ProfileFailure(failure.errorMessage));
+      emit(EditProfileFailure(failure.errorMessage));
     }, (profile){
-      emit(ProfileSuccess(profile));
+      emit(EditProfileSuccess(profile));
     });
   }
 }
