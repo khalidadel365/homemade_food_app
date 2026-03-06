@@ -27,6 +27,12 @@ class ProfileViewBody extends StatelessWidget {
             id: ApiConstants.id!,
           );
         }
+        if (state is UpdateProfileImageSuccess) {
+          ProfileCubit.get(context).fetchProfile(
+            token: ApiConstants.token!,
+            id: ApiConstants.id!,
+          );
+        }
         if (state is ProfileFailure) {
           showSnackBar(
             context: context,

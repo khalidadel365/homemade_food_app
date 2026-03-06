@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:homemade_food_app/core/utilities/api_constants.dart';
 import 'package:homemade_food_app/core/utilities/image_helper.dart';
 import '../../../../../constants.dart';
+import '../../profile_cubit/profile_cubit.dart';
 
 class CustomProfileImage extends StatelessWidget {
   const CustomProfileImage({
@@ -38,6 +41,8 @@ class CustomProfileImage extends StatelessWidget {
              ImageHelper.pickImageWithChoice(context).then((value){
                print(value!.path);
                print(value);
+               BlocProvider.of<ProfileCubit>(context).updateProfileImage(imageProfile: value, token: ApiConstants.token!);
+               print('success');
              });
             },
             child: Container(

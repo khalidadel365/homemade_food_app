@@ -1,7 +1,8 @@
-import 'package:cross_file/src/types/interface.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:homemade_food_app/features/auth/data/models/account_info.dart';
 import 'package:homemade_food_app/features/profile/data/repo/profile_repo.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/utilities/api_service.dart';
 import '../models/profile_model.dart';
@@ -55,21 +56,24 @@ class ProfileRepoImp extends ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, ProfileModel>> updateProfileImage({required String token, required XFile imageProfile}) async {
-
+  Future<Either<Failure, AccountInfo>> updateProfileImage({required String token, required XFile imageProfile}) async {
+    final multipartFile = await MultipartFile.fromFile(
+      imageProfile.path,
+      filename: imageProfile.name,
+    );
     try {
       final res = await apiService.postData(
         endpoint: '/api/auth/profile-picture/',
-        data: {
-          'profile_picture': imageProfile,
-        },
+        data: FormData.fromMap({
+          'profile_picture': multipartFile,
+        }),
         token: token,
       );
 
-      final profileModel = ProfileModel.fromJson(res!.data);
+      final accountInfoModel = AccountInfo.fromJson(res!.data);
       print('finish try call func');
 
-      return right(profileModel);
+      return right(accountInfoModel);
     } on DioException catch (e) {
       print(e.toString());
       return left(ServerFailure.fromDioException(e));

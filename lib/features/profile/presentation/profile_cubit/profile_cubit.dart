@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homemade_food_app/features/profile/data/repo/profile_repo.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 class ProfileCubit extends Cubit<ProfileStates> {
@@ -32,6 +33,18 @@ class ProfileCubit extends Cubit<ProfileStates> {
       emit(EditProfileFailure(failure.errorMessage));
     }, (profile){
       emit(EditProfileSuccess(profile));
+    });
+  }
+  Future<void> updateProfileImage({required String token,required XFile imageProfile}) async {
+    emit(UpdateProfileImageLoading());
+    var result =await profileRepo.updateProfileImage(
+      token: token,
+      imageProfile: imageProfile,
+    );
+    result.fold((failure){
+      emit(UpdateProfileImageFailure(failure.errorMessage));
+    }, (accountInfo){
+      emit(UpdateProfileImageSuccess(accountInfo));
     });
   }
 }
