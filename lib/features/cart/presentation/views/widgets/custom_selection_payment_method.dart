@@ -20,10 +20,7 @@ class CustomSelectionPaymentMethod extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
+        width: MediaQuery.of(context).size.width,
         height: 65,
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         decoration: BoxDecoration(
@@ -51,7 +48,7 @@ class CustomSelectionPaymentMethod extends StatelessWidget {
                 height: 5,
                 width: 5,
                 decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
               ),
             ),
             const SizedBox(
@@ -67,9 +64,10 @@ class CustomSelectionPaymentMethod extends StatelessWidget {
             const SizedBox(
               width: 12,
             ),
-            Text('${paymentMethodsModel.title}', style: TextStyle(
-                fontWeight: FontWeight.w500
-            ),),
+            Text(
+              '${paymentMethodsModel.title}',
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
           ],
         ),
       ),

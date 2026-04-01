@@ -17,7 +17,7 @@ class CustomTextFormField extends StatelessWidget {
       this.textInputType,
       this.cursorHeight,
       this.cursorWidth,
-        this.suffixIcon,
+      this.suffixIcon,
       this.hintTextStyle});
 
   final String? hintText;

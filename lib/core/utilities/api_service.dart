@@ -6,7 +6,8 @@ class ApiService {
   void init() {
     dio = Dio(
       BaseOptions(
-          baseUrl: 'http://10.0.2.2:8000',
+        //baseUrl: 'https://unsegregated-itchingly-charisse.ngrok-free.dev',
+        baseUrl: 'http://10.0.2.2:8000',
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
         receiveDataWhenStatusError: true,
@@ -48,6 +49,7 @@ class ApiService {
       queryParameters: query,
     );
   }
+
   Future<Response>? patchData({
     required String endpoint,
     required Map<String, dynamic> data,
@@ -55,7 +57,7 @@ class ApiService {
     required String? token,
   }) {
     dio?.options.headers = {
-      'Authorization': 'Token $token' ,
+      'Authorization': 'Token $token',
       'Content-Type': 'application/json',
     };
     return dio?.patch(

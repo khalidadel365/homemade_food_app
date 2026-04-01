@@ -13,9 +13,9 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
   int selectedIndex = 0;
   List<PaymentMethodsModel> paymentMethods = [
     PaymentMethodsModel(
-        icon: Icons.credit_card,
-        title: 'Credit Card',
-        ),
+      icon: Icons.credit_card,
+      title: 'Credit Card',
+    ),
     PaymentMethodsModel(
       icon: Icons.money,
       title: 'Cash on Delivery',
@@ -31,7 +31,7 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
           return CustomSelectionPaymentMethod(
             paymentMethodsModel: paymentMethods[index],
             isSelected: selectedIndex == index,
-            onTap: (){
+            onTap: () {
               setState(() {
                 selectedIndex = index;
               });
@@ -39,8 +39,8 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
           );
         },
         separatorBuilder: (index, context) => const SizedBox(
-          height: 10,
-        ),
+              height: 10,
+            ),
         itemCount: 2);
   }
 }

@@ -20,7 +20,6 @@ class ProfileViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileStates>(
       listener: (context, state) {
-
         if (state is EditProfileSuccess) {
           ProfileCubit.get(context).fetchProfile(
             token: ApiConstants.token!,
@@ -40,10 +39,17 @@ class ProfileViewBody extends StatelessWidget {
             color: Colors.red,
           );
         }
+        if (state is ResetPasswordConfirmSuccess) {
+          ProfileCubit.get(context).fetchProfile(
+            token: ApiConstants.token!,
+            id: ApiConstants.id!,
+          );
+        }
       },
       builder: (context, state) {
         if (state is ProfileSuccess) {
-          print("-----> ${state.profileModel.userData!.accountInfo!.profilePicUrl}");
+          print(
+              "-----> ${state.profileModel.userData!.accountInfo!.profilePicUrl}");
           final user = state.profileModel.userData?.accountInfo;
           return Scaffold(
             appBar: AppBar(
@@ -62,7 +68,9 @@ class ProfileViewBody extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    CustomProfileImage(profileImage: user!.fullProfilePicUrl ??'',),
+                    CustomProfileImage(
+                      profileImage: user!.fullProfilePicUrl ?? '',
+                    ),
                     const SizedBox(height: 15),
                     Text(
                       '${user.firstName ?? ''} ${user.lastName ?? ''}',
@@ -78,7 +86,6 @@ class ProfileViewBody extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 15),
-
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
@@ -89,14 +96,12 @@ class ProfileViewBody extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     const SizedBox(height: 15),
-
                     CustomProfileButton(
                       icon: Icons.person,
                       title: 'Edit Profile',
                       iconSize: 22,
-                      onTap: (){
+                      onTap: () {
                         GoRouter.of(context).push(
                           AppRouter.kEditProfileView,
                           extra: {
@@ -106,34 +111,28 @@ class ProfileViewBody extends StatelessWidget {
                         );
                       },
                     ),
-
                     const SizedBox(height: 15),
-
                     CustomProfileButton(
                       icon: Icons.location_on,
                       title: 'Saved Addresses',
                       iconSize: 22,
-                      onTap: (){},
+                      onTap: () {},
                     ),
-
                     const SizedBox(height: 15),
-
                     CustomProfileButton(
                       icon: Icons.lock,
                       iconSize: 20,
                       title: 'Change Password',
-                      onTap: (){
+                      onTap: () {
                         GoRouter.of(context).push(
-                          AppRouter.kChangePasswordView,
+                          AppRouter.kChangePasswordRequestView,
                           extra: {
                             'cubit': BlocProvider.of<ProfileCubit>(context),
                           },
                         );
                       },
                     ),
-
                     const SizedBox(height: 20),
-
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
@@ -144,18 +143,14 @@ class ProfileViewBody extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     const SizedBox(height: 20),
-
                     CustomProfileButton(
                       icon: Icons.question_mark,
                       iconSize: 20,
                       title: 'Help & Support',
-                      onTap: (){},
+                      onTap: () {},
                     ),
-
                     const Spacer(),
-
                     CustomButton(
                       width: double.infinity,
                       elevation: 0,
@@ -181,16 +176,15 @@ class ProfileViewBody extends StatelessWidget {
               ),
             ),
           );
-        }
-        else if(state is ProfileLoading) {
-        return const Center(child: const CircularProgressIndicator(color: kPrimaryColor,));
-        }
-        else {
+        } else if (state is ProfileLoading) {
+          return const Center(
+              child: const CircularProgressIndicator(
+            color: kPrimaryColor,
+          ));
+        } else {
           return SizedBox();
-        };
-
+        }
       },
     );
   }
-
 }

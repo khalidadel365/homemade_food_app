@@ -71,8 +71,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               //first name text field
               CustomTextFormField(
                 hintText: "First Name",
-                prefixIcon: Icon(Icons.person_outline, size: 23,
-                  color: Colors.grey.shade700,),
+                prefixIcon: Icon(
+                  Icons.person_outline,
+                  size: 23,
+                  color: Colors.grey.shade700,
+                ),
                 validate: (value) {
                   if (value.isEmpty) {
                     return 'First name must not be empty';
@@ -85,8 +88,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               //last name text field
               CustomTextFormField(
                 hintText: "Last Name",
-                prefixIcon: Icon(Icons.person_outline, size: 23,
-                  color: Colors.grey.shade700,),
+                prefixIcon: Icon(
+                  Icons.person_outline,
+                  size: 23,
+                  color: Colors.grey.shade700,
+                ),
                 validate: (value) {
                   if (value.isEmpty) {
                     return 'Last name must not be empty';
@@ -99,8 +105,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               // phone text field
               CustomTextFormField(
                 hintText: "Phone Number",
-                prefixIcon: Icon(Icons.phone_outlined, size: 23,
-                  color: Colors.grey.shade700,),
+                prefixIcon: Icon(
+                  Icons.phone_outlined,
+                  size: 23,
+                  color: Colors.grey.shade700,
+                ),
                 validate: (value) {
                   if (value.isEmpty) {
                     return 'Phone number must not be empty';
@@ -113,8 +122,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               // email text field
               CustomTextFormField(
                 hintText: "Email Address",
-                prefixIcon: Icon(Icons.email_outlined, size: 22,
-                  color: Colors.grey.shade700,),
+                prefixIcon: Icon(
+                  Icons.email_outlined,
+                  size: 22,
+                  color: Colors.grey.shade700,
+                ),
                 validate: (value) {
                   if (value.isEmpty) {
                     return 'Email must not be empty';
@@ -141,8 +153,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                         cubit.changeSignupPasswordVisibility();
                       },
                     ),
-                    prefixIcon: Icon(Icons.lock_outline, size: 22,
-                      color: Colors.grey.shade700,),
+                    prefixIcon: Icon(
+                      Icons.lock_outline,
+                      size: 22,
+                      color: Colors.grey.shade700,
+                    ),
                     validate: (value) {
                       if (value.isEmpty) {
                         return 'Password must not be empty';
@@ -171,8 +186,11 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                         cubit.changeSignupConfirmPasswordVisibility();
                       },
                     ),
-                    prefixIcon: Icon(Icons.lock_outline, size: 22,
-                      color: Colors.grey.shade700,),
+                    prefixIcon: Icon(
+                      Icons.lock_outline,
+                      size: 22,
+                      color: Colors.grey.shade700,
+                    ),
                     controller: confirmPasswordController,
                     validate: (value) {
                       if (value.isEmpty) {
@@ -204,10 +222,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       print('wrong');
                     }
                   },
-                  textStyle: Styles.textStyle18.copyWith(
-                      color: Colors.white
-                  )
-              ),
+                  textStyle: Styles.textStyle18.copyWith(color: Colors.white)),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -217,10 +232,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     onPressed: () {
                       GoRouter.of(context).go(AppRouter.kLoginView);
                     },
-                    child: Text(
-                        "Login",
-                        style: Styles.textStyleBold
-                    ),
+                    child: Text("Login", style: Styles.textStyleBold),
                   )
                 ],
               )

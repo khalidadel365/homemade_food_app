@@ -1,4 +1,3 @@
-
 import 'package:homemade_food_app/features/auth/data/models/user_data.dart';
 
 class ProfileModel {
@@ -14,5 +13,3 @@ class ProfileModel {
     );
   }
 }
-
-

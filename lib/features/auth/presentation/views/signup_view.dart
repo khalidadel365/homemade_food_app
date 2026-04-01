@@ -39,13 +39,10 @@ class _SignupViewState extends State<SignupView> {
             Scaffold(
               body: SafeArea(child: SignUpViewBody()),
             ),
-            if (state is SignupLoadingState)
-              const LoadingView(),
+            if (state is SignupLoadingState) const LoadingView(),
           ],
         );
       },
     );
   }
 }
-
-

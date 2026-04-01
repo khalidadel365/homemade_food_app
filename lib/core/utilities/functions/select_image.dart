@@ -9,6 +9,6 @@ Future<XFile?> selectImage(BuildContext context) async {
     print("Picked image path: ${file.path}");
     return file;
   }
-    print("No image selected");
+  print("No image selected");
   return null;
 }

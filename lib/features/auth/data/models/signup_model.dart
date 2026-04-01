@@ -1,15 +1,15 @@
 class SignUpModel {
   final int? id;
   final UserSignUpData? userData;
-  SignUpModel({this.id,this.userData});
-  factory SignUpModel.fromJson(Map<String,dynamic> json){
+  SignUpModel({this.id, this.userData});
+  factory SignUpModel.fromJson(Map<String, dynamic> json) {
     return SignUpModel(
-        id:  json['id'],
-        userData:  json['user'] != null? UserSignUpData.fromJson(json['user']):null,
+      id: json['id'],
+      userData:
+          json['user'] != null ? UserSignUpData.fromJson(json['user']) : null,
     );
   }
 }
-
 
 class UserSignUpData {
   final int? id;
@@ -27,8 +27,8 @@ class UserSignUpData {
     this.password,
     this.phone,
     this.userType,
-});
-  factory UserSignUpData.fromJson(Map<String,dynamic> json){
+  });
+  factory UserSignUpData.fromJson(Map<String, dynamic> json) {
     return UserSignUpData(
       id: json['id'],
       firstName: json['first_name'],
@@ -40,4 +40,3 @@ class UserSignUpData {
     );
   }
 }
-

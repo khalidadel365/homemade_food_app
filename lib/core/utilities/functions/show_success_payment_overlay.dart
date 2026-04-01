@@ -23,18 +23,20 @@ void showSuccessOverlay(BuildContext context) {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Lottie.asset(
-                'assets/SuccessPayment.json',
-                width: 150,
-                height: 150,
-                repeat: false,
-                renderCache: RenderCache.drawingCommands,
-                frameRate: FrameRate(60)
-              ),
+              Lottie.asset('assets/SuccessPayment.json',
+                  width: 150,
+                  height: 150,
+                  repeat: false,
+                  renderCache: RenderCache.drawingCommands,
+                  frameRate: FrameRate(60)),
               const SizedBox(height: 15),
               const Text(
                 "Order Placed!",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, decoration: TextDecoration.none, color: Colors.black),
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.none,
+                    color: Colors.black),
               ),
             ],
           ),

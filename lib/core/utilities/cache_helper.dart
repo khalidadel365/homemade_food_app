@@ -1,10 +1,11 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class CacheHelper{
+abstract class CacheHelper {
   static late SharedPreferences sharedPreferences;
   static Future<void> initSharedPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
+
   static Future<bool> saveData({
     required String key,
     required dynamic value,
@@ -18,6 +19,7 @@ abstract class CacheHelper{
   static dynamic getData({required String key}) {
     return sharedPreferences.get(key);
   }
+
   static Future<bool> removeData({required String key}) async {
     return await sharedPreferences.remove(key);
   }

@@ -13,15 +13,17 @@ class CartBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 25.0,horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 15),
       child: GestureDetector(
-        onTap: (){
+        onTap: () {
           GoRouter.of(context).push(AppRouter.kCheckoutScreen);
         },
         child: Container(
           height: 60,
           width: double.infinity,
-          padding: EdgeInsets.symmetric(horizontal: 30,),
+          padding: EdgeInsets.symmetric(
+            horizontal: 30,
+          ),
           decoration: BoxDecoration(
             color: kPrimaryColor,
             shape: BoxShape.rectangle,
@@ -37,7 +39,7 @@ class CartBottomNavBar extends StatelessWidget {
               ),
               const Spacer(),
               Container(
-                padding: EdgeInsets.symmetric(horizontal:5,vertical: 4),
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   shape: BoxShape.rectangle,
@@ -51,7 +53,9 @@ class CartBottomNavBar extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 5,),
+              const SizedBox(
+                width: 5,
+              ),
               const Icon(
                 Icons.arrow_forward,
                 color: Colors.white,

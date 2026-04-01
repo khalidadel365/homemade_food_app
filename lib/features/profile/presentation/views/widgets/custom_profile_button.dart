@@ -4,12 +4,15 @@ import '../../../../../core/utilities/custom_icon.dart';
 import '../../../../../core/utilities/styles.dart';
 
 class CustomProfileButton extends StatelessWidget {
-  CustomProfileButton({
-    super.key, required this.icon, required this.title,this.iconSize, required this.onTap
-  });
+  CustomProfileButton(
+      {super.key,
+      required this.icon,
+      required this.title,
+      this.iconSize,
+      required this.onTap});
   final IconData icon;
   final String title;
-  double? iconSize;
+  final double? iconSize;
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
@@ -17,8 +20,7 @@ class CustomProfileButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 60,
-        padding:
-        const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
@@ -27,7 +29,7 @@ class CustomProfileButton extends StatelessWidget {
           children: [
             CustomIcon(
                 icon: icon,
-                iconSize: iconSize??20,
+                iconSize: iconSize ?? 20,
                 height: 70,
                 width: 40,
                 background: kSecondaryColor,
@@ -37,8 +39,7 @@ class CustomProfileButton extends StatelessWidget {
             ),
             Text(
               title,
-              style: Styles.textStyle16
-                  .copyWith(fontWeight: FontWeight.bold),
+              style: Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
             ),
             const Spacer(),
             Icon(

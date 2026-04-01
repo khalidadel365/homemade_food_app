@@ -16,5 +16,5 @@ abstract class AuthRepo {
   Future<Either<Failure, LoginModel>> LoginUser({
     required String email,
     required String password,
-});
+  });
 }

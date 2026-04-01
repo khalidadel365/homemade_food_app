@@ -16,15 +16,16 @@ class _MapSectionState extends State<MapSection> {
   void initState() {
     super.initState();
     fetchCurrentLocation();
-
   }
+
   LatLng? userPoint;
 
   Future<void> fetchCurrentLocation() async {
     // نطلب الإذن
     LocationPermission permission = await Geolocator.requestPermission();
 
-    if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
       // نجيب الأرقام
       Position position = await Geolocator.getCurrentPosition();
 
@@ -35,36 +36,41 @@ class _MapSectionState extends State<MapSection> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return userPoint == null
-        ? const Center(child: CircularProgressIndicator(color: kPrimaryColor,))
+        ? const Center(
+            child: CircularProgressIndicator(
+            color: kPrimaryColor,
+          ))
         : Container(
-      height: 200,
-      margin: const EdgeInsets.all(0),
-      child: ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: FlutterMap(
-              options: MapOptions(
-                initialCenter: userPoint!,// جايب منطقة المعادي مثلا كلها
-                interactionOptions: const InteractionOptions(
-                  flags: InteractiveFlag.none,// يعني ممنوع الزووم، ممنوع اللمس، ممنوع اللف، وممنوع التحريك.
-                ),
-                initialZoom: 16.0,
-              ),
-              children: [
-                TileLayer(
-                  urlTemplate: "https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
-                ),
-                MarkerLayer(markers: [
-                  Marker(
-                      width: 80.0,
-                      height: 80.0,
-                      point: userPoint!,// الدبوس يشاور علي مكاني بالظبط
-                      child: Icon(Icons.location_on))
-                ])
-              ])
-      ),
-    );
+            height: 200,
+            margin: const EdgeInsets.all(0),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: FlutterMap(
+                    options: MapOptions(
+                      initialCenter: userPoint!, // جايب منطقة المعادي مثلا كلها
+                      interactionOptions: const InteractionOptions(
+                        flags: InteractiveFlag
+                            .none, // يعني ممنوع الزووم، ممنوع اللمس، ممنوع اللف، وممنوع التحريك.
+                      ),
+                      initialZoom: 16.0,
+                    ),
+                    children: [
+                      TileLayer(
+                        urlTemplate:
+                            "https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+                      ),
+                      MarkerLayer(markers: [
+                        Marker(
+                            width: 80.0,
+                            height: 80.0,
+                            point: userPoint!, // الدبوس يشاور علي مكاني بالظبط
+                            child: Icon(Icons.location_on))
+                      ])
+                    ])),
+          );
   }
 }

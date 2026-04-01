@@ -20,22 +20,20 @@ class PreparationTimeSection extends StatelessWidget {
           const Icon(
             Icons.access_time_filled,
             color: kPrimaryColor,
-            size: 25,),
-          const SizedBox(width: 15,),
+            size: 25,
+          ),
+          const SizedBox(
+            width: 15,
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Preparation Time',
                 style: Styles.textStyle14.copyWith(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w600
-                ),
+                    color: kPrimaryColor, fontWeight: FontWeight.w600),
               ),
-              Text(
-                  '35 - 45 mins',
-                  style: Styles.textStyle14
-              ),
+              Text('35 - 45 mins', style: Styles.textStyle14),
             ],
           )
         ],

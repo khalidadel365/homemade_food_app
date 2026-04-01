@@ -14,13 +14,19 @@ class CustomCartImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height*0.11,
-        width: MediaQuery.of(context).size.width*0.23,
+        height: MediaQuery.of(context).size.height * 0.11,
+        width: MediaQuery.of(context).size.width * 0.23,
         child: CachedNetworkImage(
             fit: BoxFit.cover,
-            placeholder: (context, url) => SpinKitFadingCircle(color: kPrimaryColor,),
-            errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.red,),
-            imageUrl: 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Homemade-Pizza_EXPS_FT23_376_EC_120123_3.jpg'),
+            placeholder: (context, url) => SpinKitFadingCircle(
+                  color: kPrimaryColor,
+                ),
+            errorWidget: (context, url, error) => const Icon(
+                  Icons.error,
+                  color: Colors.red,
+                ),
+            imageUrl:
+                'https://www.tasteofhome.com/wp-content/uploads/2018/01/Homemade-Pizza_EXPS_FT23_376_EC_120123_3.jpg'),
       ),
     );
   }

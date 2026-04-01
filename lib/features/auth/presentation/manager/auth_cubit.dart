@@ -13,25 +13,25 @@ class AuthCubit extends Cubit<AuthStates> {
 
   final AuthRepo authRepo;
   bool loginPasswordVisible = true;
-  bool signupPasswordVisible  = true;
-  bool confirmPasswordVisible  = true;
+  bool signupPasswordVisible = true;
+  bool confirmPasswordVisible = true;
   void changeLoginPasswordVisibility() {
     loginPasswordVisible = !loginPasswordVisible;
     print(loginPasswordVisible);
     emit(changeLoginPasswordVisibilityState());
   }
+
   void changeSignupPasswordVisibility() {
     signupPasswordVisible = !signupPasswordVisible;
     print(signupPasswordVisible);
     emit(changeSignupPasswordVisibilityState());
   }
+
   void changeSignupConfirmPasswordVisibility() {
     confirmPasswordVisible = !confirmPasswordVisible;
     print(confirmPasswordVisible);
     emit(changeConfirmPasswordVisibilityState());
   }
-
-
 
   Future<void> SignupUser({
     required String? email,
@@ -53,17 +53,16 @@ class AuthCubit extends Cubit<AuthStates> {
       emit(SignupSuccessState(signupModel));
     });
   }
-  Future<void> LoginUser({
-    required String email,
-    required String password
-})async{
+
+  Future<void> LoginUser(
+      {required String email, required String password}) async {
     emit(LoginLoadingState());
     var result = await authRepo.LoginUser(email: email, password: password);
-    result.fold((failure){
+    result.fold((failure) {
       emit(LoginErrorState(failure.errorMessage));
-    }, (loginModel){
+    }, (loginModel) {
       ApiConstants.token = loginModel.token!;
-      ApiConstants.id =loginModel.userData!.id!;
+      ApiConstants.id = loginModel.userData!.id!;
       emit(LoginSuccessState(loginModel));
     });
   }

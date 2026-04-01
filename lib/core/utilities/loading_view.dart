@@ -14,7 +14,7 @@ class LoadingView extends StatelessWidget {
       child: Container(
         color: Colors.black.withOpacity(0.5),
         child: const Center(
-          child: SpinKitPulse(size: 45,color: kPrimaryColor),
+          child: SpinKitPulse(size: 45, color: kPrimaryColor),
         ),
       ),
     );

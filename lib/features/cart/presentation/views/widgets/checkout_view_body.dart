@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/features/cart/presentation/views/widgets/map_section.dart';
 import 'package:homemade_food_app/features/cart/presentation/views/widgets/payment_methods_list_view.dart';
-import 'package:homemade_food_app/features/home/presentation/views/widgets/details_options_title.dart';
 
 import '../../../../../core/utilities/styles.dart';
+import '../../../../../core/widgets/details_options_title.dart';
 import 'checkout_bottom_nav_bar.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -105,9 +105,6 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 }
-
-

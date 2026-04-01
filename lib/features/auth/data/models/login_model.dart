@@ -9,9 +9,8 @@ class LoginModel {
   factory LoginModel.fromJson(Map<String, dynamic> json) {
     return LoginModel(
       token: json['token'],
-      userData: json['user'] != null ? UserSignUpData.fromJson(json['user']) : null,
+      userData:
+          json['user'] != null ? UserSignUpData.fromJson(json['user']) : null,
     );
   }
 }
-
-

@@ -15,9 +15,8 @@ class ProfileView extends StatelessWidget {
     print(ApiConstants.token);
     print(ApiConstants.id);
     return BlocProvider(
-      create: (context)=>ProfileCubit(getIt.get<ProfileRepoImp>())..fetchProfile(
-          token: ApiConstants.token!,
-          id: ApiConstants.id!),
+        create: (context) => ProfileCubit(getIt.get<ProfileRepoImp>())
+          ..fetchProfile(token: ApiConstants.token!, id: ApiConstants.id!),
         child: const ProfileViewBody());
   }
 }

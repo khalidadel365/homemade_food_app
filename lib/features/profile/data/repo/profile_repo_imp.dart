@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:homemade_food_app/features/auth/data/models/account_info.dart';
+import 'package:homemade_food_app/features/profile/data/models/password_confirm_model.dart';
 import 'package:homemade_food_app/features/profile/data/models/password_reset_request_model.dart';
 import 'package:homemade_food_app/features/profile/data/repo/profile_repo.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,12 +15,11 @@ class ProfileRepoImp extends ProfileRepo {
   ProfileRepoImp(this.apiService);
 
   @override
-  Future<Either<Failure, ProfileModel>> fetchUserData({required String token, required int? id})async {
+  Future<Either<Failure, ProfileModel>> fetchUserData(
+      {required String token, required int? id}) async {
     try {
       final data = await apiService.get(
-          endPoint: '/api/auth/profile/$id/',
-          token: token
-      );
+          endPoint: '/api/auth/profile/$id/', token: token);
 
       final profileModel = ProfileModel.fromJson(data);
 
@@ -32,16 +32,19 @@ class ProfileRepoImp extends ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, ProfileModel>> editUserData({required String token, required Map<String, dynamic> data,required int? id})async {
-    Map<String,dynamic> userData = {
-      "user":data,
+  Future<Either<Failure, ProfileModel>> editUserData(
+      {required String token,
+      required Map<String, dynamic> data,
+      required int? id}) async {
+    Map<String, dynamic> userData = {
+      "user": data,
     };
 
     try {
       final res = await apiService.patchData(
-          endpoint: '/api/auth/profile/$id/',
-          data: userData,
-          token: token,
+        endpoint: '/api/auth/profile/$id/',
+        data: userData,
+        token: token,
       );
 
       final profileModel = ProfileModel.fromJson(res!.data);
@@ -57,7 +60,8 @@ class ProfileRepoImp extends ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, AccountInfo>> updateProfileImage({required String token, required XFile imageProfile}) async {
+  Future<Either<Failure, AccountInfo>> updateProfileImage(
+      {required String token, required XFile imageProfile}) async {
     final multipartFile = await MultipartFile.fromFile(
       imageProfile.path,
       filename: imageProfile.name,
@@ -83,8 +87,10 @@ class ProfileRepoImp extends ProfileRepo {
     }
   }
 
+  late PasswordResetRequestModel passwordResetMessage;
   @override
-  Future<Either<Failure, PasswordResetRequestModel>> resetPasswordRequest({required String token, required String email})async {
+  Future<Either<Failure, PasswordResetRequestModel>> resetPasswordRequest(
+      {required String token, required String email}) async {
     try {
       final res = await apiService.postData(
         endpoint: '/api/auth/password-reset/',
@@ -94,9 +100,37 @@ class ProfileRepoImp extends ProfileRepo {
         token: token,
       );
 
-      final passwordResetRequest = PasswordResetRequestModel.fromJson(res!.data);
+      passwordResetMessage = PasswordResetRequestModel.fromJson(res!.data);
 
-      return right(passwordResetRequest);
+      return right(passwordResetMessage);
+    } on DioException catch (e) {
+      print(e.toString());
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, PasswordConfirmModel>> confirmPassword(
+      {required String password}) async {
+    String uid = passwordResetMessage.uId!;
+    String token = passwordResetMessage.token!;
+    print(passwordResetMessage.uId!);
+    print(passwordResetMessage.token!);
+    try {
+      final res = await apiService.postData(
+        endpoint: '/api/auth/password-reset-confirm/',
+        data: {
+          "uid": uid,
+          "token": token,
+          "new_password": password,
+        },
+      );
+
+      final passwordConfirm = PasswordConfirmModel.fromJson(res!.data);
+
+      return right(passwordConfirm);
     } on DioException catch (e) {
       print(e.toString());
       return left(ServerFailure.fromDioException(e));

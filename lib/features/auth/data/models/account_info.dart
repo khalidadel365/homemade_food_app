@@ -5,7 +5,7 @@ class AccountInfo {
   final String? lastName;
   final String? email;
   final String? phone;
-  final String? profilePicUrl ;
+  final String? profilePicUrl;
   final String? address_longitude;
   final String? address_latitude;
   final bool? isActive;
@@ -20,11 +20,13 @@ class AccountInfo {
     this.address_longitude,
     this.address_latitude,
     this.userType,
-    this.isActive,});
+    this.isActive,
+  });
   String? get fullProfilePicUrl {
     if (profilePicUrl == null) return null;
     return "${ApiConstants.baseUrl}$profilePicUrl";
   }
+
   factory AccountInfo.fromJson(Map<String, dynamic> json) {
     return AccountInfo(
       firstName: json['first_name'],

@@ -38,7 +38,8 @@ class CartViewBody extends StatelessWidget {
             const SizedBox(height: 10),
             const CartListView(),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 17),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 17),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

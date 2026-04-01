@@ -75,38 +75,38 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 cursorWidth: 2,
               ),
               const SizedBox(height: 16),
-            BlocBuilder<AuthCubit, AuthStates>(
-              builder: (context, state) {
-                final cubit = AuthCubit.get(context);
+              BlocBuilder<AuthCubit, AuthStates>(
+                builder: (context, state) {
+                  final cubit = AuthCubit.get(context);
 
-                return CustomTextFormField(
-                  hintText: "Enter your password",
-                  obsecureText: cubit.loginPasswordVisible,
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      cubit.loginPasswordVisible
-                          ? Icons.remove_red_eye_outlined
-                          : Icons.visibility_off_outlined,
+                  return CustomTextFormField(
+                    hintText: "Enter your password",
+                    obsecureText: cubit.loginPasswordVisible,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        cubit.loginPasswordVisible
+                            ? Icons.remove_red_eye_outlined
+                            : Icons.visibility_off_outlined,
+                      ),
+                      onPressed: () {
+                        cubit.changeLoginPasswordVisibility();
+                      },
                     ),
-                    onPressed: () {
-                      cubit.changeLoginPasswordVisibility();
+                    prefixIcon: Icon(
+                      Icons.lock_outline,
+                      size: 20.5,
+                      color: Colors.grey.shade700,
+                    ),
+                    controller: passwordController,
+                    validate: (value) {
+                      if (value.isEmpty) {
+                        return 'Password must not be empty';
+                      }
+                      return null;
                     },
-                  ),
-                  prefixIcon: Icon(
-                    Icons.lock_outline,
-                    size: 20.5,
-                    color: Colors.grey.shade700,
-                  ),
-                  controller: passwordController,
-                  validate: (value) {
-                    if (value.isEmpty) {
-                      return 'Password must not be empty';
-                    }
-                    return null;
-                  },
-                );
-              },
-            ),
+                  );
+                },
+              ),
               const SizedBox(height: 24),
               // Login Button
               CustomButton(

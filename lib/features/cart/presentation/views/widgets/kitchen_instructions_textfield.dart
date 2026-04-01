@@ -13,7 +13,8 @@ class KitchenInstructionsTextfield extends StatelessWidget {
       style: Styles.textStyle13,
       maxLines: 2,
       decoration: InputDecoration(
-          hintText: 'Add note for the cheif (optional), e.g. allergies, spice level...',
+          hintText:
+              'Add note for the cheif (optional), e.g. allergies, spice level...',
           hintStyle: const TextStyle(fontSize: 13, color: Colors.grey),
           filled: true,
           fillColor: Colors.grey[100],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homemade_food_app/constants.dart';
-import '../../../home/presentation/views/home_view.dart';
+import 'package:homemade_food_app/features/all_dishes/presentation/views/all_dishes_view.dart';
 import '../../../orders/presentation/views/orders_view.dart';
 import '../../../profile/presentation/views/profile_view.dart';
 
@@ -13,7 +13,7 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   final List<Widget> screens = [
-    HomeView(),
+    AllDishesView(),
     OrdersView(),
     ProfileView(),
   ];
@@ -43,7 +43,7 @@ class _MainViewState extends State<MainView> {
         unselectedItemColor: Colors.grey.shade600,
         backgroundColor: Colors.white,
         elevation: 10,
-        onTap: (index){
+        onTap: (index) {
           setState(() {
             current_index = index;
           });

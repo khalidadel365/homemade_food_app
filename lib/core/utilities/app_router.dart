@@ -4,16 +4,15 @@ import 'package:homemade_food_app/features/auth/presentation/views/login_view.da
 import 'package:homemade_food_app/features/auth/presentation/views/signup_view.dart';
 import 'package:homemade_food_app/features/cart/presentation/views/cart_view.dart';
 import 'package:homemade_food_app/features/cart/presentation/views/checkout_view.dart';
-import 'package:homemade_food_app/features/home/presentation/views/chef_profile_view.dart';
-import 'package:homemade_food_app/features/home/presentation/views/fresh_nearby_details_view.dart';
-import 'package:homemade_food_app/features/home/presentation/views/home_view.dart';
 import 'package:homemade_food_app/features/main_layout/presentation/views/main_view.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
+import 'package:homemade_food_app/features/profile/presentation/views/change_password_confirm_view.dart';
 import 'package:homemade_food_app/features/profile/presentation/views/change_password_request_view.dart';
 import 'package:homemade_food_app/features/profile/presentation/views/edit_profile_view.dart';
-import '../../features/auth/data/models/account_info.dart';
-import '../../features/home/data/models/dish_model.dart';
+import '../../features/cheif_profile/presentation/views/chef_profile_view.dart';
+import '../../features/dish_details/presentation/views/dish_details_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
+import '../models/dish_model.dart';
 
 abstract class AppRouter {
   static const kMainView = '/mainView';
@@ -26,7 +25,8 @@ abstract class AppRouter {
   static const kCheckoutScreen = '/checkoutView';
   static const kChefProfileView = '/chefProfileView';
   static const kEditProfileView = '/editProfileView';
-  static const kChangePasswordView = '/changePasswordView';
+  static const kChangePasswordRequestView = '/changePasswordRequestView';
+  static const kChangePasswordConfirmView = '/changePasswordConfirmView';
 
   static final router = GoRouter(
     initialLocation: kSplashScreen,
@@ -37,11 +37,10 @@ abstract class AppRouter {
       ),
       GoRoute(path: kLoginView, builder: (context, state) => const LoginView()),
       GoRoute(path: kMainView, builder: (context, state) => const MainView()),
-      GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
+      //GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
       GoRoute(
           path: kFreshNearbyDetailsView,
-          builder: (context, state) =>
-              FreshNearbyDetailsView(
+          builder: (context, state) => FreshNearbyDetailsView(
                 dishModel: state.extra as DishModel,
               )),
       GoRoute(path: kSignUpView, builder: (context, state) => SignupView()),
@@ -62,18 +61,26 @@ abstract class AppRouter {
                 user: data['user'],
               ),
             );
-          }
-      ),
+          }),
       GoRoute(
-          path: kChangePasswordView,
+          path: kChangePasswordRequestView,
           builder: (context, state) {
             final data = state.extra as Map<String, dynamic>;
             return BlocProvider.value(
               value: data['cubit'] as ProfileCubit,
-              child: ChangePasswordView(),
+              child: ChangePasswordRequestView(),
             );
-          }
-      ),
+          }),
+
+      GoRoute(
+          path: kChangePasswordConfirmView,
+          builder: (context, state) {
+            final data = state.extra as Map<String, dynamic>;
+            return BlocProvider.value(
+              value: data['cubit'] as ProfileCubit,
+              child: ChangePasswordConfirmView(),
+            );
+          }),
     ],
   );
 }

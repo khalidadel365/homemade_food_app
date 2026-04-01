@@ -15,13 +15,11 @@ class EditProfileViewBody extends StatefulWidget {
 
   final AccountInfo user;
 
-
   @override
   State<EditProfileViewBody> createState() => _EditProfileViewBodyState();
 }
 
 class _EditProfileViewBodyState extends State<EditProfileViewBody> {
-
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final phoneController = TextEditingController();

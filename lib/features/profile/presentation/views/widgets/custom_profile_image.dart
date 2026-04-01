@@ -7,11 +7,14 @@ import '../../../../../constants.dart';
 import '../../profile_cubit/profile_cubit.dart';
 
 class CustomProfileImage extends StatelessWidget {
-  const CustomProfileImage({
-    super.key,
-    required this.profileImage
-  });
+  const CustomProfileImage({super.key, required this.profileImage});
   final String profileImage;
+  // String fixUrl(String url) {
+  //   return url.replaceAll(
+  //       'http://10.0.2.2:8000',
+  //       'https://unsegregated-itchingly-charisse.ngrok-free.dev'
+  //   );
+  // }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -27,23 +30,24 @@ class CustomProfileImage extends StatelessWidget {
               ),
               child: CachedNetworkImage(
                   fit: BoxFit.cover,
-                  placeholder: (context, url) => const CircularProgressIndicator(
-                    color: kPrimaryColor,
-                  ),
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(
+                        color: kPrimaryColor,
+                      ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
-                  imageUrl: '${profileImage}')
-          ),
+                  imageUrl: profileImage)),
         ),
         ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(70)),
           child: InkWell(
-            onTap: (){
-             ImageHelper.pickImageWithChoice(context).then((value){
-               print(value!.path);
-               print(value);
-               BlocProvider.of<ProfileCubit>(context).updateProfileImage(imageProfile: value, token: ApiConstants.token!);
-               print('success');
-             });
+            onTap: () {
+              ImageHelper.pickImageWithChoice(context).then((value) {
+                print(value!.path);
+                print(value);
+                BlocProvider.of<ProfileCubit>(context).updateProfileImage(
+                    imageProfile: value, token: ApiConstants.token!);
+                print('success');
+              });
             },
             child: Container(
                 height: 30,
@@ -56,8 +60,7 @@ class CustomProfileImage extends StatelessWidget {
                   color: Colors.white,
                   Icons.edit,
                   size: 17,
-                )
-            ),
+                )),
           ),
         ),
       ],

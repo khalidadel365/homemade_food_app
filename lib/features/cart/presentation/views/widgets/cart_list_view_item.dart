@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utilities/styles.dart';
-import '../../../../home/presentation/views/widgets/custom_fresh_nearby_image.dart';
 import 'custom_cart_image.dart';
 
 class CartListViewItem extends StatefulWidget {
@@ -13,12 +12,12 @@ class CartListViewItem extends StatefulWidget {
 
 class _CartListViewItemState extends State<CartListViewItem> {
   int counter = 1;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-     margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.symmetric(
-          vertical: 10, horizontal: 10),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(
@@ -45,26 +44,27 @@ class _CartListViewItemState extends State<CartListViewItem> {
                         'Homemade Pepproni Pizza',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: Styles.textStyle14.copyWith(
-                            fontWeight: FontWeight.bold
-                        ),
+                        style: Styles.textStyle14
+                            .copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    const SizedBox(width: 20,),
-                    Text(
-                      '250 EGY', style: Styles.textStyle14.copyWith(
-                        fontWeight: FontWeight.bold
+                    const SizedBox(
+                      width: 20,
                     ),
+                    Text(
+                      '250 EGY',
+                      style: Styles.textStyle14
+                          .copyWith(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
-                const SizedBox(height: 2,),
+                const SizedBox(
+                  height: 2,
+                ),
                 Text(
                   'Extra Cheese, Extra Sauce',
                   style: Styles.textStyle11.copyWith(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold
-                  ),
+                      color: Colors.grey, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 5,
@@ -73,15 +73,11 @@ class _CartListViewItemState extends State<CartListViewItem> {
                   children: [
                     Row(
                       children: [
-                        Icon(
-                            Icons.delete,
-                            color: Colors.redAccent,
-                            size:19),
+                        Icon(Icons.delete, color: Colors.redAccent, size: 19),
                         Text(
                           'Remove',
-                          style: Styles.textStyle13.copyWith(
-                              color: Colors.redAccent
-                          ),
+                          style: Styles.textStyle13
+                              .copyWith(color: Colors.redAccent),
                         )
                       ],
                     ),
@@ -99,7 +95,7 @@ class _CartListViewItemState extends State<CartListViewItem> {
                           GestureDetector(
                             onTap: () {
                               setState(() {
-                                if(counter > 0){
+                                if (counter > 0) {
                                   counter--;
                                 }
                               });
@@ -122,8 +118,8 @@ class _CartListViewItemState extends State<CartListViewItem> {
                             child: Text(
                               '$counter',
                               textAlign: TextAlign.center,
-                              style:
-                              TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.bold),
                             ),
                           ),
                           GestureDetector(

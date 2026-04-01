@@ -15,7 +15,9 @@ class checkout_bottom_nav_bar extends StatelessWidget {
       width: double.infinity,
       height: 100,
       decoration: BoxDecoration(color: Colors.white),
-      padding: EdgeInsets.symmetric(horizontal: 20,),
+      padding: EdgeInsets.symmetric(
+        horizontal: 20,
+      ),
       child: Row(
         children: [
           Column(

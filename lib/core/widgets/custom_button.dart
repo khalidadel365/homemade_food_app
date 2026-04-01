@@ -61,11 +61,9 @@ class CustomButton extends StatelessWidget {
           Text(text!, style: textStyle),
         ],
       );
-    }
-    else if (icon != null) {
+    } else if (icon != null) {
       return icon!;
-    }
-    else {
+    } else {
       return Text(
         text ?? '',
         style: textStyle,

@@ -9,4 +9,3 @@ class CheckoutView extends StatelessWidget {
     return SafeArea(child: const CheckoutViewBody());
   }
 }
-
