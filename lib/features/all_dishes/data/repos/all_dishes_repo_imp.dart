@@ -5,7 +5,7 @@ import 'package:homemade_food_app/core/utilities/api_service.dart';
 import '../../../../core/models/dish_model.dart';
 import 'all_dishes_repo.dart';
 
-class AllDishesRepoImp extends AllDishesRepo {
+class AllDishesRepoImp implements AllDishesRepo {
   final ApiService apiService;
 
   AllDishesRepoImp(this.apiService);

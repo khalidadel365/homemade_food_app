@@ -5,6 +5,7 @@ import 'package:homemade_food_app/features/dish_details/presentation/views/widge
 import 'package:readmore/readmore.dart';
 import '../../../../../core/models/dish_model.dart';
 import '../../../../../core/widgets/food_rating.dart';
+import '../../../../all_dishes/data/models/category_model.dart';
 import 'add_ons_list_view.dart';
 import '../../../../../core/widgets/chief_info_row.dart';
 import '../../../../../core/widgets/details_options_title.dart';
@@ -54,7 +55,8 @@ class _DishInfoSectionState extends State<DishInfoSection> {
             ),
             FoodInfoRow(
               prepTime: '${widget.dishModel.preparationTime}',
-              calories: '350',
+              categoryModel: widget.dishModel.category ?? CategoryModel(name: 'General'),
+
             ),
             const SizedBox(
               height: 16,
@@ -66,7 +68,7 @@ class _DishInfoSectionState extends State<DishInfoSection> {
               height: 10,
             ),
             ReadMoreText(
-              '',
+               widget.dishModel.description ?? 'No description available',
               colorClickableText: kPrimaryColor,
               trimLines: 5,
               trimMode: TrimMode.Line,

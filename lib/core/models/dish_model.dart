@@ -1,10 +1,13 @@
 import '../../features/all_dishes/data/models/category_model.dart';
+import '../../features/dish_details/data/models/reviews_preview_model.dart';
+import '../../features/dish_details/data/models/variety_sections_model.dart';
 import 'cheif_model.dart';
 
 class DishModel {
   final int? id;
   final String? name;
   final String? price;
+  final String? description;
   final bool? isAvailable;
   final int? preparationTime;
   final ChefModel? chef;
@@ -12,11 +15,15 @@ class DishModel {
   final String? createdAt;
   final double? averageRating;
   final String? imageUrl;
+  final int? reviewsCount;
+  final List<VarietySectionsModel>? varietySections;
+  final List<ReviewsPreviewModel>? reviewsPreview;
 
   DishModel({
     this.id,
     this.name,
     this.price,
+    this.description,
     this.isAvailable,
     this.preparationTime,
     this.chef,
@@ -24,6 +31,9 @@ class DishModel {
     this.createdAt,
     this.averageRating,
     this.imageUrl,
+    this.reviewsCount,
+    this.varietySections,
+    this.reviewsPreview,
   });
 
   factory DishModel.fromJson(Map<String, dynamic> json) {
@@ -31,19 +41,32 @@ class DishModel {
       id: json['id'] as int?,
       name: json['name'] as String?,
       price: json['price'] as String?,
+      description: json['description'] as String?,
       isAvailable: json['is_available'] as bool?,
       preparationTime: json['preparation_time'] as int?,
-      chef: json['chef'] != null
-          ? ChefModel.fromJson(json['chef'] as Map<String, dynamic>)
-          : null,
-      category: json['category'] != null
-          ? CategoryModel.fromJson(json['category'] as Map<String, dynamic>)
-          : null,
+      reviewsCount: json['reviews_count'] as int?,
       createdAt: json['created_at'] as String?,
-      imageUrl: json['image'] as String?,
-      averageRating: json['average_rating'] != null
-          ? (json['average_rating'] as num).toDouble()
+      imageUrl: json['images'] != null && (json['images'] as List).isNotEmpty
+          ? (json['images'] as List).firstWhere(
+              (img) => img['is_primary'] == true,
+              orElse: () => json['images'][0],
+            )['image_url'] as String?
+          : json['image'] as String?,
+      averageRating: (json['rating_avg'] ?? json['average_rating']) != null
+          ? (json['rating_avg'] ?? json['average_rating'] as num).toDouble()
           : null,
+      chef: json['chef'] != null ? ChefModel.fromJson(json['chef']) : null,
+      category: json['category'] != null
+          ? CategoryModel.fromJson(json['category'])
+          : null,
+      varietySections: (json['variety_sections'] as List?)
+              ?.map((e) => VarietySectionsModel.fromJson(e))
+              .toList() ??
+          [],
+      reviewsPreview: (json['reviews_preview'] as List?)
+              ?.map((e) => ReviewsPreviewModel.fromJson(e))
+              .toList() ??
+          [],
     );
   }
 }

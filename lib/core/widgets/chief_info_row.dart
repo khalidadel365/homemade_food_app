@@ -36,11 +36,14 @@ class ChefInfoRow extends StatelessWidget {
         ),
         Flexible(
           child: Text(
-            '${chefModel?.firstName ?? 'Unknown'} ${chefModel?.lastName ?? ''}',
-            style: Styles.textStyle11,
+            chefModel?.fullName ??
+                (chefModel?.firstName != null || chefModel?.lastName != null
+                    ? '${chefModel?.firstName ?? ''} ${chefModel?.lastName ?? ''}'.trim()
+                    : 'Unknown'),
+            style: Styles.textStyle13,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-          ),
+          )
         ),
       ],
     );

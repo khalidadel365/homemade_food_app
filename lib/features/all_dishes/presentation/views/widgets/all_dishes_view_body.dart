@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utilities/styles.dart';
-import '../../manager/fetch_all_dishes_cubit/all_dishes_cubit.dart';
+import '../../manager/cubit/all_dishes_cubit.dart';
 import '../../manager/states/all_dishes_states.dart';
 import '../../../../../core/widgets/all_dishes_list_view.dart';
 import 'categories_list_view.dart';

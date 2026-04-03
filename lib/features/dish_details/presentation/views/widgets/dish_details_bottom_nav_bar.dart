@@ -3,18 +3,18 @@ import '../../../../../constants.dart';
 
 import '../../../../../core/utilities/styles.dart';
 
-class FreshNearbyDetailsBottomNavBar extends StatefulWidget {
-  const FreshNearbyDetailsBottomNavBar({
+class DishDetailsBottomNavBar extends StatefulWidget {
+  const DishDetailsBottomNavBar({
     super.key,
   });
 
   @override
-  State<FreshNearbyDetailsBottomNavBar> createState() =>
-      _FreshNearbyDetailsBottomNavBarState();
+  State<DishDetailsBottomNavBar> createState() =>
+      _DishDetailsBottomNavBarState();
 }
 
-class _FreshNearbyDetailsBottomNavBarState
-    extends State<FreshNearbyDetailsBottomNavBar> {
+class _DishDetailsBottomNavBarState
+    extends State<DishDetailsBottomNavBar> {
   int counter = 1;
   @override
   Widget build(BuildContext context) {

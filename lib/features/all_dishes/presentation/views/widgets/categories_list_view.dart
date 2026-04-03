@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/category_ui_model.dart';
-import '../../manager/fetch_all_dishes_cubit/all_dishes_cubit.dart';
+import '../../manager/cubit/all_dishes_cubit.dart';
 import 'categories_list_view_item.dart';
 
 class CategoriesListView extends StatefulWidget {

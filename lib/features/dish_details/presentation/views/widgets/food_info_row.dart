@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homemade_food_app/features/all_dishes/data/models/category_model.dart';
 
 import '../../../../../core/utilities/styles.dart';
 
@@ -6,10 +7,10 @@ class FoodInfoRow extends StatelessWidget {
   const FoodInfoRow({
     super.key,
     required this.prepTime,
-    required this.calories,
+    required this.categoryModel,
   });
   final String prepTime;
-  final String calories;
+  final CategoryModel categoryModel;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -40,7 +41,7 @@ class FoodInfoRow extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  '25m',
+                  '${prepTime}m',
                   style:
                       Styles.textStyle14.copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -82,7 +83,7 @@ class FoodInfoRow extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  '350',
+                  categoryModel.name!,
                   style:
                       Styles.textStyle14.copyWith(fontWeight: FontWeight.bold),
                 ),

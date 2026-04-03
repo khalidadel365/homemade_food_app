@@ -12,12 +12,11 @@ import 'package:homemade_food_app/features/profile/presentation/views/edit_profi
 import '../../features/cheif_profile/presentation/views/chef_profile_view.dart';
 import '../../features/dish_details/presentation/views/dish_details_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
-import '../models/dish_model.dart';
 
 abstract class AppRouter {
   static const kMainView = '/mainView';
   static const kHomeView = '/homeView';
-  static const kFreshNearbyDetailsView = '/freshNearbyDetailsView';
+  static const kDishDetailsView = '/dishDetailsView';
   static const kLoginView = '/loginView';
   static const kSignUpView = '/signUpView';
   static const kSplashScreen = '/';
@@ -39,9 +38,9 @@ abstract class AppRouter {
       GoRoute(path: kMainView, builder: (context, state) => const MainView()),
       //GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
       GoRoute(
-          path: kFreshNearbyDetailsView,
-          builder: (context, state) => FreshNearbyDetailsView(
-                dishModel: state.extra as DishModel,
+          path: kDishDetailsView,
+          builder: (context, state) => DishDetailsView(
+                id: state.extra as int,
               )),
       GoRoute(path: kSignUpView, builder: (context, state) => SignupView()),
       GoRoute(path: kCartScreen, builder: (context, state) => const CartView()),

@@ -6,9 +6,9 @@ import '../../constants.dart';
 
 class CustomDishImage extends StatelessWidget {
   const CustomDishImage({
-    super.key,
+    super.key, required this.imageUrl,
   });
-
+  final String imageUrl ;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -25,6 +25,7 @@ class CustomDishImage extends StatelessWidget {
                   Icons.error,
                   color: Colors.red,
                 ),
+            //imageUrl: imageUrl
             imageUrl:
                 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Homemade-Pizza_EXPS_FT23_376_EC_120123_3.jpg'),
       ),

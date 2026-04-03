@@ -8,8 +8,8 @@ class ApiService {
       BaseOptions(
         //baseUrl: 'https://unsegregated-itchingly-charisse.ngrok-free.dev',
         baseUrl: 'http://10.0.2.2:8000',
-        connectTimeout: const Duration(seconds: 30),
-        receiveTimeout: const Duration(seconds: 30),
+        connectTimeout: const Duration(seconds: 10),
+        receiveTimeout: const Duration(seconds: 10),
         receiveDataWhenStatusError: true,
       ),
     );

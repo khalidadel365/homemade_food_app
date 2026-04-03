@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
+
 import '../../constants.dart';
 import '../models/dish_model.dart';
 import 'custom_dish_image.dart';
@@ -20,7 +21,7 @@ class AllDishesListViewItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         GoRouter.of(context)
-            .push(AppRouter.kFreshNearbyDetailsView, extra: dishModel);
+            .push(AppRouter.kDishDetailsView, extra: dishModel.id);
       },
       child: Container(
         //height: MediaQuery.of(context).size.height * 0.195,
@@ -35,7 +36,9 @@ class AllDishesListViewItem extends StatelessWidget {
         ),
         child: Row(
           children: [
-            const CustomDishImage(),
+            CustomDishImage(
+              imageUrl: dishModel.imageUrl != null ? dishModel.imageUrl! : '',
+            ),
             const SizedBox(width: 15),
             Expanded(
               child: Column(
