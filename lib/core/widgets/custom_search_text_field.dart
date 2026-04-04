@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../constants.dart';
 
 import '../utilities/app_router.dart';
+import '../utilities/functions/show_filter_bottom_sheet.dart';
 import 'custom_textformfield.dart';
 
 class CustomSearchTextField extends StatelessWidget {
@@ -19,6 +20,9 @@ class CustomSearchTextField extends StatelessWidget {
       children: [
         Expanded(
           child: CustomTextFormField(
+            suffixIcon: IconButton(onPressed: (){
+              showFilterBottomSheet(context);
+            }, icon: Icon(Icons.tune)),
             controller: searchController,
             hintText: 'search  Craving lasagna, cookies, or anything else...',
             hintTextStyle: TextStyle(
