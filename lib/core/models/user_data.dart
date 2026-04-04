@@ -1,17 +1,17 @@
-import 'account_info.dart';
+import '../../features/auth/data/models/account_info.dart';
 
 class UserData {
   final int? id;
   final AccountInfo? accountInfo;
 
   UserData({
-    required this.id,
-    required this.accountInfo,
+    this.id,
+    this.accountInfo,
   });
 
   factory UserData.fromJson(Map<String, dynamic> json) {
     return UserData(
-      id: json['id'],
+      id: json['id'] as int?,
       accountInfo: AccountInfo.fromJson(json),
     );
   }

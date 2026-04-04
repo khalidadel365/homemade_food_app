@@ -5,11 +5,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../core/utilities/styles.dart';
+import '../../../../../core/widgets/all_dishes_list_view.dart';
+import '../../../../../core/widgets/custom_search_text_field.dart';
 import '../../manager/cubit/all_dishes_cubit.dart';
 import '../../manager/states/all_dishes_states.dart';
-import '../../../../../core/widgets/all_dishes_list_view.dart';
 import 'categories_list_view.dart';
-import '../../../../../core/widgets/custom_search_text_field.dart';
 
 class AllDishesViewBody extends StatelessWidget {
   const AllDishesViewBody({super.key});

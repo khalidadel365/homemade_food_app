@@ -17,7 +17,8 @@ class ReviewsPreviewModel {
     return ReviewsPreviewModel(
       id: json['id'] as int?,
       userName: json['user_name'] as String?,
-      rating: json['rating'] != null ? (json['rating'] as num).toDouble() : null,
+      rating:
+          json['rating'] != null ? (json['rating'] as num).toDouble() : null,
       reviewText: json['review_text'] as String?,
       createdAt: json['created_at'] as String?,
     );

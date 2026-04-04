@@ -46,7 +46,7 @@ class FoodInfoRow extends StatelessWidget {
                       Styles.textStyle14.copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  width: 5,
+                  width: 8,
                 ),
                 Text(
                   'Prep time',
@@ -75,22 +75,18 @@ class FoodInfoRow extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.red.shade100, shape: BoxShape.circle),
                     child: Icon(
-                      Icons.local_fire_department,
+                      Icons.restaurant,
                       color: Colors.red.shade600,
                       size: 20,
                     )),
-                SizedBox(
-                  width: 8,
+                const SizedBox(
+                  width: 11,
                 ),
                 Text(
                   categoryModel.name!,
                   style:
                       Styles.textStyle14.copyWith(fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text('Kcal', style: Styles.textStyle13),
               ],
             ),
           ),

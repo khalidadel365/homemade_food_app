@@ -22,6 +22,7 @@ class AccountInfo {
     this.userType,
     this.isActive,
   });
+
   String? get fullProfilePicUrl {
     if (profilePicUrl == null) return null;
     return "${ApiConstants.baseUrl}$profilePicUrl";
@@ -29,15 +30,15 @@ class AccountInfo {
 
   factory AccountInfo.fromJson(Map<String, dynamic> json) {
     return AccountInfo(
-      firstName: json['first_name'],
-      lastName: json['last_name'],
-      email: json['email'],
-      phone: json['phone_number'],
-      profilePicUrl: json['profile_picture'],
-      address_longitude: json['address_longitude'],
-      address_latitude: json['address_latitude'],
-      userType: json['user_type'],
-      isActive: json['is_active'],
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
+      email: json['email'] as String?,
+      phone: json['phone_number'] as String?,
+      profilePicUrl: json['profile_picture'] as String?,
+      address_longitude: json['address_longitude'] as String?,
+      address_latitude: json['address_latitude'] as String?,
+      userType: json['user_type'] as String?,
+      isActive: json['is_active'] as bool?,
     );
   }
 }

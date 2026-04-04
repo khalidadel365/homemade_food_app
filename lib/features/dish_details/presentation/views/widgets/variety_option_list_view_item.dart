@@ -3,14 +3,20 @@ import 'package:flutter/material.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/utilities/styles.dart';
 
-class SpicinessListViewItem extends StatelessWidget {
-  const SpicinessListViewItem({
+class VarietyOptionItem extends StatelessWidget {
+  const VarietyOptionItem({
     super.key,
     required this.isSelected,
     required this.onTap,
+    required this.name,
+    this.price = "0.00",
   });
+
   final bool isSelected;
   final VoidCallback onTap;
+  final String name;
+  final String price;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -18,9 +24,8 @@ class SpicinessListViewItem extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 58,
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
           color: isSelected ? kSecondaryColor : Colors.white,
           borderRadius: BorderRadius.circular(15),
           border: Border.all(
@@ -29,10 +34,9 @@ class SpicinessListViewItem extends StatelessWidget {
           ),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(6),
+              padding: const EdgeInsets.all(6),
               height: 21,
               width: 21,
               decoration: BoxDecoration(
@@ -41,19 +45,16 @@ class SpicinessListViewItem extends StatelessWidget {
                 color: isSelected ? kPrimaryColor : Colors.white,
               ),
               child: Container(
-                height: 5,
-                width: 5,
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.white),
               ),
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              'Medium',
-              style: Styles.textStyle14,
-            )
+            const SizedBox(width: 10),
+            Text(name, style: Styles.textStyle14),
+            const Spacer(),
+            if (price != "0.00")
+              Text("+$price EGY",
+                  style: TextStyle(color: kPrimaryColor, fontSize: 12)),
           ],
         ),
       ),

@@ -3,5 +3,10 @@ import '../../../../core/errors/failures.dart';
 import '../../../../core/models/dish_model.dart';
 
 abstract class AllDishesRepo {
-  Future<Either<Failure, List<DishModel>>> fetchAllDishes({String? category});
+  Future<Either<Failure, List<DishModel>>> fetchAllDishes({
+    String? search,
+    int? minPrice,
+    int? maxPrice,
+    bool? isAvailable,
+    String? category});
 }
