@@ -40,7 +40,8 @@ class ChefModel {
       id: json['id'] as int?,
       fullName: json['name'] as String?,
       // الـ Rating لازم يتحول لـ double بأمان
-      rating: json['rating'] != null ? (json['rating'] as num).toDouble() : null,
+      rating:
+          json['rating'] != null ? (json['rating'] as num).toDouble() : null,
       totalReviews: json['total_reviews'] as int?,
       // تحويل لستة الـ Strings مع Null Check
       specialties: json['specialties'] != null
@@ -50,7 +51,8 @@ class ChefModel {
       lastName: json['last_name'] as String?,
       email: json['email'] as String?,
       phone: json['phone_number'] as String?,
-      profilePicUrl: json['profile_picture'] as String? ?? json['profile_picture_url'] as String?,
+      profilePicUrl: json['profile_picture'] as String? ??
+          json['profile_picture_url'] as String?,
       addressLongitude: json['address_longitude'] as String?,
       addressLatitude: json['address_latitude'] as String?,
       createdAt: json['created_at'] as String?,

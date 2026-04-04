@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
-import 'package:homemade_food_app/features/dish_details/presentation/views/widgets/spiness_list_view.dart';
+import 'package:homemade_food_app/features/dish_details/presentation/views/widgets/variety_options_list_view.dart';
 import 'package:readmore/readmore.dart';
+
 import '../../../../../core/models/dish_model.dart';
-import '../../../../../core/widgets/food_rating.dart';
-import '../../../../all_dishes/data/models/category_model.dart';
-import 'add_ons_list_view.dart';
 import '../../../../../core/widgets/chief_info_row.dart';
 import '../../../../../core/widgets/details_options_title.dart';
+import '../../../../../core/widgets/food_rating.dart';
+import '../../../../all_dishes/data/models/category_model.dart';
 import 'food_info_row.dart';
 
 class DishInfoSection extends StatefulWidget {
   const DishInfoSection({super.key, required this.dishModel});
+
   final DishModel dishModel;
+
   @override
   State<DishInfoSection> createState() => _DishInfoSectionState();
 }
@@ -21,6 +23,7 @@ class DishInfoSection extends StatefulWidget {
 class _DishInfoSectionState extends State<DishInfoSection> {
   @override
   Widget build(BuildContext context) {
+    print("Count of sections: ${widget.dishModel.varietySections?.length}");
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Padding(
@@ -34,7 +37,7 @@ class _DishInfoSectionState extends State<DishInfoSection> {
               children: [
                 Text('${widget.dishModel.name}', style: Styles.textStyle20),
                 Text(
-                  "${widget.dishModel.price} EGY",
+                  "${widget.dishModel.price}\$",
                   style: Styles.textStyle20.copyWith(color: kPrimaryColor),
                 ),
               ],
@@ -50,25 +53,17 @@ class _DishInfoSectionState extends State<DishInfoSection> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             FoodInfoRow(
               prepTime: '${widget.dishModel.preparationTime}',
-              categoryModel: widget.dishModel.category ?? CategoryModel(name: 'General'),
-
+              categoryModel:
+                  widget.dishModel.category ?? CategoryModel(name: 'General'),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            const DetailsOptionsTitle(
-              title: 'Description',
-            ),
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 16),
+            const DetailsOptionsTitle(title: 'Description'),
+            const SizedBox(height: 10),
             ReadMoreText(
-               widget.dishModel.description ?? 'No description available',
+              widget.dishModel.description ?? 'No description available',
               colorClickableText: kPrimaryColor,
               trimLines: 5,
               trimMode: TrimMode.Line,
@@ -76,22 +71,28 @@ class _DishInfoSectionState extends State<DishInfoSection> {
               trimExpandedText: ' Show less',
               style: Styles.textStyle14,
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            const DetailsOptionsTitle(title: 'Choice of Spiciness'),
-            const SizedBox(
-              height: 10,
-            ),
-            SpicinessListView(),
-            const SizedBox(
-              height: 30,
-            ),
-            const DetailsOptionsTitle(title: 'Add-Ons'),
-            const SizedBox(
-              height: 10,
-            ),
-            AddOnsListView()
+            const SizedBox(height: 30),
+            if (widget.dishModel.varietySections != null)
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: widget.dishModel.varietySections!.length,
+                itemBuilder: (context, index) {
+                  final section = widget.dishModel.varietySections![index];
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DetailsOptionsTitle(title: section.name ?? ''),
+                      const SizedBox(height: 10),
+                      VarietyOptionsListView(
+                        options: section.options ?? [],
+                        isRequired: section.isRequired ?? false,
+                      ),
+                      const SizedBox(height: 30),
+                    ],
+                  );
+                },
+              ),
           ],
         ),
       ),

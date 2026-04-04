@@ -3,7 +3,8 @@ import 'package:homemade_food_app/features/dish_details/data/repos/dish_details_
 import 'package:homemade_food_app/features/dish_details/presentation/manager/states/dish_details_states.dart';
 
 class FetchDishDetailsCubit extends Cubit<FetchDishDetailsState> {
-  FetchDishDetailsCubit(this.dishDetailsRepo) : super(FetchDishDetailsInitialState());
+  FetchDishDetailsCubit(this.dishDetailsRepo)
+      : super(FetchDishDetailsInitialState());
   final DishDetailsRepo dishDetailsRepo;
 
   Future<void> fetchDishDetails({required int id}) async {

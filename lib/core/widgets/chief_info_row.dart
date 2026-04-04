@@ -35,16 +35,16 @@ class ChefInfoRow extends StatelessWidget {
           ),
         ),
         Flexible(
-          child: Text(
-            chefModel?.fullName ??
-                (chefModel?.firstName != null || chefModel?.lastName != null
-                    ? '${chefModel?.firstName ?? ''} ${chefModel?.lastName ?? ''}'.trim()
-                    : 'Unknown'),
-            style: Styles.textStyle13,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          )
-        ),
+            child: Text(
+          chefModel?.fullName ??
+              (chefModel?.firstName != null || chefModel?.lastName != null
+                  ? '${chefModel?.firstName ?? ''} ${chefModel?.lastName ?? ''}'
+                      .trim()
+                  : 'Unknown'),
+          style: Styles.textStyle13,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        )),
       ],
     );
   }

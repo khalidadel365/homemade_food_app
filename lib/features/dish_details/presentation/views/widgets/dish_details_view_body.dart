@@ -4,9 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/constants.dart';
+import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/features/dish_details/presentation/manager/cubit/dish_details_cubit.dart';
 import 'package:homemade_food_app/features/dish_details/presentation/manager/states/dish_details_states.dart';
 import 'dish_info_section.dart';
+
 class DishDetailsViewBody extends StatelessWidget {
   const DishDetailsViewBody({super.key});
 
@@ -26,13 +28,15 @@ class DishDetailsViewBody extends StatelessWidget {
                   child: CachedNetworkImage(
                     fit: BoxFit.fill,
                     errorWidget: (context, url, error) => const Icon(
-                      Icons.error, color: Colors.red,
+                      Icons.error,
+                      color: Colors.red,
                     ),
                     placeholder: (context, url) => SpinKitFadingCircle(
                       color: kPrimaryColor,
                     ),
                     //imageUrl: state.dish.imageUrl ?? '',
-                    imageUrl: 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Homemade-Pizza_EXPS_FT23_376_EC_120123_3.jpg',
+                    imageUrl:
+                        'https://www.tasteofhome.com/wp-content/uploads/2018/01/Homemade-Pizza_EXPS_FT23_376_EC_120123_3.jpg',
                   ),
                 ),
                 Positioned(
@@ -42,7 +46,12 @@ class DishDetailsViewBody extends StatelessWidget {
                     backgroundColor: Colors.white,
                     child: IconButton(
                       icon: const Icon(Icons.arrow_back, color: Colors.black),
-                      onPressed: () => GoRouter.of(context).pop(),
+                      onPressed: () {
+                        GoRouter.of(context).push(
+                          AppRouter.kChefProfileView,
+                          extra: state.dish.chef!.id,
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -54,7 +63,8 @@ class DishDetailsViewBody extends StatelessWidget {
                   child: Container(
                     decoration: const BoxDecoration(
                       color: kBackGroundColor,
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(32)),
                     ),
                     child: DishInfoSection(
                       dishModel: state.dish,

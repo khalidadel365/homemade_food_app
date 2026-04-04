@@ -6,9 +6,10 @@ import '../../constants.dart';
 
 class CustomDishImage extends StatelessWidget {
   const CustomDishImage({
-    super.key, required this.imageUrl,
+    super.key,
+    required this.imageUrl,
   });
-  final String imageUrl ;
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

@@ -7,14 +7,31 @@ import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
+
 import '../../../../../core/utilities/cache_helper.dart';
 import '../../../../../core/utilities/functions/show_snack_bar.dart';
 import '../../../../../core/utilities/styles.dart';
 import 'custom_profile_button.dart';
 import 'custom_profile_image.dart';
 
-class ProfileViewBody extends StatelessWidget {
+class ProfileViewBody extends StatefulWidget {
   const ProfileViewBody({super.key});
+
+  @override
+  State<ProfileViewBody> createState() => _ProfileViewBodyState();
+}
+
+class _ProfileViewBodyState extends State<ProfileViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    if (ApiConstants.token != null) {
+      BlocProvider.of<ProfileCubit>(context).fetchProfile(
+        token: ApiConstants.token!,
+        id: ApiConstants.id!,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

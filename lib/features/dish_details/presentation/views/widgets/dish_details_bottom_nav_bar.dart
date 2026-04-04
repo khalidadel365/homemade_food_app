@@ -13,8 +13,7 @@ class DishDetailsBottomNavBar extends StatefulWidget {
       _DishDetailsBottomNavBarState();
 }
 
-class _DishDetailsBottomNavBarState
-    extends State<DishDetailsBottomNavBar> {
+class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
   int counter = 1;
   @override
   Widget build(BuildContext context) {

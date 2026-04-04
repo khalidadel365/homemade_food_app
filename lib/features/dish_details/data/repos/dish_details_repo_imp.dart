@@ -5,7 +5,6 @@ import 'package:homemade_food_app/core/utilities/api_service.dart';
 import 'package:homemade_food_app/features/dish_details/data/repos/dish_details_repo.dart';
 import '../../../../core/models/dish_model.dart';
 
-
 class DishDetailsRepoImp implements DishDetailsRepo {
   final ApiService apiService;
 

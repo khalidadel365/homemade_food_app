@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 class ChiefRating extends StatelessWidget {
   const ChiefRating({
     super.key,
+    required this.rating,
+    required this.totalReviews,
   });
+
+  final double rating;
+  final int totalReviews;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +23,12 @@ class ChiefRating extends StatelessWidget {
           width: 5,
         ),
         Text(
-          '4.8',
+          '${rating}',
           style: TextStyle(fontSize: 12),
         ),
         const Spacer(),
         Text(
-          '(120+ reviews)',
+          (totalReviews == 0) ? '0 reviews' : '$totalReviews+ reviews',
           style: TextStyle(color: Colors.grey[500], fontSize: 12),
         ),
       ],
