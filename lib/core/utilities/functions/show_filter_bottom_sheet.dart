@@ -18,17 +18,26 @@ void showFilterBottomSheet(BuildContext context, FetchAllDishesCubit cubit) {
         child: BlocBuilder<FetchAllDishesCubit, FetchAllDishesState>(
           builder: (context, state) {
             return Padding(
-              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
               child: Container(
-                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(25)),
-                padding: const EdgeInsets.only(right: 20, top: 20, left: 20, bottom: 50),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25)),
+                padding: const EdgeInsets.only(
+                    right: 20, top: 20, left: 20, bottom: 50),
                 height: MediaQuery.of(context).size.height * 0.55,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Align(
                       alignment: Alignment.topCenter,
-                      child: Container(width: 50, height: 5, decoration: BoxDecoration(color: Colors.grey.shade400, borderRadius: BorderRadius.circular(10))),
+                      child: Container(
+                          width: 50,
+                          height: 5,
+                          decoration: BoxDecoration(
+                              color: Colors.grey.shade400,
+                              borderRadius: BorderRadius.circular(10))),
                     ),
                     const SizedBox(height: 25),
                     Row(
@@ -41,24 +50,23 @@ void showFilterBottomSheet(BuildContext context, FetchAllDishesCubit cubit) {
                         )
                       ],
                     ),
-                    const Text("Price Range", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const Text("Price Range",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 14),
-
                     PriceSection(
                       minPriceController: cubit.minPriceController,
                       maxPriceController: cubit.maxPriceController,
                     ),
-
                     const SizedBox(height: 14),
-                    const Text("Availability", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-
+                    const Text("Availability",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
                     AvailabilitySection(
                       isAvailable: cubit.isAvailable,
                       onChanged: (value) => cubit.changeAvailability(value),
                     ),
-
                     const Spacer(),
-
                     FilterActionsButtons(
                       onReset: () => cubit.resetFilters(),
                       onApply: () {

@@ -38,7 +38,7 @@ class AllDishesViewBody extends StatelessWidget {
               const SizedBox(height: 18),
               BlocBuilder<FetchAllDishesCubit, FetchAllDishesState>(
                 buildWhen: (previous, current) =>
-                current is FetchAllDishesSuccess ||
+                    current is FetchAllDishesSuccess ||
                     current is FetchAllDishesLoading ||
                     current is FetchAllDishesFailure,
                 builder: (context, state) {
@@ -51,7 +51,8 @@ class AllDishesViewBody extends StatelessWidget {
                             padding: EdgeInsets.only(top: 150),
                             child: Text(
                               "No dishes found!",
-                              style: TextStyle(color: Colors.grey, fontSize: 16),
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 16),
                             ),
                           ),
                         ),

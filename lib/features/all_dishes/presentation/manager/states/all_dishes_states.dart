@@ -17,4 +17,5 @@ class FetchAllDishesSuccess extends FetchAllDishesState {
 
   FetchAllDishesSuccess(this.dishes);
 }
-class FilterChangedState extends FetchAllDishesState{}
+
+class FilterChangedState extends FetchAllDishesState {}

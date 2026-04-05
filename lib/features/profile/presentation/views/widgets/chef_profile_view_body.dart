@@ -63,10 +63,10 @@ class _ChefProfileViewBodyState extends State<ChefProfileViewBody> {
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
                           child: IconButton(
-                            icon: const Icon(Icons.arrow_back,
-                                color: Colors.black),
-                            onPressed: () => GoRouter.of(context).go(AppRouter.kMainView)
-                          ),
+                              icon: const Icon(Icons.arrow_back,
+                                  color: Colors.black),
+                              onPressed: () =>
+                                  GoRouter.of(context).go(AppRouter.kMainView)),
                         ),
                       ),
                       Positioned(
