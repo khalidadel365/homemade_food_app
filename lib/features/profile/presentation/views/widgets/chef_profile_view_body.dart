@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/core/utilities/api_constants.dart';
+import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
 
@@ -64,7 +65,7 @@ class _ChefProfileViewBodyState extends State<ChefProfileViewBody> {
                           child: IconButton(
                             icon: const Icon(Icons.arrow_back,
                                 color: Colors.black),
-                            onPressed: () => GoRouter.of(context).pop(),
+                            onPressed: () => GoRouter.of(context).go(AppRouter.kMainView)
                           ),
                         ),
                       ),

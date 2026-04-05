@@ -44,12 +44,15 @@ class AllDishesViewBody extends StatelessWidget {
                 builder: (context, state) {
                   if (state is FetchAllDishesSuccess) {
                     if (state.dishes.isEmpty) {
-                      return const Center(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 150),
-                          child: Text(
-                            "No dishes found!",
-                            style: TextStyle(color: Colors.grey, fontSize: 16),
+                      return SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        child: const Center(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 150),
+                            child: Text(
+                              "No dishes found!",
+                              style: TextStyle(color: Colors.grey, fontSize: 16),
+                            ),
                           ),
                         ),
                       );

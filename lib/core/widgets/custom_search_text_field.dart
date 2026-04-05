@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../constants.dart';
 
+import '../../constants.dart';
 import '../../features/all_dishes/presentation/manager/cubit/all_dishes_cubit.dart';
 import '../utilities/app_router.dart';
 import '../utilities/functions/show_filter_bottom_sheet.dart';
@@ -22,13 +22,16 @@ class CustomSearchTextField extends StatelessWidget {
       children: [
         Expanded(
           child: CustomTextFormField(
-            onChange: (value){
-              BlocProvider.of(context).
+            onChange: (value) {
+              BlocProvider.of<FetchAllDishesCubit>(context)
+                  .fetchAllDishes(search: value);
             },
-            suffixIcon: IconButton(onPressed: (){
-              var cubit = BlocProvider.of<FetchAllDishesCubit>(context);
-              showFilterBottomSheet(context, cubit);
-            }, icon: Icon(Icons.tune)),
+            suffixIcon: IconButton(
+                onPressed: () {
+                  var cubit = BlocProvider.of<FetchAllDishesCubit>(context);
+                  showFilterBottomSheet(context, cubit);
+                },
+                icon: Icon(Icons.tune)),
             controller: searchController,
             hintText: 'search  Craving lasagna, cookies, or anything else...',
             hintTextStyle: TextStyle(
