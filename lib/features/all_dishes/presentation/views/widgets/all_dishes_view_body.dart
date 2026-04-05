@@ -37,14 +37,32 @@ class AllDishesViewBody extends StatelessWidget {
               ]),
               const SizedBox(height: 18),
               BlocBuilder<FetchAllDishesCubit, FetchAllDishesState>(
+                buildWhen: (previous, current) =>
+                current is FetchAllDishesSuccess ||
+                    current is FetchAllDishesLoading ||
+                    current is FetchAllDishesFailure,
                 builder: (context, state) {
                   if (state is FetchAllDishesSuccess) {
+                    if (state.dishes.isEmpty) {
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 150),
+                          child: Text(
+                            "No dishes found!",
+                            style: TextStyle(color: Colors.grey, fontSize: 16),
+                          ),
+                        ),
+                      );
+                    }
                     return AllDishesListView(dishes: state.dishes);
                   } else if (state is FetchAllDishesFailure) {
                     return Center(child: Text(state.errMessage));
                   } else {
-                    return Center(
-                      child: SpinKitPulse(size: 45, color: kPrimaryColor),
+                    return const Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 100),
+                        child: SpinKitPulse(size: 45, color: kPrimaryColor),
+                      ),
                     );
                   }
                 },

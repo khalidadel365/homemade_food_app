@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utilities/styles.dart';
@@ -6,7 +5,12 @@ import '../../../../../core/utilities/styles.dart';
 class PriceSection extends StatelessWidget {
   const PriceSection({
     super.key,
+    required this.minPriceController,
+    required this.maxPriceController,
   });
+
+  final TextEditingController minPriceController;
+  final TextEditingController maxPriceController;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +28,7 @@ class PriceSection extends StatelessWidget {
                 height: 7,
               ),
               TextField(
+                controller: minPriceController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   fillColor: Colors.grey.shade50,
@@ -39,7 +44,7 @@ class PriceSection extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                   contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 ),
                 onSubmitted: (value) {},
               ),
@@ -61,6 +66,7 @@ class PriceSection extends StatelessWidget {
                 height: 7,
               ),
               TextField(
+                controller: maxPriceController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   fillColor: Colors.grey.shade50,
@@ -76,7 +82,7 @@ class PriceSection extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                   contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 ),
                 onSubmitted: (value) {},
               ),
