@@ -7,6 +7,9 @@ abstract class Styles {
   static var textStyle13 = TextStyle(
     fontSize: 13,
   );
+  static var textStyle12 = TextStyle(
+    fontSize: 12,
+  );
   static var textStyle16 = TextStyle(
     fontSize: 16,
   );

@@ -34,11 +34,14 @@ class ChefInfoRow extends StatelessWidget {
                 imageUrl: chefModel?.profilePicUrl ?? ''),
           ),
         ),
+        const SizedBox(
+          width: 3,
+        ),
         Flexible(
             child: Text(
           chefModel?.fullName ??
               (chefModel?.firstName != null || chefModel?.lastName != null
-                  ? '${chefModel?.firstName ?? ''} ${chefModel?.lastName ?? ''}'
+                  ? 'by ${chefModel?.firstName ?? ''} ${chefModel?.lastName ?? ''}'
                       .trim()
                   : 'Unknown'),
           style: Styles.textStyle13,

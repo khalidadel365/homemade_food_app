@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../constants.dart';
 import '../../features/all_dishes/presentation/manager/cubit/all_dishes_cubit.dart';
-import '../utilities/app_router.dart';
 import '../utilities/functions/show_filter_bottom_sheet.dart';
 import 'custom_textformfield.dart';
 
@@ -46,18 +42,6 @@ class CustomSearchTextField extends StatelessWidget {
             maxLines: 1,
           ),
         ),
-        const SizedBox(
-          width: 10,
-        ),
-        IconButton(
-            onPressed: () {
-              GoRouter.of(context).push(AppRouter.kCartScreen);
-            },
-            icon: Icon(
-              Icons.shopping_cart_outlined,
-              color: kPrimaryColor,
-              size: 30,
-            ))
       ],
     );
   }
