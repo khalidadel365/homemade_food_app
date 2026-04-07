@@ -10,13 +10,13 @@ class HomeModel {
   final List<CategoryModel>? categories;
   final List<DishModel>? featuredDishes;
   final List<ChefModel>? topChefs;
-  final List<DishModel>? newDishes;
+  final List<DishModel>? newArrivalsDishes;
 
   HomeModel({
     this.categories,
     this.featuredDishes,
     this.topChefs,
-    this.newDishes,
+    this.newArrivalsDishes,
   });
 
   factory HomeModel.fromJson(Map<String, dynamic> json) {
@@ -33,7 +33,7 @@ class HomeModel {
           ? []
           : List<ChefModel>.from(json["top_chefs"]
               .map((x) => ChefModel.fromJson(x as Map<String, dynamic>))),
-      newDishes: json["new_dishes"] == null
+      newArrivalsDishes: json["new_dishes"] == null
           ? []
           : List<DishModel>.from(json["new_dishes"]
               .map((x) => DishModel.fromJson(x as Map<String, dynamic>))),

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:homemade_food_app/core/models/cheif_model.dart';
 
 import '../../../../../core/utilities/styles.dart';
 import '../../../../../core/widgets/custom_chief_image.dart';
 import '../../../../../core/widgets/custom_rating.dart';
 
 class TopChefsListViewItem extends StatelessWidget {
-  const TopChefsListViewItem({super.key});
-
+  const TopChefsListViewItem({super.key, required this.chefModel});
+  final ChefModel chefModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +37,9 @@ class TopChefsListViewItem extends StatelessWidget {
             height: 12,
           ),
           Text(
-            'Yuki Tanaka',
+            '${chefModel.firstName} ${chefModel.lastName}',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: Styles.textStyle15.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -45,15 +48,20 @@ class TopChefsListViewItem extends StatelessWidget {
             height: 2,
           ),
           Text(
-            'Sushi Specialist',
+            chefModel.cuisineSpecialties ?? 'Chef',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: Styles.textStyle12
                 .copyWith(fontWeight: FontWeight.bold, color: Colors.grey[400]),
           ),
           const SizedBox(
             height: 7,
           ),
-          const CustomRating(
-              size: 13, rating: 2.95, backgroundColor: Colors.white)
+          CustomRating(
+            size: 13,
+            rating: chefModel.rating?.toDouble() ?? 0.0,
+            backgroundColor: Colors.white,
+          )
         ],
       ),
     );
