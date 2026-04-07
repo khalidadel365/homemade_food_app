@@ -24,45 +24,48 @@ class TopChefsListViewItem extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const CustomChiefImage(
-            height: 63,
-            width: 68,
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Text(
-            '${chefModel.firstName} ${chefModel.lastName}',
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: Styles.textStyle15.copyWith(
-              fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const CustomChiefImage(
+              height: 63,
+              width: 68,
             ),
-          ),
-          const SizedBox(
-            height: 2,
-          ),
-          Text(
-            chefModel.cuisineSpecialties ?? 'Chef',
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: Styles.textStyle12
-                .copyWith(fontWeight: FontWeight.bold, color: Colors.grey[400]),
-          ),
-          const SizedBox(
-            height: 7,
-          ),
-          CustomRating(
-            size: 13,
-            rating: chefModel.rating?.toDouble() ?? 0.0,
-            backgroundColor: Colors.white,
-          )
-        ],
+            const SizedBox(
+              height: 12,
+            ),
+            Text(
+              '${chefModel.firstName} ${chefModel.lastName}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Styles.textStyle15.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 2,
+            ),
+            Text(
+              chefModel.cuisineSpecialties ?? 'Chef',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Styles.textStyle12
+                  .copyWith(fontWeight: FontWeight.bold, color: Colors.grey[400]),
+            ),
+            const SizedBox(
+              height: 7,
+            ),
+            CustomRating(
+              size: 13,
+              rating: chefModel.rating?.toDouble() ?? 0.0,
+              backgroundColor: Colors.white,
+            )
+          ],
+        ),
       ),
     );
   }

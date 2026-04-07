@@ -20,27 +20,31 @@ class ChefModel {
     this.email,
     this.phone,
   });
-
   factory ChefModel.fromJson(Map<String, dynamic> json) {
-    final Map<String, dynamic>? userData =
-        json['user'] is Map<String, dynamic> ? json['user'] : null;
+    final userData = json['user'] as Map<String, dynamic>?;
 
     return ChefModel(
       id: json['id'] as int?,
-      firstName: (json['first_name'] ?? userData?['first_name']) as String?,
-      lastName: (json['last_name'] ?? userData?['last_name']) as String?,
-      profilePicUrl: (json['profile_picture'] ??
-          json['profile_picture_url'] ??
-          userData?['profile_picture']) as String?,
-      rating: json['rating'] != null
-          ? double.tryParse(json['rating'].toString())
-          : null,
+
+      firstName: json['name'] as String? ??
+          json['first_name'] as String? ??
+          userData?['first_name'] as String? ??
+          json['chef_name'] as String?,
+
+      lastName: json['last_name'] as String? ??
+          userData?['last_name'] as String? ?? '',
+
+      profilePicUrl: json['profile_picture'] as String? ??
+          userData?['profile_picture'] as String? ??
+          json['image_url'] as String? ??
+          json['image'] as String?,
+
+      rating: json['rating'] != null ? double.tryParse(json['rating'].toString()) : null,
       totalReviews: json['total_reviews'] as int?,
-      cuisineSpecialties: json['cuisine_specialties'] as String?,
-      email: (json['email'] ?? userData?['email']) as String?,
-      phone: (json['phone_number'] ?? json['phone']) as String?,
+
+      cuisineSpecialties: json['cuisine_specialties'] as String? ??
+          (json['specialties'] is List ? (json['specialties'] as List).join(', ') : null),
     );
   }
-
   String get fullName => '${firstName ?? ''} ${lastName ?? ''}'.trim();
 }

@@ -39,8 +39,7 @@ class DishModel {
   });
 
   factory DishModel.fromJson(Map<String, dynamic> json) {
-    final chefObject =
-        json['chef'] != null ? ChefModel.fromJson(json['chef']) : null;
+    final chefObject = json['chef'] != null ? ChefModel.fromJson(json['chef']) : null;
 
     return DishModel(
       id: json['id'] as int?,
@@ -51,28 +50,29 @@ class DishModel {
       preparationTime: json['preparation_time'] as int?,
       reviewsCount: json['reviews_count'] as int?,
       createdAt: json['created_at'] as String?,
-      chefName: (json['chef_name'] ?? chefObject?.fullName) as String?,
+      // لو الـ chef_name مش موجود، خده من الـ Object
+      chefName: json['chef_name'] as String? ?? chefObject?.fullName,
       chef: chefObject,
       imageUrl: json['images'] != null && (json['images'] as List).isNotEmpty
           ? (json['images'] as List).firstWhere(
-              (img) => img['is_primary'] == true,
-              orElse: () => json['images'][0],
-            )['image_url'] as String?
+            (img) => img['is_primary'] == true,
+        orElse: () => json['images'][0],
+      )['image_url'] as String?
           : json['image'] as String?,
       averageRating: (json['rating_avg'] ?? json['average_rating']) != null
           ? double.tryParse(
-              (json['rating_avg'] ?? json['average_rating']).toString())
+          (json['rating_avg'] ?? json['average_rating']).toString())
           : null,
       category: json['category'] != null
           ? CategoryModel.fromJson(json['category'])
           : null,
       varietySections: (json['variety_sections'] as List?)
-              ?.map((e) => VarietySectionsModel.fromJson(e))
-              .toList() ??
+          ?.map((e) => VarietySectionsModel.fromJson(e))
+          .toList() ??
           [],
       reviewsPreview: (json['reviews_preview'] as List?)
-              ?.map((e) => ReviewsPreviewModel.fromJson(e))
-              .toList() ??
+          ?.map((e) => ReviewsPreviewModel.fromJson(e))
+          .toList() ??
           [],
     );
   }
