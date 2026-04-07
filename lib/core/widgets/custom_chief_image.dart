@@ -1,19 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../../../../constants.dart';
+
+import '../../constants.dart';
 
 class CustomChiefImage extends StatelessWidget {
   const CustomChiefImage({
     super.key,
+    this.height,
+    this.width,
   });
+
+  final double? height;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(70)),
       child: Container(
-          height: 75,
-          width: 75,
+          height: height ?? 75,
+          width: width ?? 75,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
           ),

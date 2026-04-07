@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class FoodRating extends StatelessWidget {
-  const FoodRating({
+class CustomRating extends StatelessWidget {
+  const CustomRating({
     super.key,
     this.mainAxisAlignment = MainAxisAlignment.start,
     required this.size,
     required this.rating,
+    required this.backgroundColor,
   });
 
   final num rating;
   final MainAxisAlignment mainAxisAlignment;
   final double size;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.amber.shade50,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

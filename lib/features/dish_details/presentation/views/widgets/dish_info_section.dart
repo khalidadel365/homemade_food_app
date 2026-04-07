@@ -7,7 +7,7 @@ import 'package:readmore/readmore.dart';
 import '../../../../../core/models/dish_model.dart';
 import '../../../../../core/widgets/chief_info_row.dart';
 import '../../../../../core/widgets/details_options_title.dart';
-import '../../../../../core/widgets/food_rating.dart';
+import '../../../../../core/widgets/custom_rating.dart';
 import '../../../../all_dishes/data/models/category_model.dart';
 import 'food_info_row.dart';
 
@@ -47,9 +47,10 @@ class _DishInfoSectionState extends State<DishInfoSection> {
               children: [
                 ChefInfoRow(chefModel: widget.dishModel.chef),
                 const Spacer(),
-                FoodRating(
+                CustomRating(
                   rating: widget.dishModel.averageRating ?? 0.0,
                   size: 15,
+                  backgroundColor: Colors.amber.shade50,
                 )
               ],
             ),

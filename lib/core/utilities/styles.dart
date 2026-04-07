@@ -10,12 +10,19 @@ abstract class Styles {
   static var textStyle12 = TextStyle(
     fontSize: 12,
   );
+  static var textStyle15 = TextStyle(
+    fontSize: 15,
+  );
   static var textStyle16 = TextStyle(
     fontSize: 16,
   );
   static var textStyle17 = TextStyle(fontSize: 17, fontWeight: FontWeight.w600);
   static var textStyle18 = TextStyle(
     fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
+  static var textStyle19 = TextStyle(
+    fontSize: 19,
     fontWeight: FontWeight.w600,
   );
   static var textStyle20 = TextStyle(

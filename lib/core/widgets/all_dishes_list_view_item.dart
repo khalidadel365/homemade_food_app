@@ -6,7 +6,7 @@ import 'package:homemade_food_app/core/utilities/styles.dart';
 import '../../constants.dart';
 import '../models/dish_model.dart';
 import 'custom_dish_image.dart';
-import 'food_rating.dart';
+import 'custom_rating.dart';
 
 class AllDishesListViewItem extends StatelessWidget {
   const AllDishesListViewItem({
@@ -37,6 +37,8 @@ class AllDishesListViewItem extends StatelessWidget {
         child: Row(
           children: [
             CustomDishImage(
+              height: 0.29,
+              width: 0.27,
               imageUrl: dishModel.imageUrl != null ? dishModel.imageUrl! : '',
             ),
             const SizedBox(width: 15),
@@ -59,7 +61,10 @@ class AllDishesListViewItem extends StatelessWidget {
                           ),
                         ),
                       ),
-                      FoodRating(size: 15, rating: dishModel.averageRating!)
+                      CustomRating(
+                          backgroundColor: Colors.amber.shade50,
+                          size: 15,
+                          rating: dishModel.averageRating!)
                     ],
                   ),
                   const SizedBox(

@@ -10,7 +10,7 @@ import 'package:homemade_food_app/features/profile/presentation/profile_cubit/pr
 
 import '../../../../../constants.dart';
 import 'chief_rating.dart';
-import 'custom_chief_image.dart';
+import '../../../../../core/widgets/custom_chief_image.dart';
 
 class ChefProfileViewBody extends StatefulWidget {
   const ChefProfileViewBody({super.key, required this.chefId});

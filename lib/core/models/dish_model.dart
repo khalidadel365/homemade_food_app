@@ -11,6 +11,7 @@ class DishModel {
   final bool? isAvailable;
   final int? preparationTime;
   final ChefModel? chef;
+  final String? chefName;
   final CategoryModel? category;
   final String? createdAt;
   final double? averageRating;
@@ -27,6 +28,7 @@ class DishModel {
     this.isAvailable,
     this.preparationTime,
     this.chef,
+    this.chefName,
     this.category,
     this.createdAt,
     this.averageRating,
@@ -37,6 +39,9 @@ class DishModel {
   });
 
   factory DishModel.fromJson(Map<String, dynamic> json) {
+    final chefObject =
+        json['chef'] != null ? ChefModel.fromJson(json['chef']) : null;
+
     return DishModel(
       id: json['id'] as int?,
       name: json['name'] as String?,
@@ -46,6 +51,8 @@ class DishModel {
       preparationTime: json['preparation_time'] as int?,
       reviewsCount: json['reviews_count'] as int?,
       createdAt: json['created_at'] as String?,
+      chefName: (json['chef_name'] ?? chefObject?.fullName) as String?,
+      chef: chefObject,
       imageUrl: json['images'] != null && (json['images'] as List).isNotEmpty
           ? (json['images'] as List).firstWhere(
               (img) => img['is_primary'] == true,
@@ -53,9 +60,9 @@ class DishModel {
             )['image_url'] as String?
           : json['image'] as String?,
       averageRating: (json['rating_avg'] ?? json['average_rating']) != null
-          ? (json['rating_avg'] ?? json['average_rating'] as num).toDouble()
+          ? double.tryParse(
+              (json['rating_avg'] ?? json['average_rating']).toString())
           : null,
-      chef: json['chef'] != null ? ChefModel.fromJson(json['chef']) : null,
       category: json['category'] != null
           ? CategoryModel.fromJson(json['category'])
           : null,
