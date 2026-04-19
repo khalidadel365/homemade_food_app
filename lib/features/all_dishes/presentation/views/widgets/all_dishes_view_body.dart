@@ -11,14 +11,42 @@ import '../../manager/cubit/all_dishes_cubit.dart';
 import '../../manager/states/all_dishes_states.dart';
 import 'categories_list_view.dart';
 
-class AllDishesViewBody extends StatelessWidget {
+class AllDishesViewBody extends StatefulWidget {
   const AllDishesViewBody({super.key});
 
   @override
+  State<AllDishesViewBody> createState() => _AllDishesViewBodyState();
+}
+
+class _AllDishesViewBodyState extends State<AllDishesViewBody> {
+  final ScrollController _scrollController = ScrollController();
+  final TextEditingController searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200) {
+      context.read<FetchAllDishesCubit>().fetchAllDishes();
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController searchController = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
+        controller: _scrollController,
         physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15),
@@ -47,13 +75,9 @@ class AllDishesViewBody extends StatelessWidget {
                       return SizedBox(
                         height: MediaQuery.of(context).size.height * 0.4,
                         child: const Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 150),
-                            child: Text(
-                              "No dishes found!",
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 16),
-                            ),
+                          child: Text(
+                            "No dishes found!",
+                            style: TextStyle(color: Colors.grey, fontSize: 16),
                           ),
                         ),
                       );
