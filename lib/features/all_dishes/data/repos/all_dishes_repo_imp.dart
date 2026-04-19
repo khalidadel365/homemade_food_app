@@ -13,6 +13,8 @@ class AllDishesRepoImp implements AllDishesRepo {
 
   @override
   Future<Either<Failure, List<DishModel>>> fetchAllDishes({
+    int? page,
+    int? limit,
     String? category,
     String? search,
     int? minPrice,
@@ -22,7 +24,12 @@ class AllDishesRepoImp implements AllDishesRepo {
   }) async {
     try {
       Map<String, dynamic> queryParameters = {};
-
+      if (page != null) {
+        queryParameters['page'] = page;
+      }
+      if (limit != null) {
+        queryParameters['page_size'] = limit;
+      }
       if (category != null && category != 'All') {
         queryParameters['category_name'] = category;
       }
@@ -60,6 +67,10 @@ class AllDishesRepoImp implements AllDishesRepo {
       return right(dishes);
     } catch (e) {
       if (e is DioException) {
+        if (e.response?.statusCode == 404 &&
+            e.response?.data['detail'] == "Invalid page.") {
+          return right([]);
+        }
         return left(ServerFailure.fromDioException(e));
       }
       return left(ServerFailure(e.toString()));

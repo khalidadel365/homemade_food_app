@@ -5,6 +5,8 @@ import '../../../../core/models/dish_model.dart';
 
 abstract class AllDishesRepo {
   Future<Either<Failure, List<DishModel>>> fetchAllDishes({
+    int? page,
+    int? limit,
     String? search,
     int? minPrice,
     int? maxPrice,
