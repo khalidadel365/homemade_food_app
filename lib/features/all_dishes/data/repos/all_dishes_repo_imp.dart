@@ -18,6 +18,7 @@ class AllDishesRepoImp implements AllDishesRepo {
     int? minPrice,
     int? maxPrice,
     bool? isAvailable,
+    int? chefId,
   }) async {
     try {
       Map<String, dynamic> queryParameters = {};
@@ -37,6 +38,9 @@ class AllDishesRepoImp implements AllDishesRepo {
       if (isAvailable != null) {
         queryParameters['is_available'] = isAvailable;
       }
+      if (chefId != null) {
+        queryParameters['chef-id'] = chefId;
+      }
 
       var data = await apiService.get(
         endPoint: '/api/dishes/',
@@ -44,11 +48,13 @@ class AllDishesRepoImp implements AllDishesRepo {
       );
 
       List<DishModel> dishes = [];
-      for (var item in data['results']) {
-        try {
-          dishes.add(DishModel.fromJson(item));
-        } catch (e) {
-          print('error parsing dishes');
+      if (data['results'] != null) {
+        for (var item in data['results']) {
+          try {
+            dishes.add(DishModel.fromJson(item));
+          } catch (e) {
+            print('error parsing dishes: $e');
+          }
         }
       }
       return right(dishes);

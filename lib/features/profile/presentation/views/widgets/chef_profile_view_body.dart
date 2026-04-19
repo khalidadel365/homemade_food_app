@@ -3,33 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
-import 'package:homemade_food_app/core/utilities/api_constants.dart';
 import 'package:homemade_food_app/core/utilities/app_router.dart';
+import 'package:homemade_food_app/core/widgets/all_dishes_list_view_item.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
 
 import '../../../../../constants.dart';
-import 'chief_rating.dart';
 import '../../../../../core/widgets/custom_chief_image.dart';
+import 'chief_rating.dart';
 
-class ChefProfileViewBody extends StatefulWidget {
+class ChefProfileViewBody extends StatelessWidget {
   const ChefProfileViewBody({super.key, required this.chefId});
 
   final int chefId;
-
-  @override
-  State<ChefProfileViewBody> createState() => _ChefProfileViewBodyState();
-}
-
-class _ChefProfileViewBodyState extends State<ChefProfileViewBody> {
-  @override
-  void initState() {
-    BlocProvider.of<ProfileCubit>(context).fetchProfile(
-      token: ApiConstants.token!,
-      id: widget.chefId,
-    );
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -151,13 +137,17 @@ class _ChefProfileViewBodyState extends State<ChefProfileViewBody> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        return const Padding(
-                          padding: EdgeInsets.only(bottom: 15),
-                          // child: AllDishesListView(),
+                          (context, index) {
+                        final dish = state.profileModel.dishes![index];
+
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 15),
+                          child: AllDishesListViewItem(
+                            dishModel: dish,
+                          ),
                         );
                       },
-                      childCount: 1,
+                      childCount: state.profileModel.dishes?.length ?? 0,
                     ),
                   ),
                 ),

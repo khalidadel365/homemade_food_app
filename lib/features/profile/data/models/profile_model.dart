@@ -1,4 +1,5 @@
 import 'package:homemade_food_app/core/models/user_data.dart';
+import 'package:homemade_food_app/core/models/dish_model.dart';
 
 class ProfileModel {
   final int? id;
@@ -10,6 +11,7 @@ class ProfileModel {
   final String? cuisineSpecialties;
   final int? yearsOfExperience;
   final bool? isVerified;
+  final List<DishModel>? dishes;
 
   ProfileModel({
     this.id,
@@ -21,7 +23,25 @@ class ProfileModel {
     this.cuisineSpecialties,
     this.yearsOfExperience,
     this.isVerified,
+    this.dishes,
   });
+
+  ProfileModel copyWith({
+    List<DishModel>? dishes,
+  }) {
+    return ProfileModel(
+      id: id,
+      userData: userData,
+      totalOrders: totalOrders,
+      rating: rating,
+      totalReviews: totalReviews,
+      bio: bio,
+      cuisineSpecialties: cuisineSpecialties,
+      yearsOfExperience: yearsOfExperience,
+      isVerified: isVerified,
+      dishes: dishes ?? this.dishes,
+    );
+  }
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
@@ -36,6 +56,7 @@ class ProfileModel {
       cuisineSpecialties: json['cuisine_specialties'] as String?,
       yearsOfExperience: json['years_of_experience'] as int?,
       isVerified: json['is_verified'] as bool?,
+      dishes: null,
     );
   }
 }

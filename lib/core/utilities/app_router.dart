@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:homemade_food_app/core/utilities/api_constants.dart';
 import 'package:homemade_food_app/core/utilities/service_locator.dart';
 import 'package:homemade_food_app/features/all_dishes/presentation/views/all_dishes_view.dart';
 import 'package:homemade_food_app/features/auth/presentation/views/login_view.dart';
@@ -61,13 +62,22 @@ abstract class AppRouter {
           path: kCheckoutScreen,
           builder: (context, state) => const CheckoutView()),
       GoRoute(
-          path: kChefProfileView,
-          builder: (context, state) => BlocProvider(
-                create: (context) => ProfileCubit(getIt.get<ProfileRepoImp>()),
-                child: ChefProfileView(
-                  chefId: state.extra as int,
-                ),
-              )),
+        path: kChefProfileView,
+        builder: (context, state) {
+          final chefId = state.extra as int;
+
+          return BlocProvider(
+            create: (context) => getIt.get<ProfileCubit>()
+              ..fetchProfile(
+                id: chefId,
+                token: ApiConstants.token!,
+              ),
+            child: ChefProfileView(
+              chefId: chefId,
+            ),
+          );
+        },
+      ),
       GoRoute(
           path: kEditProfileView,
           builder: (context, state) {
