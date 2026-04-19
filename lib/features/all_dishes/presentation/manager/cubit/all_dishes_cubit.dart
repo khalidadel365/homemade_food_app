@@ -21,14 +21,22 @@ class FetchAllDishesCubit extends Cubit<FetchAllDishesState> {
   int currentPage = 1;
   bool hasReachedMax = false;
   List<DishModel> allDishes = [];
+  bool isPaginationLoading = false; //to prevent multiple API calls at the same time
 
-  Future<void> fetchAllDishes({String? category, String? search}) async {
-    if (hasReachedMax && currentPage != 1) return;
+  Future<void> fetchAllDishes(
+      {String? category, String? search, bool isFromPagination = false}) async {
+    if (isPaginationLoading || (hasReachedMax && isFromPagination)) return;
+    // not from pagination means the user is changing the filters or searching for something new, so we need to reset pagination and show loading indicator
+    if (!isFromPagination) {
+      resetPagination();
+      emit(FetchAllDishesLoading());
+    }
+
+    isPaginationLoading = true;
 
     if (currentPage == 1) {
       allDishes.clear();
       hasReachedMax = false;
-      emit(FetchAllDishesLoading());
     }
 
     int? min = int.tryParse(minPriceController.text.trim());
@@ -45,10 +53,16 @@ class FetchAllDishesCubit extends Cubit<FetchAllDishesState> {
     );
 
     result.fold(
-      (failure) => emit(FetchAllDishesFailure(failure.errorMessage)),
+      (failure) {
+        isPaginationLoading = false;
+        emit(FetchAllDishesFailure(failure.errorMessage));
+      },
       (newDishes) {
+        isPaginationLoading = false;
+
         if (newDishes.isEmpty) {
-          hasReachedMax = true; // to prevent API calls again if he scrolls the first condition (hasReachedMax) will stop the API call
+          hasReachedMax =
+              true; // to prevent API calls again if he scrolls the first condition (hasReachedMax) will stop the API call
           emit(FetchAllDishesSuccess(dishes: allDishes, hasReachedMax: true));
         } else {
           allDishes.addAll(newDishes);

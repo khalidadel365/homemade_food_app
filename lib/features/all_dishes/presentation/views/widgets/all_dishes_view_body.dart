@@ -29,9 +29,15 @@ class _AllDishesViewBodyState extends State<AllDishesViewBody> {
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent - 200) {
-      context.read<FetchAllDishesCubit>().fetchAllDishes();
+    double maxScroll = _scrollController.position.maxScrollExtent;
+    double currentScroll = _scrollController.position.pixels;
+
+
+    if (maxScroll - currentScroll <= 100) {
+      context.read<FetchAllDishesCubit>().fetchAllDishes(
+        isFromPagination: true,
+        search: searchController.text,
+      );
     }
   }
 
@@ -53,7 +59,9 @@ class _AllDishesViewBodyState extends State<AllDishesViewBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomSearchTextField(searchController: searchController),
+              CustomSearchTextField(
+                searchController: searchController,
+              ),
               const SizedBox(height: 15),
               const CategoriesListView(),
               const SizedBox(height: 18),
@@ -66,7 +74,7 @@ class _AllDishesViewBodyState extends State<AllDishesViewBody> {
               const SizedBox(height: 18),
               BlocBuilder<FetchAllDishesCubit, FetchAllDishesState>(
                 buildWhen: (previous, current) =>
-                    current is FetchAllDishesSuccess ||
+                current is FetchAllDishesSuccess ||
                     current is FetchAllDishesLoading ||
                     current is FetchAllDishesFailure,
                 builder: (context, state) {
