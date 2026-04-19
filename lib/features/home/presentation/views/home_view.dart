@@ -12,7 +12,8 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: BlocProvider(
-        create: (context)=>HomeCubit(getIt<HomeRepoImp>())..fetchConsumerHomePage(),
+        create: (context) =>
+            HomeCubit(getIt<HomeRepoImp>())..fetchConsumerHomePage(),
         child: const Scaffold(
           body: HomeViewBody(),
         ),

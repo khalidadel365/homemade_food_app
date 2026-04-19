@@ -53,8 +53,8 @@ class TopChefsListViewItem extends StatelessWidget {
               chefModel.cuisineSpecialties ?? 'Chef',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Styles.textStyle12
-                  .copyWith(fontWeight: FontWeight.bold, color: Colors.grey[400]),
+              style: Styles.textStyle12.copyWith(
+                  fontWeight: FontWeight.bold, color: Colors.grey[400]),
             ),
             const SizedBox(
               height: 7,

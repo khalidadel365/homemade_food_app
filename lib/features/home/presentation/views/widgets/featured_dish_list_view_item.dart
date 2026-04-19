@@ -15,8 +15,8 @@ class FeaturedDishListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        GoRouter.of(context).push(AppRouter.kDishDetailsView,extra: dish.id);
+      onTap: () {
+        GoRouter.of(context).push(AppRouter.kDishDetailsView, extra: dish.id);
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.64,
@@ -32,7 +32,7 @@ class FeaturedDishListViewItem extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(16)),
+                      const BorderRadius.vertical(top: Radius.circular(16)),
                   child: Image.network(
                     'https://www.tasteofhome.com/wp-content/uploads/2018/01/Homemade-Pizza_EXPS_FT23_376_EC_120123_3.jpg',
                     height: 165,
@@ -50,7 +50,8 @@ class FeaturedDishListViewItem extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

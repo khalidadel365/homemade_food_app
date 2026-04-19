@@ -35,16 +35,19 @@ class HomeViewBody extends StatelessWidget {
                         children: [
                           Text(
                             'Featured Dishes',
-                            style: Styles.textStyle19.copyWith(fontWeight: FontWeight.bold),
+                            style: Styles.textStyle19
+                                .copyWith(fontWeight: FontWeight.bold),
                           ),
                           const Spacer(),
                           TextButton(
                             onPressed: () {
-                              GoRouter.of(context).push(AppRouter.kAllDishesView);
+                              GoRouter.of(context)
+                                  .push(AppRouter.kAllDishesView);
                             },
                             child: Text(
                               'See More',
-                              style: Styles.textStyle14.copyWith(color: kPrimaryColor),
+                              style: Styles.textStyle14
+                                  .copyWith(color: kPrimaryColor),
                             ),
                           ),
                         ],
@@ -58,16 +61,19 @@ class HomeViewBody extends StatelessWidget {
                         children: [
                           Text(
                             'Top Chefs',
-                            style: Styles.textStyle19.copyWith(fontWeight: FontWeight.bold),
+                            style: Styles.textStyle19
+                                .copyWith(fontWeight: FontWeight.bold),
                           ),
                           const Spacer(),
                           TextButton(
                             onPressed: () {
-                              GoRouter.of(context).push(AppRouter.kAllDishesView);
+                              GoRouter.of(context)
+                                  .push(AppRouter.kAllDishesView);
                             },
                             child: Text(
                               'Explore All',
-                              style: Styles.textStyle14.copyWith(color: kPrimaryColor),
+                              style: Styles.textStyle14
+                                  .copyWith(color: kPrimaryColor),
                             ),
                           ),
                         ],
@@ -78,7 +84,8 @@ class HomeViewBody extends StatelessWidget {
                       const SizedBox(height: 15),
                       Text(
                         'New Arrivals',
-                        style: Styles.textStyle19.copyWith(fontWeight: FontWeight.bold),
+                        style: Styles.textStyle19
+                            .copyWith(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 7),
                       NewArrivalsListView(

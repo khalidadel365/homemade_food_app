@@ -29,8 +29,8 @@ class ProfileRepoImp extends ProfileRepo {
         final dishesResult = await allDishesRepo.fetchAllDishes(chefId: id);
 
         return dishesResult.fold(
-              (failure) => left(failure),
-              (dishesList) {
+          (failure) => left(failure),
+          (dishesList) {
             return right(profileModel.copyWith(dishes: dishesList));
           },
         );
@@ -45,9 +45,10 @@ class ProfileRepoImp extends ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, ProfileModel>> editUserData({required String token,
-    required Map<String, dynamic> data,
-    required int? id}) async {
+  Future<Either<Failure, ProfileModel>> editUserData(
+      {required String token,
+      required Map<String, dynamic> data,
+      required int? id}) async {
     Map<String, dynamic> userData = {
       "user": data,
     };

@@ -25,25 +25,25 @@ class ChefModel {
 
     return ChefModel(
       id: json['id'] as int?,
-
       firstName: json['name'] as String? ??
           json['first_name'] as String? ??
           userData?['first_name'] as String? ??
           json['chef_name'] as String?,
-
       lastName: json['last_name'] as String? ??
-          userData?['last_name'] as String? ?? '',
-
+          userData?['last_name'] as String? ??
+          '',
       profilePicUrl: json['profile_picture'] as String? ??
           userData?['profile_picture'] as String? ??
           json['image_url'] as String? ??
           json['image'] as String?,
-
-      rating: json['rating'] != null ? double.tryParse(json['rating'].toString()) : null,
+      rating: json['rating'] != null
+          ? double.tryParse(json['rating'].toString())
+          : null,
       totalReviews: json['total_reviews'] as int?,
-
       cuisineSpecialties: json['cuisine_specialties'] as String? ??
-          (json['specialties'] is List ? (json['specialties'] as List).join(', ') : null),
+          (json['specialties'] is List
+              ? (json['specialties'] as List).join(', ')
+              : null),
     );
   }
   String get fullName => '${firstName ?? ''} ${lastName ?? ''}'.trim();

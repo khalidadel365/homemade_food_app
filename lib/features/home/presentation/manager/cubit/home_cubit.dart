@@ -13,10 +13,10 @@ class HomeCubit extends Cubit<HomeStates> {
     var result = await homeRepo.fetchConsumerHomePage();
 
     result.fold(
-          (failure) {
+      (failure) {
         emit(FetchConsumerHomePageFailure(failure.errorMessage));
       },
-          (homeModel) {
+      (homeModel) {
         emit(FetchConsumerHomePageSuccess(homeModel));
       },
     );

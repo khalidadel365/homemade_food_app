@@ -23,14 +23,14 @@ class ChefInfoRow extends StatelessWidget {
             child: CachedNetworkImage(
                 fit: BoxFit.cover,
                 placeholder: (context, url) => const SpinKitFadingCircle(
-                  color: kPrimaryColor,
-                  size: 10,
-                ),
+                      color: kPrimaryColor,
+                      size: 10,
+                    ),
                 errorWidget: (context, url, error) => const Icon(
-                  Icons.error,
-                  color: Colors.red,
-                  size: 20,
-                ),
+                      Icons.error,
+                      color: Colors.red,
+                      size: 20,
+                    ),
                 imageUrl: chefModel?.profilePicUrl ?? ''),
           ),
         ),
@@ -40,7 +40,8 @@ class ChefInfoRow extends StatelessWidget {
         Text(
           chefModel?.fullName ??
               ((chefModel?.firstName != null || chefModel?.lastName != null)
-                  ? 'by ${chefModel?.firstName ?? ''} ${chefModel?.lastName ?? ''}'.trim()
+                  ? 'by ${chefModel?.firstName ?? ''} ${chefModel?.lastName ?? ''}'
+                      .trim()
                   : 'Unknown'),
           style: Styles.textStyle13.copyWith(
             color: Colors.black,

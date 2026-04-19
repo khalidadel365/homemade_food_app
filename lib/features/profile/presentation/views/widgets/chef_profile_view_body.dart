@@ -137,7 +137,7 @@ class ChefProfileViewBody extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
-                          (context, index) {
+                      (context, index) {
                         final dish = state.profileModel.dishes![index];
 
                         return Padding(

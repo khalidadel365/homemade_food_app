@@ -4,7 +4,8 @@ import 'package:homemade_food_app/features/home/presentation/views/widgets/top_c
 
 class TopChefsListView extends StatelessWidget {
   const TopChefsListView({
-    super.key, required this.chefs,
+    super.key,
+    required this.chefs,
   });
   final List<ChefModel> chefs;
   @override
@@ -12,9 +13,8 @@ class TopChefsListView extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.2,
       child: ListView.separated(
-        itemBuilder: (context, index) => TopChefsListViewItem(
-          chefModel: chefs[index]
-        ),
+        itemBuilder: (context, index) =>
+            TopChefsListViewItem(chefModel: chefs[index]),
         separatorBuilder: (context, index) => SizedBox(
           width: 18,
         ),
