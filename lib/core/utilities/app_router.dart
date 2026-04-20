@@ -14,6 +14,7 @@ import 'package:homemade_food_app/features/profile/presentation/views/change_pas
 import 'package:homemade_food_app/features/profile/presentation/views/edit_profile_view.dart';
 
 import '../../features/dish_details/presentation/views/dish_details_view.dart';
+import '../../features/explore_all_chefs/presentation/views/explore_all_chefs_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/profile/data/repo/profile_repo_imp.dart';
 import '../../features/profile/presentation/views/chef_profile_view.dart';
@@ -31,6 +32,7 @@ abstract class AppRouter {
   static const kCheckoutScreen = '/checkoutView';
   static const kChefProfileView = '/chefProfileView';
   static const kEditProfileView = '/editProfileView';
+  static const kExploreAllChefsView = '/exploreAllChefsView';
   static const kChangePasswordRequestView = '/changePasswordRequestView';
   static const kChangePasswordConfirmView = '/changePasswordConfirmView';
 
@@ -61,6 +63,9 @@ abstract class AppRouter {
       GoRoute(
           path: kCheckoutScreen,
           builder: (context, state) => const CheckoutView()),
+      GoRoute(
+          path: kExploreAllChefsView,
+          builder: (context, state) => const ExploreAllChefsView()),
       GoRoute(
         path: kChefProfileView,
         builder: (context, state) {

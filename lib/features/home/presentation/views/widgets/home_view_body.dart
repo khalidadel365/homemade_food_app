@@ -68,7 +68,7 @@ class HomeViewBody extends StatelessWidget {
                           TextButton(
                             onPressed: () {
                               GoRouter.of(context)
-                                  .push(AppRouter.kAllDishesView);
+                                  .push(AppRouter.kExploreAllChefsView);
                             },
                             child: Text(
                               'Explore All',

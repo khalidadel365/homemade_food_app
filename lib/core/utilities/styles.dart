@@ -29,6 +29,10 @@ abstract class Styles {
     fontSize: 20,
     fontWeight: FontWeight.w600,
   );
+  static var textStyle25 = TextStyle(
+    fontSize: 25,
+    fontWeight: FontWeight.bold,
+  );
   static var textStyle14 = TextStyle(
     fontSize: 14,
   );
