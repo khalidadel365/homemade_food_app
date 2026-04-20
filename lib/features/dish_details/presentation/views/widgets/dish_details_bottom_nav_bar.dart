@@ -6,7 +6,12 @@ import '../../../../../core/utilities/styles.dart';
 class DishDetailsBottomNavBar extends StatefulWidget {
   const DishDetailsBottomNavBar({
     super.key,
+    required this.onAddToCart,
+    required this.totalPrice,
   });
+
+  final VoidCallback? onAddToCart;
+  final double totalPrice;
 
   @override
   State<DishDetailsBottomNavBar> createState() =>
@@ -15,6 +20,7 @@ class DishDetailsBottomNavBar extends StatefulWidget {
 
 class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
   int counter = 1;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,11 +43,9 @@ class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    setState(() {
-                      if (counter > 0) {
-                        counter--;
-                      }
-                    });
+                    if (counter > 1) {
+                      setState(() => counter--);
+                    }
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -51,25 +55,18 @@ class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
                         color: Colors.white,
                         shape: BoxShape.rectangle,
                         borderRadius: BorderRadius.circular(7)),
-                    child: Icon(
-                      Icons.remove,
-                      size: 20,
-                    ),
+                    child: const Icon(Icons.remove, size: 20),
                   ),
                 ),
                 Expanded(
                   child: Text(
                     '$counter',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      counter++;
-                    });
-                  },
+                  onTap: () => setState(() => counter++),
                   child: Container(
                     alignment: Alignment.center,
                     width: 28,
@@ -78,55 +75,49 @@ class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
                         color: Colors.white,
                         shape: BoxShape.rectangle,
                         borderRadius: BorderRadius.circular(7)),
-                    child: Icon(
-                      Icons.add,
-                      size: 20,
-                    ),
+                    child: const Icon(Icons.add, size: 20),
                   ),
                 )
               ],
             ),
           ),
-          SizedBox(
-            width: 10,
-          ),
+          const SizedBox(width: 10),
           Expanded(
-            child: Container(
-              height: 53,
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    'Add to Cart',
-                    style: Styles.textStyle18.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      shape: BoxShape.rectangle,
-                      color: Colors.white.withOpacity(0.3),
+            child: GestureDetector(
+              onTap: widget.onAddToCart,
+              child: Container(
+                height: 53,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                  color: kPrimaryColor,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Add to Cart',
+                      style: Styles.textStyle15.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
                     ),
-                    child: Text(
-                      '150 EGY',
-                      style: Styles.textStyle14.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white.withOpacity(0.3),
                       ),
-                    ),
-                  )
-                ],
+                      child: Text(
+                        '${widget.totalPrice * counter} EGY',
+                        style: Styles.textStyle14.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           )
