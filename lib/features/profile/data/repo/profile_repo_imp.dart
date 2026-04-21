@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/utilities/api_service.dart';
-import '../models/profile_model.dart';
+import '../../../../core/models/profile_model.dart';
 
 class ProfileRepoImp extends ProfileRepo {
   final ApiService apiService;

@@ -11,6 +11,9 @@ class ProfileModel {
   final String? cuisineSpecialties;
   final int? yearsOfExperience;
   final bool? isVerified;
+  final bool? isOnline;
+  final String? createdAt;
+  final String? updatedAt;
   final List<DishModel>? dishes;
 
   ProfileModel({
@@ -23,11 +26,15 @@ class ProfileModel {
     this.cuisineSpecialties,
     this.yearsOfExperience,
     this.isVerified,
+    this.isOnline,
+    this.createdAt,
+    this.updatedAt,
     this.dishes,
   });
 
   ProfileModel copyWith({
     List<DishModel>? dishes,
+    bool? isOnline,
   }) {
     return ProfileModel(
       id: id,
@@ -39,6 +46,9 @@ class ProfileModel {
       cuisineSpecialties: cuisineSpecialties,
       yearsOfExperience: yearsOfExperience,
       isVerified: isVerified,
+      isOnline: isOnline ?? this.isOnline,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
       dishes: dishes ?? this.dishes,
     );
   }
@@ -46,16 +56,19 @@ class ProfileModel {
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
       id: json['id'] as int?,
-      totalOrders: json['total_orders'] as int?,
       userData: json['user'] != null ? UserData.fromJson(json['user']) : null,
       rating: json['rating'] != null
           ? double.tryParse(json['rating'].toString())
           : null,
       totalReviews: json['total_reviews'] as int?,
+      totalOrders: json['total_orders'] as int?,
       bio: json['bio'] as String?,
       cuisineSpecialties: json['cuisine_specialties'] as String?,
       yearsOfExperience: json['years_of_experience'] as int?,
       isVerified: json['is_verified'] as bool?,
+      isOnline: json['is_online'] as bool?,
+      createdAt: json['created_at'] as String?,
+      updatedAt: json['updated_at'] as String?,
       dishes: null,
     );
   }

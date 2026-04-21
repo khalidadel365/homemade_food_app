@@ -4,7 +4,7 @@ import 'package:homemade_food_app/features/profile/data/models/password_confirm_
 import 'package:homemade_food_app/features/profile/data/models/password_reset_request_model.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/errors/failures.dart';
-import '../models/profile_model.dart';
+import '../../../../core/models/profile_model.dart';
 
 abstract class ProfileRepo {
   Future<Either<Failure, ProfileModel>> fetchUserData(

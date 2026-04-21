@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/'
+    'material.dart';
 
 import '../../../../../core/utilities/styles.dart';
 import '../../../../../core/widgets/custom_chief_image.dart';
@@ -13,8 +14,7 @@ class ExploreAllChefsListViewItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.white),
+          borderRadius: BorderRadius.circular(8), color: Colors.white),
       height: 100,
       child: Row(
         children: [
@@ -39,15 +39,13 @@ class ExploreAllChefsListViewItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 4),
-                    const Icon(Icons.verified,
-                        color: Colors.blue, size: 16),
+                    const Icon(Icons.verified, color: Colors.blue, size: 16),
                   ],
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Italian, Mediterranean',
-                  style: Styles.textStyle14
-                      .copyWith(color: Colors.grey),
+                  style: Styles.textStyle14.copyWith(color: Colors.grey),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -60,8 +58,7 @@ class ExploreAllChefsListViewItem extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.star,
-                      color: Colors.green, size: 18),
+                  const Icon(Icons.star, color: Colors.green, size: 18),
                   const SizedBox(width: 4),
                   Text(
                     '4.8',
@@ -72,8 +69,7 @@ class ExploreAllChefsListViewItem extends StatelessWidget {
               ),
               const Spacer(),
               Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 8, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
                   color: Colors.orange.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
