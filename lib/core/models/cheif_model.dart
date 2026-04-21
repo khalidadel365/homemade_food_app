@@ -1,5 +1,6 @@
 class ChefModel {
   final int? id;
+  final int? userId;
   final String? firstName;
   final String? lastName;
   final String? profilePicUrl;
@@ -11,6 +12,7 @@ class ChefModel {
 
   ChefModel({
     this.id,
+    this.userId,
     this.firstName,
     this.lastName,
     this.profilePicUrl,
@@ -25,6 +27,7 @@ class ChefModel {
 
     return ChefModel(
       id: json['id'] as int?,
+      userId: userData?['id'] as int?,
       firstName: json['name'] as String? ??
           json['first_name'] as String? ??
           userData?['first_name'] as String? ??

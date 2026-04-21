@@ -17,7 +17,7 @@ class TopChefsListViewItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         GoRouter.of(context)
-            .push(AppRouter.kChefProfileView, extra: chefModel.id);
+            .push(AppRouter.kChefProfileView, extra: chefModel.userId);
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.40,
