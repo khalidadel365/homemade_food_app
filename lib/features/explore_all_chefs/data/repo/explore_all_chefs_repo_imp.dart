@@ -11,7 +11,7 @@ class ExploreAllChefsRepoImp implements ExploreAllChefsRepo {
   ExploreAllChefsRepoImp(this.apiService);
 
   @override
-  Future<Either<Failure, ChefModel>> fetchAllChefs({
+  Future<Either<Failure,List<ChefModel>>> fetchAllChefs({
     required int page,
     required int pageSize,
   }) async {
@@ -24,9 +24,12 @@ class ExploreAllChefsRepoImp implements ExploreAllChefsRepo {
         },
       );
 
-      ChefModel chefModel = ChefModel.fromJson(data);
+      final List<dynamic> results = data['results'] as List;
 
-      return right(chefModel);
+      List<ChefModel> chefs = results
+          .map((e) => ChefModel.fromJson(e as Map<String, dynamic>))
+          .toList();
+      return right(chefs);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
