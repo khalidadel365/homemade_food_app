@@ -1,4 +1,4 @@
-import 'package:homemade_food_app/core/utilities/api_constants.dart';
+import '../utilities/string_extensions.dart';
 
 class AccountInfo {
   final String? firstName;
@@ -23,18 +23,17 @@ class AccountInfo {
     this.isActive,
   });
 
-  String? get fullProfilePicUrl {
-    if (profilePicUrl == null) return null;
-    return "${ApiConstants.baseUrl}$profilePicUrl";
-  }
-
   factory AccountInfo.fromJson(Map<String, dynamic> json) {
+    String? rawUrl = json['profile_picture'] as String?;
+
     return AccountInfo(
       firstName: json['first_name'] as String?,
       lastName: json['last_name'] as String?,
       email: json['email'] as String?,
       phone: json['phone_number'] as String?,
-      profilePicUrl: json['profile_picture'] as String?,
+
+      profilePicUrl: rawUrl.toCleanImageUrl(),
+
       address_longitude: json['address_longitude'] as String?,
       address_latitude: json['address_latitude'] as String?,
       userType: json['user_type'] as String?,

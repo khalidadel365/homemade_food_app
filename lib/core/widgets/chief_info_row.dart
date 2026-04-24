@@ -12,6 +12,7 @@ class ChefInfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('featured ${chefModel?.profilePicUrl}');
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [

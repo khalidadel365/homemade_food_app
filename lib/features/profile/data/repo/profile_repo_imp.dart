@@ -88,6 +88,7 @@ class ProfileRepoImp extends ProfileRepo {
       );
 
       final accountInfoModel = AccountInfo.fromJson(res!.data);
+      print('finish try call func');
 
       return right(accountInfoModel);
     } on DioException catch (e) {

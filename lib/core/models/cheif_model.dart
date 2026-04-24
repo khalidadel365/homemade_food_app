@@ -1,3 +1,4 @@
+import '../../../../core/utilities/api_constants.dart';
 import '../utilities/string_extensions.dart';
 
 class ChefModel {
@@ -33,6 +34,19 @@ class ChefModel {
         json['image_url'] as String? ??
         json['image'] as String?;
 
+    String? finalUrl;
+
+    if (rawImageUrl != null) {
+      if (rawImageUrl.contains('http')) {
+        finalUrl = rawImageUrl.toCleanImageUrl();
+      } else {
+        String cleanPath = rawImageUrl.startsWith('/')
+            ? rawImageUrl.substring(1)
+            : rawImageUrl;
+        finalUrl = "${ApiConstants.baseUrl}$cleanPath";
+      }
+    }
+
     return ChefModel(
       id: json['id'] as int?,
       userId: userData?['id'] as int?,
@@ -43,7 +57,7 @@ class ChefModel {
       lastName: json['last_name'] as String? ??
           userData?['last_name'] as String? ??
           '',
-      profilePicUrl: rawImageUrl.toCleanImageUrl(),
+      profilePicUrl: finalUrl,
       rating: json['rating'] != null
           ? double.tryParse(json['rating'].toString())
           : null,

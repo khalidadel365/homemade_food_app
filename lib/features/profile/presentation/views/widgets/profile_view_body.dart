@@ -25,6 +25,8 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
   @override
   void initState() {
     super.initState();
+    print(ApiConstants.id);
+
     if (ApiConstants.token != null) {
       BlocProvider.of<ProfileCubit>(context).fetchProfile(
         token: ApiConstants.token!,
@@ -37,6 +39,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileStates>(
       listener: (context, state) {
+
         if (state is EditProfileSuccess) {
           ProfileCubit.get(context).fetchProfile(
             token: ApiConstants.token!,
@@ -65,6 +68,8 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
       },
       builder: (context, state) {
         if (state is ProfileSuccess) {
+          print(
+              "-----> ${state.profileModel.userData!.accountInfo!.profilePicUrl}");
           final user = state.profileModel.userData?.accountInfo;
           return Scaffold(
             appBar: AppBar(
@@ -84,17 +89,17 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                 child: Column(
                   children: [
                     CustomProfileImage(
-                      profileImage: user!.fullProfilePicUrl ?? '',
+                      profileImage: user?.profilePicUrl ?? '',
                     ),
                     const SizedBox(height: 15),
                     Text(
-                      '${user.firstName ?? ''} ${user.lastName ?? ''}',
+                      '${user?.firstName ?? ''} ${user?.lastName ?? ''}',
                       style: Styles.textStyle18.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '${user.email ?? ''}',
+                      '${user?.email ?? ''}',
                       style: Styles.textStyle14.copyWith(
                         color: Colors.grey,
                         fontWeight: FontWeight.w500,

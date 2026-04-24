@@ -93,6 +93,7 @@ class FeaturedDishListViewItem extends StatelessWidget {
                     chefModel: ChefModel(
                       firstName: dish.chefName ?? 'Unknown',
                       lastName: '',
+                      profilePicUrl: dish.chef?.profilePicUrl ?? '' ,
                     ),
                   ),
                 ],
