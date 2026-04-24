@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:homemade_food_app/core/errors/failures.dart';
-import 'package:homemade_food_app/core/models/cheif_model.dart';
 import 'package:homemade_food_app/core/utilities/api_service.dart';
+import 'package:homemade_food_app/features/explore_all_chefs/data/models/chef_model.dart';
 import 'package:homemade_food_app/features/explore_all_chefs/data/repo/explore_all_chefs_repo.dart';
 
 class ExploreAllChefsRepoImp implements ExploreAllChefsRepo {
@@ -11,7 +11,7 @@ class ExploreAllChefsRepoImp implements ExploreAllChefsRepo {
   ExploreAllChefsRepoImp(this.apiService);
 
   @override
-  Future<Either<Failure,List<ChefModel>>> fetchAllChefs({
+  Future<Either<Failure, ExploreChefModel>> fetchAllChefs({
     required int page,
     required int pageSize,
   }) async {
@@ -24,12 +24,9 @@ class ExploreAllChefsRepoImp implements ExploreAllChefsRepo {
         },
       );
 
-      final List<dynamic> results = data['results'] as List;
+      ExploreChefModel exploreChefModel = ExploreChefModel.fromJson(data);
 
-      List<ChefModel> chefs = results
-          .map((e) => ChefModel.fromJson(e as Map<String, dynamic>))
-          .toList();
-      return right(chefs);
+      return right(exploreChefModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

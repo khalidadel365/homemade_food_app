@@ -6,9 +6,9 @@ import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
+import '../../../../../core/models/account_info.dart';
 import '../../../../../core/utilities/api_constants.dart';
 import '../../../../../core/utilities/functions/show_snack_bar.dart';
-import '../../../../auth/data/models/account_info.dart';
 
 class EditProfileViewBody extends StatefulWidget {
   const EditProfileViewBody({super.key, required this.user});

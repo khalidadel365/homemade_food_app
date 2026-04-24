@@ -32,12 +32,11 @@ class _AllDishesViewBodyState extends State<AllDishesViewBody> {
     double maxScroll = _scrollController.position.maxScrollExtent;
     double currentScroll = _scrollController.position.pixels;
 
-
     if (maxScroll - currentScroll <= 100) {
       context.read<FetchAllDishesCubit>().fetchAllDishes(
-        isFromPagination: true,
-        search: searchController.text,
-      );
+            isFromPagination: true,
+            search: searchController.text,
+          );
     }
   }
 
@@ -74,7 +73,7 @@ class _AllDishesViewBodyState extends State<AllDishesViewBody> {
               const SizedBox(height: 18),
               BlocBuilder<FetchAllDishesCubit, FetchAllDishesState>(
                 buildWhen: (previous, current) =>
-                current is FetchAllDishesSuccess ||
+                    current is FetchAllDishesSuccess ||
                     current is FetchAllDishesLoading ||
                     current is FetchAllDishesFailure,
                 builder: (context, state) {

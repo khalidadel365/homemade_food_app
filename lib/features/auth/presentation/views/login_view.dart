@@ -18,9 +18,7 @@ class LoginView extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
-          print('*******************');
           print(ApiConstants.token);
-          print(ApiConstants.id);
           CacheHelper.saveData(key: 'token', value: ApiConstants.token)
               .then((value) {
             GoRouter.of(context).go(AppRouter.kMainView);

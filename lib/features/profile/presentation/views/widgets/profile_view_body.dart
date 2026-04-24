@@ -65,8 +65,6 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
       },
       builder: (context, state) {
         if (state is ProfileSuccess) {
-          print(
-              "-----> ${state.profileModel.userData!.accountInfo!.profilePicUrl}");
           final user = state.profileModel.userData?.accountInfo;
           return Scaffold(
             appBar: AppBar(

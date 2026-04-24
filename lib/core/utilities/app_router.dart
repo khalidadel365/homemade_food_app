@@ -7,6 +7,8 @@ import 'package:homemade_food_app/features/auth/presentation/views/login_view.da
 import 'package:homemade_food_app/features/auth/presentation/views/signup_view.dart';
 import 'package:homemade_food_app/features/cart/presentation/views/cart_view.dart';
 import 'package:homemade_food_app/features/cart/presentation/views/checkout_view.dart';
+import 'package:homemade_food_app/features/explore_all_chefs/data/repo/explore_all_chefs_repo_imp.dart';
+import 'package:homemade_food_app/features/explore_all_chefs/presentation/manager/cubit/explore_all_chefs_cubit.dart';
 import 'package:homemade_food_app/features/main_layout/presentation/views/main_view.dart';
 import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
 import 'package:homemade_food_app/features/profile/presentation/views/change_password_confirm_view.dart';
@@ -65,7 +67,10 @@ abstract class AppRouter {
           builder: (context, state) => const CheckoutView()),
       GoRoute(
           path: kExploreAllChefsView,
-          builder: (context, state) => const ExploreAllChefsView()),
+          builder: (context, state) => BlocProvider(
+              create: (context) =>
+                  ExploreAllChefsCubit(getIt.get<ExploreAllChefsRepoImp>()),
+              child: const ExploreAllChefsView())),
       GoRoute(
         path: kChefProfileView,
         builder: (context, state) {

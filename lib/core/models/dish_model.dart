@@ -1,6 +1,7 @@
 import '../../features/all_dishes/data/models/category_model.dart';
 import '../../features/dish_details/data/models/reviews_preview_model.dart';
 import '../../features/dish_details/data/models/variety_sections_model.dart';
+import '../utilities/string_extensions.dart';
 import 'cheif_model.dart';
 
 class DishModel {
@@ -42,6 +43,14 @@ class DishModel {
     final chefObject =
         json['chef'] != null ? ChefModel.fromJson(json['chef']) : null;
 
+    String? rawImageUrl =
+        (json['images'] != null && (json['images'] as List).isNotEmpty)
+            ? (json['images'] as List).firstWhere(
+                (img) => img['is_primary'] == true,
+                orElse: () => (json['images'] as List)[0],
+              )['image_url'] as String?
+            : json['image'] as String?;
+
     return DishModel(
       id: json['id'] as int?,
       name: json['name'] as String?,
@@ -51,15 +60,9 @@ class DishModel {
       preparationTime: json['preparation_time'] as int?,
       reviewsCount: json['reviews_count'] as int?,
       createdAt: json['created_at'] as String?,
-      // لو الـ chef_name مش موجود، خده من الـ Object
       chefName: json['chef_name'] as String? ?? chefObject?.fullName,
       chef: chefObject,
-      imageUrl: json['images'] != null && (json['images'] as List).isNotEmpty
-          ? (json['images'] as List).firstWhere(
-              (img) => img['is_primary'] == true,
-              orElse: () => json['images'][0],
-            )['image_url'] as String?
-          : json['image'] as String?,
+      imageUrl: rawImageUrl.toCleanImageUrl(),
       averageRating: (json['rating_avg'] ?? json['average_rating']) != null
           ? double.tryParse(
               (json['rating_avg'] ?? json['average_rating']).toString())

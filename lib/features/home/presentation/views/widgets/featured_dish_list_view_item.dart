@@ -34,7 +34,7 @@ class FeaturedDishListViewItem extends StatelessWidget {
                   borderRadius:
                       const BorderRadius.vertical(top: Radius.circular(16)),
                   child: Image.network(
-                    'https://www.tasteofhome.com/wp-content/uploads/2018/01/Homemade-Pizza_EXPS_FT23_376_EC_120123_3.jpg',
+                    dish.imageUrl ?? '',
                     height: 165,
                     width: double.infinity,
                     fit: BoxFit.cover,

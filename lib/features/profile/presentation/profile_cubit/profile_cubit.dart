@@ -61,7 +61,6 @@ class ProfileCubit extends Cubit<ProfileStates> {
       email: email,
     );
     result.fold((failure) {
-      print('^^^^^^^^ ${failure.errorMessage}');
       emit(ResetPasswordRequestFailure(failure.errorMessage));
     }, (resetPasswordModel) {
       emit(ResetPasswordRequestSuccess(resetPasswordModel));
@@ -74,7 +73,6 @@ class ProfileCubit extends Cubit<ProfileStates> {
       password: password,
     );
     result.fold((failure) {
-      print('^^^^^^^^ ${failure.errorMessage}');
       emit(ResetPasswordRequestFailure(failure.errorMessage));
     }, (confirmPassword) {
       emit(ResetPasswordConfirmSuccess(confirmPassword));

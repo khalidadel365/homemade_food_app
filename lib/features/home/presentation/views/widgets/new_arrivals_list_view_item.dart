@@ -15,6 +15,7 @@ class NewArrivalsListViewItem extends StatelessWidget {
   final DishModel dish;
   @override
   Widget build(BuildContext context) {
+    print('new arr image ${dish.imageUrl}');
     return InkWell(
       onTap: () {
         GoRouter.of(context).push(AppRouter.kDishDetailsView, extra: dish.id);
@@ -27,7 +28,8 @@ class NewArrivalsListViewItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CustomDishImage(height: 0.22, width: 0.22, imageUrl: ''),
+            CustomDishImage(
+                height: 0.22, width: 0.22, imageUrl: dish.imageUrl ?? ''),
             const SizedBox(
               width: 15,
             ),

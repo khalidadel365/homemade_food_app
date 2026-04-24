@@ -1,4 +1,4 @@
-import '../../../../../core/models/cheif_model.dart';
+import '../../../../../core/models/profile_model.dart';
 
 abstract class ExploreAllChefsState {}
 
@@ -13,7 +13,7 @@ class ExploreAllChefsFailure extends ExploreAllChefsState {
 }
 
 class ExploreAllChefsSuccess extends ExploreAllChefsState {
-  final List<ChefModel> chefs;
+  final List<ProfileModel> chefs;
   final bool hasReachedMax;
   final int currentPage;
 

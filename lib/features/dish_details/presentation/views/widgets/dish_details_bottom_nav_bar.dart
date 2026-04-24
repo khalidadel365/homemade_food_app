@@ -62,7 +62,8 @@ class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
                   child: Text(
                     '$counter',
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
                 GestureDetector(
@@ -98,12 +99,12 @@ class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
                     Text(
                       'Add to Cart',
                       style: Styles.textStyle15.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                          color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 10),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.white.withOpacity(0.3),

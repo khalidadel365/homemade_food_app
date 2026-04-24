@@ -21,7 +21,8 @@ class FetchAllDishesCubit extends Cubit<FetchAllDishesState> {
   int currentPage = 1;
   bool hasReachedMax = false;
   List<DishModel> allDishes = [];
-  bool isPaginationLoading = false; //to prevent multiple API calls at the same time
+  bool isPaginationLoading =
+      false; //to prevent multiple API calls at the same time
 
   Future<void> fetchAllDishes(
       {String? category, String? search, bool isFromPagination = false}) async {

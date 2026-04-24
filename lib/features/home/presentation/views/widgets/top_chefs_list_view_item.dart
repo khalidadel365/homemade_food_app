@@ -40,7 +40,8 @@ class TopChefsListViewItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const CustomChiefImage(
+              CustomChiefImage(
+                imageUrl: chefModel.profilePicUrl,
                 height: 63,
                 width: 68,
               ),

@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:homemade_food_app/features/auth/data/models/account_info.dart';
 import 'package:homemade_food_app/features/profile/data/models/password_confirm_model.dart';
 import 'package:homemade_food_app/features/profile/data/models/password_reset_request_model.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/errors/failures.dart';
+import '../../../../core/models/account_info.dart';
 import '../../../../core/models/profile_model.dart';
 
 abstract class ProfileRepo {

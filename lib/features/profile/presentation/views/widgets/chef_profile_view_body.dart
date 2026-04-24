@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -24,42 +23,26 @@ class ChefProfileViewBody extends StatelessWidget {
         if (state is ProfileSuccess) {
           return Scaffold(
             backgroundColor: kBackGroundColor,
-            body: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      SizedBox(
-                        height: 280,
-                        width: double.infinity,
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl:
-                              'https://www.tasteofhome.com/wp-content/uploads/2018/01/Homemade-Pizza_EXPS_FT23_376_EC_120123_3.jpg',
-                          placeholder: (context, url) =>
-                              const SpinKitFadingCircle(color: kPrimaryColor),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error, color: Colors.red),
-                        ),
-                      ),
-                      Positioned(
-                        top: 40,
-                        left: 20,
-                        child: CircleAvatar(
+            body: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 32.0, horizontal: 15),
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
                           backgroundColor: Colors.white,
                           child: IconButton(
-                              icon: const Icon(Icons.arrow_back,
-                                  color: Colors.black),
-                              onPressed: () =>
-                                  GoRouter.of(context).go(AppRouter.kMainView)),
+                            icon: const Icon(Icons.arrow_back,
+                                color: Colors.black),
+                            onPressed: () =>
+                                GoRouter.of(context).go(AppRouter.kMainView),
+                          ),
                         ),
-                      ),
-                      Positioned(
-                        top: 200,
-                        left: 20,
-                        right: 20,
-                        child: Container(
+                        const SizedBox(height: 15),
+                        Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -78,7 +61,12 @@ class ChefProfileViewBody extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  const CustomChiefImage(),
+                                  CustomChiefImage(
+                                    isOnline: state.profileModel.isOnline,
+                                    imageUrl: state.profileModel.userData
+                                            ?.accountInfo?.profilePicUrl ??
+                                        '',
+                                  ),
                                   const SizedBox(width: 8),
                                   Expanded(
                                     child: Column(
@@ -118,28 +106,22 @@ class ChefProfileViewBody extends StatelessWidget {
                             ],
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SliverToBoxAdapter(child: SizedBox(height: 120)),
-                const SliverPadding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  sliver: SliverToBoxAdapter(
+                  const SliverToBoxAdapter(child: SizedBox(height: 30)),
+                  const SliverToBoxAdapter(
                     child: Text(
                       "Chef's Menu",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
-                ),
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  sliver: SliverList(
+                  const SliverToBoxAdapter(child: SizedBox(height: 15)),
+                  SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
                         final dish = state.profileModel.dishes![index];
-
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 15),
                           child: AllDishesListViewItem(
@@ -150,8 +132,8 @@ class ChefProfileViewBody extends StatelessWidget {
                       childCount: state.profileModel.dishes?.length ?? 0,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         } else if (state is ProfileFailure) {

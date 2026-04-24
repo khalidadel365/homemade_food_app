@@ -1,7 +1,8 @@
-import 'package:homemade_food_app/features/auth/data/models/account_info.dart';
 import 'package:homemade_food_app/features/profile/data/models/password_confirm_model.dart';
 import 'package:homemade_food_app/features/profile/data/models/password_reset_request_model.dart';
-import 'package:homemade_food_app/core/models/profile_model.dart';
+
+import '../../../../core/models/account_info.dart';
+import '../../../../core/models/profile_model.dart';
 
 abstract class ProfileStates {}
 

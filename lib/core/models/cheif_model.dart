@@ -1,3 +1,5 @@
+import '../utilities/string_extensions.dart';
+
 class ChefModel {
   final int? id;
   final int? userId;
@@ -22,8 +24,14 @@ class ChefModel {
     this.email,
     this.phone,
   });
+
   factory ChefModel.fromJson(Map<String, dynamic> json) {
     final userData = json['user'] as Map<String, dynamic>?;
+
+    String? rawImageUrl = json['profile_picture'] as String? ??
+        userData?['profile_picture'] as String? ??
+        json['image_url'] as String? ??
+        json['image'] as String?;
 
     return ChefModel(
       id: json['id'] as int?,
@@ -35,10 +43,7 @@ class ChefModel {
       lastName: json['last_name'] as String? ??
           userData?['last_name'] as String? ??
           '',
-      profilePicUrl: json['profile_picture'] as String? ??
-          userData?['profile_picture'] as String? ??
-          json['image_url'] as String? ??
-          json['image'] as String?,
+      profilePicUrl: rawImageUrl.toCleanImageUrl(),
       rating: json['rating'] != null
           ? double.tryParse(json['rating'].toString())
           : null,
@@ -47,7 +52,10 @@ class ChefModel {
           (json['specialties'] is List
               ? (json['specialties'] as List).join(', ')
               : null),
+      email: json['email'] as String? ?? userData?['email'] as String?,
+      phone: json['phone'] as String? ?? userData?['phone'] as String?,
     );
   }
+
   String get fullName => '${firstName ?? ''} ${lastName ?? ''}'.trim();
 }

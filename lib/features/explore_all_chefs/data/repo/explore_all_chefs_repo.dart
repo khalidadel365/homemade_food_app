@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:homemade_food_app/core/models/cheif_model.dart';
 
 import '../../../../core/errors/failures.dart';
+import '../models/chef_model.dart';
 
 abstract class ExploreAllChefsRepo {
-  Future<Either<Failure, List<ChefModel>>> fetchAllChefs({
+  Future<Either<Failure, ExploreChefModel>> fetchAllChefs({
     required int page,
     required int pageSize,
   });

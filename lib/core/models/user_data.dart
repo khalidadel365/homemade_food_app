@@ -1,4 +1,4 @@
-import '../../features/auth/data/models/account_info.dart';
+import 'account_info.dart';
 
 class UserData {
   final int? id;

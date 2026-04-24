@@ -35,7 +35,7 @@ class ChefInfoRow extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          width: 3,
+          width: 5,
         ),
         Text(
           chefModel?.fullName ??

@@ -1,4 +1,4 @@
-import 'package:homemade_food_app/core/models/user_data.dart';
+import 'user_data.dart';
 import 'package:homemade_food_app/core/models/dish_model.dart';
 
 class ProfileModel {

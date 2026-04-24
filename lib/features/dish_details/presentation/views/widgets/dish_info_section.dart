@@ -89,7 +89,9 @@ class _DishInfoSectionState extends State<DishInfoSection> {
                       VarietyOptionsListView(
                         options: section.options ?? [],
                         onChanged: (option) {
-                          context.read<FetchDishDetailsCubit>().updateSelection(option);
+                          context
+                              .read<FetchDishDetailsCubit>()
+                              .updateSelection(option);
                         },
                       ),
                       const SizedBox(height: 30),
