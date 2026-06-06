@@ -5,8 +5,8 @@ import 'package:homemade_food_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
+import '../../manager/cubit/profile_cubit.dart';
+import '../../manager/states/profile_states.dart';
 
 class ChangePasswordConfirmViewBody extends StatefulWidget {
   const ChangePasswordConfirmViewBody({super.key});

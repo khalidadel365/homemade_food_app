@@ -1,8 +1,9 @@
 import 'package:homemade_food_app/features/profile/data/models/password_confirm_model.dart';
 import 'package:homemade_food_app/features/profile/data/models/password_reset_request_model.dart';
 
-import '../../../../core/models/account_info.dart';
-import '../../../../core/models/profile_model.dart';
+import '../../../../../core/models/account_info.dart';
+import '../../../../../core/models/profile_model.dart';
+import '../../../data/models/logout_model.dart';
 
 abstract class ProfileStates {}
 
@@ -66,4 +67,15 @@ class ResetPasswordConfirmFailure extends ProfileStates {
 class ResetPasswordConfirmSuccess extends ProfileStates {
   PasswordConfirmModel confirmPassword;
   ResetPasswordConfirmSuccess(this.confirmPassword);
+}
+class LogoutLoadingState extends ProfileStates {}
+
+class LogoutFailureState extends ProfileStates {
+  final String errMessage;
+  LogoutFailureState(this.errMessage);
+}
+
+class LogoutSuccessState extends ProfileStates {
+  final LogoutModel logoutModel;
+  LogoutSuccessState(this.logoutModel);
 }

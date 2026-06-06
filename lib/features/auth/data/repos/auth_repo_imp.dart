@@ -8,7 +8,7 @@ import 'package:homemade_food_app/features/auth/data/repos/auth_repo.dart';
 import '../../../../core/utilities/api_service.dart';
 import '../models/login_model.dart';
 
-class AuthRepoImp extends AuthRepo {
+class AuthRepoImp implements AuthRepo {
   @override
   Future<Either<Failure, LoginModel>> LoginUser({
     required String email,

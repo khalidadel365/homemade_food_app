@@ -10,8 +10,9 @@ import '../../../../core/errors/failures.dart';
 import '../../../../core/models/account_info.dart';
 import '../../../../core/models/profile_model.dart';
 import '../../../../core/utilities/api_service.dart';
+import '../models/logout_model.dart';
 
-class ProfileRepoImp extends ProfileRepo {
+class ProfileRepoImp implements ProfileRepo {
   final ApiService apiService;
   final AllDishesRepo allDishesRepo;
 
@@ -149,6 +150,21 @@ class ProfileRepoImp extends ProfileRepo {
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
       return left(ServerFailure(e.toString()));
+    }
+  }
+  @override
+  Future<Either<Failure, LogoutModel>> logout({required String token}) async {
+    try {
+      var data = await apiService.postData(
+        endpoint: '/api/auth/logout/',
+        token: token,
+      );
+      return Right(LogoutModel.fromJson(data!.data));
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(e.toString()));
     }
   }
 }

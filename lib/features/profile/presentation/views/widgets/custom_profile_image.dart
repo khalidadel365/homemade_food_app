@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homemade_food_app/core/utilities/api_constants.dart';
 import 'package:homemade_food_app/core/utilities/image_helper.dart';
 import '../../../../../constants.dart';
-import '../../profile_cubit/profile_cubit.dart';
+import '../../manager/cubit/profile_cubit.dart';
 
 class CustomProfileImage extends StatelessWidget {
   const CustomProfileImage({super.key, required this.profileImage});

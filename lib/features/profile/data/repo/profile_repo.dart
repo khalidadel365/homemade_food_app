@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/models/account_info.dart';
 import '../../../../core/models/profile_model.dart';
+import '../models/logout_model.dart';
 
 abstract class ProfileRepo {
   Future<Either<Failure, ProfileModel>> fetchUserData(
@@ -21,4 +22,5 @@ abstract class ProfileRepo {
       {required String token, required String email});
   Future<Either<Failure, PasswordConfirmModel>> confirmPassword(
       {required String password});
+  Future<Either<Failure, LogoutModel>> logout({required String token});
 }

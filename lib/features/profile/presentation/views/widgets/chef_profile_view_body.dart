@@ -4,11 +4,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/widgets/all_dishes_list_view_item.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
-
 import '../../../../../constants.dart';
 import '../../../../../core/widgets/custom_chief_image.dart';
+import '../../manager/cubit/profile_cubit.dart';
+import '../../manager/states/profile_states.dart';
 import 'chief_rating.dart';
 
 class ChefProfileViewBody extends StatelessWidget {

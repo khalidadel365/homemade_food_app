@@ -10,15 +10,14 @@ import 'package:homemade_food_app/features/cart/presentation/views/checkout_view
 import 'package:homemade_food_app/features/explore_all_chefs/data/repo/explore_all_chefs_repo_imp.dart';
 import 'package:homemade_food_app/features/explore_all_chefs/presentation/manager/cubit/explore_all_chefs_cubit.dart';
 import 'package:homemade_food_app/features/main_layout/presentation/views/main_view.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
 import 'package:homemade_food_app/features/profile/presentation/views/change_password_confirm_view.dart';
 import 'package:homemade_food_app/features/profile/presentation/views/change_password_request_view.dart';
 import 'package:homemade_food_app/features/profile/presentation/views/edit_profile_view.dart';
-
 import '../../features/dish_details/presentation/views/dish_details_view.dart';
 import '../../features/explore_all_chefs/presentation/views/explore_all_chefs_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/profile/data/repo/profile_repo_imp.dart';
+import '../../features/profile/presentation/manager/cubit/profile_cubit.dart';
 import '../../features/profile/presentation/views/chef_profile_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 

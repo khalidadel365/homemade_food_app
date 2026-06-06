@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
 import '../../../../../core/models/account_info.dart';
 import '../../../../../core/utilities/api_constants.dart';
 import '../../../../../core/utilities/functions/show_snack_bar.dart';
+import '../../manager/cubit/profile_cubit.dart';
+import '../../manager/states/profile_states.dart';
 
 class EditProfileViewBody extends StatefulWidget {
   const EditProfileViewBody({super.key, required this.user});

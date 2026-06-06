@@ -5,8 +5,7 @@ import 'package:homemade_food_app/features/dish_details/data/repos/dish_details_
 import 'package:homemade_food_app/features/explore_all_chefs/data/repo/explore_all_chefs_repo_imp.dart';
 import 'package:homemade_food_app/features/home/data/repos/home_repo_imp.dart';
 import 'package:homemade_food_app/features/profile/data/repo/profile_repo_imp.dart';
-
-import '../../features/profile/presentation/profile_cubit/profile_cubit.dart';
+import '../../features/profile/presentation/manager/cubit/profile_cubit.dart';
 import 'api_service.dart';
 
 final getIt = GetIt.instance;

@@ -5,12 +5,10 @@ import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/api_constants.dart';
 import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
-
-import '../../../../../core/utilities/cache_helper.dart';
 import '../../../../../core/utilities/functions/show_snack_bar.dart';
 import '../../../../../core/utilities/styles.dart';
+import '../../manager/cubit/profile_cubit.dart';
+import '../../manager/states/profile_states.dart';
 import 'custom_profile_button.dart';
 import 'custom_profile_image.dart';
 
@@ -39,7 +37,15 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileStates>(
       listener: (context, state) {
-
+        if (state is LogoutSuccessState) {
+          GoRouter.of(context).go(AppRouter.kLoginView);
+        } else if (state is LogoutFailureState) {
+          showSnackBar(
+            context: context,
+            message: state.errMessage,
+            color: Colors.red,
+          );
+        }
         if (state is EditProfileSuccess) {
           ProfileCubit.get(context).fetchProfile(
             token: ApiConstants.token!,
@@ -177,8 +183,11 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                       backgroundColor: kSecondaryColor,
                       borderRadius: 15,
                       onPressed: () async {
-                        await CacheHelper.removeData(key: 'token');
-                        GoRouter.of(context).go(AppRouter.kLoginView);
+                        if (ApiConstants.token != null) {
+                          context.read<ProfileCubit>().logout(
+                            token: ApiConstants.token!,
+                          );
+                        }
                       },
                       icon: Icon(
                         Icons.logout,

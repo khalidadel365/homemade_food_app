@@ -7,10 +7,11 @@ import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:homemade_food_app/core/widgets/custom_button.dart';
 import 'package:homemade_food_app/core/widgets/custom_textformfield.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_cubit.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
+
 
 import '../../../../../core/utilities/styles.dart';
+import '../../manager/cubit/profile_cubit.dart';
+import '../../manager/states/profile_states.dart';
 
 class ChangePasswordRequestViewBody extends StatelessWidget {
   ChangePasswordRequestViewBody({Key? key}) : super(key: key);

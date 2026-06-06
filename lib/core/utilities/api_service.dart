@@ -7,7 +7,8 @@ class ApiService {
     dio = Dio(
       BaseOptions(
         //baseUrl: 'https://unsegregated-itchingly-charisse.ngrok-free.dev',
-        baseUrl: 'https://homemadefood.onrender.com',
+        //baseUrl: 'https://homemadefood.onrender.com',
+        baseUrl: 'http://10.0.2.2:8000',
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),
         receiveDataWhenStatusError: true,
@@ -35,7 +36,7 @@ class ApiService {
 
   Future<Response>? postData({
     required String endpoint,
-    required dynamic data,
+    dynamic data,
     Map<String, dynamic>? query,
     String? token,
   }) {
@@ -43,11 +44,7 @@ class ApiService {
       'Authorization': token != null ? 'Token $token' : '',
       'Content-Type': 'application/json',
     };
-    return dio?.post(
-      endpoint,
-      data: data,
-      queryParameters: query,
-    );
+    return dio?.post(endpoint, data: data, queryParameters: query);
   }
 
   Future<Response>? patchData({

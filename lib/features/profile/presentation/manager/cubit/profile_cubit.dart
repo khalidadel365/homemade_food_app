@@ -1,8 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homemade_food_app/features/profile/data/repo/profile_repo.dart';
-import 'package:homemade_food_app/features/profile/presentation/profile_cubit/profile_states.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../../../core/utilities/api_constants.dart';
+import '../../../../../core/utilities/cache_helper.dart';
+import '../states/profile_states.dart';
 
 class ProfileCubit extends Cubit<ProfileStates> {
   ProfileCubit(this.profileRepo) : super(ProfileInitial());
@@ -75,9 +78,22 @@ class ProfileCubit extends Cubit<ProfileStates> {
     );
     result.fold((failure) {
       print('^^^^^^^^ ${failure.errorMessage}');
-      emit(ResetPasswordRequestFailure(failure.errorMessage));
+      emit(ResetPasswordConfirmFailure(failure.errorMessage));
     }, (confirmPassword) {
       emit(ResetPasswordConfirmSuccess(confirmPassword));
     });
+  }
+  Future<void> logout({required String token}) async {
+    emit(LogoutLoadingState());
+    var result = await profileRepo.logout(token: token);
+
+    result.fold(
+          (failure) => emit(LogoutFailureState(failure.errorMessage)),
+          (logoutModel) async {
+        await CacheHelper.removeData(key: 'token');
+        ApiConstants.token = null;
+        emit(LogoutSuccessState(logoutModel));
+      },
+    );
   }
 }
