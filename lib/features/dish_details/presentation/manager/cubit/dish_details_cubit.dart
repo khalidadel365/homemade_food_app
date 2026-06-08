@@ -9,6 +9,7 @@ class FetchDishDetailsCubit extends Cubit<FetchDishDetailsState> {
   final DishDetailsRepo dishDetailsRepo;
 
   dynamic selectedOption;
+  int quantity = 1;
 
   Future<void> fetchDishDetails({required int id}) async {
     emit(FetchDishDetailsLoadingState());
@@ -16,6 +17,7 @@ class FetchDishDetailsCubit extends Cubit<FetchDishDetailsState> {
     result.fold((failure) {
       emit(FetchDishDetailsFailureState(failure.errorMessage));
     }, (dish) {
+      quantity = 1;
       emit(FetchDishDetailsSuccessState(dish));
     });
   }
@@ -24,12 +26,21 @@ class FetchDishDetailsCubit extends Cubit<FetchDishDetailsState> {
     selectedOption = option;
   }
 
+  void updateQuantity(int newQuantity) {
+    if (newQuantity >= 1) {
+      quantity = newQuantity;
+      if (state is FetchDishDetailsSuccessState) {
+        emit(FetchDishDetailsSuccessState((state as FetchDishDetailsSuccessState).dish));
+      }
+    }
+  }
+
   double calculateTotalPrice(String basePrice) {
     double total = double.tryParse(basePrice) ?? 0.0;
     if (selectedOption != null) {
       total +=
           double.tryParse(selectedOption.priceAdjustment.toString()) ?? 0.0;
     }
-    return total;
+    return total * quantity;
   }
 }

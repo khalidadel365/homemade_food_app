@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../constants.dart';
-
 import '../../../../../core/utilities/styles.dart';
+import '../../manager/cubit/dish_details_cubit.dart';
 
-class DishDetailsBottomNavBar extends StatefulWidget {
+class DishDetailsBottomNavBar extends StatelessWidget {
   const DishDetailsBottomNavBar({
     super.key,
     required this.onAddToCart,
@@ -14,15 +15,10 @@ class DishDetailsBottomNavBar extends StatefulWidget {
   final double totalPrice;
 
   @override
-  State<DishDetailsBottomNavBar> createState() =>
-      _DishDetailsBottomNavBarState();
-}
-
-class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
-  int counter = 1;
-
-  @override
   Widget build(BuildContext context) {
+    var cubit = context.watch<FetchDishDetailsCubit>();
+    int currentCounter = cubit.quantity;
+
     return Container(
       width: double.infinity,
       height: 85,
@@ -43,8 +39,8 @@ class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    if (counter > 1) {
-                      setState(() => counter--);
+                    if (currentCounter > 1) {
+                      cubit.updateQuantity(currentCounter - 1);
                     }
                   },
                   child: Container(
@@ -60,14 +56,14 @@ class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
                 ),
                 Expanded(
                   child: Text(
-                    '$counter',
+                    '$currentCounter',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => setState(() => counter++),
+                  onTap: () => cubit.updateQuantity(currentCounter + 1),
                   child: Container(
                     alignment: Alignment.center,
                     width: 28,
@@ -85,7 +81,7 @@ class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
           const SizedBox(width: 10),
           Expanded(
             child: GestureDetector(
-              onTap: widget.onAddToCart,
+              onTap: onAddToCart,
               child: Container(
                 height: 53,
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -110,7 +106,7 @@ class _DishDetailsBottomNavBarState extends State<DishDetailsBottomNavBar> {
                         color: Colors.white.withOpacity(0.3),
                       ),
                       child: Text(
-                        '${widget.totalPrice * counter} EGY',
+                        '${totalPrice.toStringAsFixed(1)} EGY',
                         style: Styles.textStyle14.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

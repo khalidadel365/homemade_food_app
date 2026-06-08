@@ -59,7 +59,7 @@ class _DishInfoSectionState extends State<DishInfoSection> {
             FoodInfoRow(
               prepTime: '${widget.dishModel.preparationTime}',
               categoryModel:
-                  widget.dishModel.category ?? CategoryModel(name: 'General'),
+              widget.dishModel.category ?? CategoryModel(name: 'General'),
             ),
             const SizedBox(height: 16),
             const DetailsOptionsTitle(title: 'Description'),

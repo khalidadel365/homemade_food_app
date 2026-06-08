@@ -13,6 +13,7 @@ import 'package:homemade_food_app/features/main_layout/presentation/views/main_v
 import 'package:homemade_food_app/features/profile/presentation/views/change_password_confirm_view.dart';
 import 'package:homemade_food_app/features/profile/presentation/views/change_password_request_view.dart';
 import 'package:homemade_food_app/features/profile/presentation/views/edit_profile_view.dart';
+import '../../features/cart/presentation/manager/cubit/cart_cubit.dart';
 import '../../features/dish_details/presentation/views/dish_details_view.dart';
 import '../../features/explore_all_chefs/presentation/views/explore_all_chefs_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
@@ -60,7 +61,13 @@ abstract class AppRouter {
                 id: state.extra as int,
               )),
       GoRoute(path: kSignUpView, builder: (context, state) => SignupView()),
-      GoRoute(path: kCartScreen, builder: (context, state) => const CartView()),
+      GoRoute(
+        path: kCartScreen,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<CartCubit>(),
+          child: const CartView(),
+        ),
+      ),
       GoRoute(
           path: kCheckoutScreen,
           builder: (context, state) => const CheckoutView()),

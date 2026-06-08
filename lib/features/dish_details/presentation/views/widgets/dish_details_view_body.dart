@@ -62,7 +62,7 @@ class DishDetailsViewBody extends StatelessWidget {
                     decoration: const BoxDecoration(
                       color: kBackGroundColor,
                       borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(32)),
+                      BorderRadius.vertical(top: Radius.circular(32)),
                     ),
                     child: DishInfoSection(
                       dishModel: state.dish,

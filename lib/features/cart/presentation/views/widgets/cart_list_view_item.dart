@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utilities/styles.dart';
+import '../../../data/models/cart_item_model.dart';
+import '../../manager/cubit/cart_cubit.dart';
 import 'custom_cart_image.dart';
 
-class CartListViewItem extends StatefulWidget {
-  const CartListViewItem({super.key});
+class CartListViewItem extends StatelessWidget {
+  const CartListViewItem({super.key, required this.cartItem});
 
-  @override
-  State<CartListViewItem> createState() => _CartListViewItemState();
-}
-
-class _CartListViewItemState extends State<CartListViewItem> {
-  int counter = 1;
+  final CartItemModel cartItem;
 
   @override
   Widget build(BuildContext context) {
+    var cartCubit = context.read<CartCubit>();
+
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -28,7 +27,7 @@ class _CartListViewItemState extends State<CartListViewItem> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomCartImage(),
+          CustomCartImage(imageUrl: cartItem.dish.imageUrl,),
           const SizedBox(
             width: 15,
           ),
@@ -41,7 +40,7 @@ class _CartListViewItemState extends State<CartListViewItem> {
                   children: [
                     Expanded(
                       child: Text(
-                        'Homemade Pepproni Pizza',
+                        cartItem.dish.name ?? 'Unknown Dish',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: Styles.textStyle14
@@ -52,7 +51,7 @@ class _CartListViewItemState extends State<CartListViewItem> {
                       width: 20,
                     ),
                     Text(
-                      '250 EGY',
+                      '${cartItem.totalPrice.toStringAsFixed(0)} EGP',
                       style: Styles.textStyle14
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
@@ -61,25 +60,31 @@ class _CartListViewItemState extends State<CartListViewItem> {
                 const SizedBox(
                   height: 2,
                 ),
-                Text(
-                  'Extra Cheese, Extra Sauce',
-                  style: Styles.textStyle11.copyWith(
-                      color: Colors.grey, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
+                if (cartItem.selectedOption != null)
+                  Text(
+                    cartItem.selectedOption!.name ?? '',
+                    style: Styles.textStyle11.copyWith(
+                        color: Colors.grey, fontWeight: FontWeight.bold),
+                  ),
+                const SizedBox(
                   height: 5,
                 ),
                 Row(
                   children: [
-                    Row(
-                      children: [
-                        Icon(Icons.delete, color: Colors.redAccent, size: 19),
-                        Text(
-                          'Remove',
-                          style: Styles.textStyle13
-                              .copyWith(color: Colors.redAccent),
-                        )
-                      ],
+                    GestureDetector(
+                      onTap: () {
+                        cartCubit.removeFromCart(cartItem);
+                      },
+                      child: Row(
+                        children: [
+                          const Icon(Icons.delete, color: Colors.redAccent, size: 19),
+                          Text(
+                            'Remove',
+                            style: Styles.textStyle13
+                                .copyWith(color: Colors.redAccent),
+                          )
+                        ],
+                      ),
                     ),
                     const Spacer(),
                     Container(
@@ -94,11 +99,7 @@ class _CartListViewItemState extends State<CartListViewItem> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              setState(() {
-                                if (counter > 0) {
-                                  counter--;
-                                }
-                              });
+                              cartCubit.updateQuantity(cartItem, cartItem.quantity - 1);
                             },
                             child: Container(
                               alignment: Alignment.center,
@@ -108,7 +109,7 @@ class _CartListViewItemState extends State<CartListViewItem> {
                                   color: Colors.white,
                                   shape: BoxShape.rectangle,
                                   borderRadius: BorderRadius.circular(7)),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.remove,
                                 size: 20,
                               ),
@@ -116,17 +117,15 @@ class _CartListViewItemState extends State<CartListViewItem> {
                           ),
                           Expanded(
                             child: Text(
-                              '$counter',
+                              '${cartItem.quantity}',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 10, fontWeight: FontWeight.bold),
                             ),
                           ),
                           GestureDetector(
                             onTap: () {
-                              setState(() {
-                                counter++;
-                              });
+                              cartCubit.updateQuantity(cartItem, cartItem.quantity + 1);
                             },
                             child: Container(
                               alignment: Alignment.center,
@@ -136,7 +135,7 @@ class _CartListViewItemState extends State<CartListViewItem> {
                                   color: Colors.white,
                                   shape: BoxShape.rectangle,
                                   borderRadius: BorderRadius.circular(7)),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.add,
                                 size: 20,
                               ),

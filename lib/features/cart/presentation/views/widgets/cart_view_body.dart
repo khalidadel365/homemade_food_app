@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
 import 'package:homemade_food_app/features/cart/presentation/views/widgets/payment_summary_section.dart';
-import 'package:homemade_food_app/features/cart/presentation/views/widgets/preparation_time_section.dart';
 import 'cart_bottom_nav_bar.dart';
 import 'cart_list_view.dart';
 import 'kitchen_instructions_textfield.dart';
@@ -26,8 +25,6 @@ class CartViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const PreparationTimeSection(),
-            const SizedBox(height: 10),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(

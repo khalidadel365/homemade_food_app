@@ -5,6 +5,9 @@ import 'package:homemade_food_app/features/dish_details/data/repos/dish_details_
 import 'package:homemade_food_app/features/explore_all_chefs/data/repo/explore_all_chefs_repo_imp.dart';
 import 'package:homemade_food_app/features/home/data/repos/home_repo_imp.dart';
 import 'package:homemade_food_app/features/profile/data/repo/profile_repo_imp.dart';
+import 'package:homemade_food_app/features/orders/data/repos/orders_repo_imp.dart';
+import '../../features/cart/presentation/manager/cubit/cart_cubit.dart';
+import '../../features/orders/data/repos/orders_repo.dart';
 import '../../features/profile/presentation/manager/cubit/profile_cubit.dart';
 import 'api_service.dart';
 
@@ -22,6 +25,8 @@ void setupServiceLocator() {
     getIt.get<ApiService>(),
     getIt.get<AllDishesRepoImp>(),
   ));
+  getIt.registerSingleton<CartCubit>(CartCubit());
+  getIt.registerSingleton<OrderRepo>(OrdersRepoImp(getIt.get<ApiService>()));
 
   getIt.registerFactory(() => ProfileCubit(getIt.get<ProfileRepoImp>()));
 }
