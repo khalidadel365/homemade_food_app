@@ -30,10 +30,11 @@ class CartCubit extends Cubit<CartStates> {
 
       final dynamic currentOptId = item.selectedOption?.id;
       final dynamic newOptId = newItem.selectedOption?.id;
-
       final bool isSameOption = currentOptId == newOptId;
 
-      return isSameDish && isSameOption;
+      final bool isSameNotes = item.specialRequests == newItem.specialRequests;
+
+      return isSameDish && isSameOption && isSameNotes;
     });
 
     if (index != -1) {

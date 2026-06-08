@@ -5,11 +5,13 @@ class CartItemModel {
   final DishModel dish;
   final OptionsModel? selectedOption;
   int quantity;
+  final String? specialRequests;
 
   CartItemModel({
     required this.dish,
     this.selectedOption,
     this.quantity = 1,
+    this.specialRequests,
   });
 
   double get unitPrice {

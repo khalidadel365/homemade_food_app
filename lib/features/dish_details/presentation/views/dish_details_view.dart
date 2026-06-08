@@ -61,6 +61,7 @@ class DishDetailsView extends StatelessWidget {
                           dish: dish,
                           selectedOption: cubit.selectedOption,
                           quantity: cubit.quantity,
+                          specialRequests: null, // 🎯 جاهزة لو حبيت تباصي الـ Controller.text بتاع الـ Notes هنا بعدين
                         ),
                       );
 
