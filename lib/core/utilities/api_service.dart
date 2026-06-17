@@ -6,7 +6,8 @@ class ApiService {
   void init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'http://10.0.2.2:8000',
+        baseUrl: 'https://homemadefood-production-5e66.up.railway.app',
+      //baseUrl: 'http://10.0.2.2:8000',
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),
         receiveDataWhenStatusError: true,
@@ -32,17 +33,26 @@ class ApiService {
     return response.data;
   }
 
-  Future<Response>? postData({
+  Future<dynamic> postData({
     required String endpoint,
     dynamic data,
     Map<String, dynamic>? query,
     String? token,
-  }) {
-    dio?.options.headers = {
-      'Authorization': token != null ? 'Token $token' : '',
-      'Content-Type': 'application/json',
-    };
-    return dio?.post(endpoint, data: data, queryParameters: query);
+  }) async {
+    print("🌍 Request URL: ${dio!.options.baseUrl}$endpoint");
+    print("📦 Request Body: $data");
+    print("🔑 Request Headers: ${token != null ? 'Token $token' : 'No Token'}");
+
+    final response = await dio!.post(
+      endpoint,
+      data: data,
+      queryParameters: query,
+      options: Options(headers: {
+        'Content-Type': 'application/json',
+        if (token != null) 'Authorization': 'Token $token',
+      }),
+    );
+    return response.data;
   }
 
   Future<Response>? patchData({

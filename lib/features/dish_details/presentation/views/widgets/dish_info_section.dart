@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homemade_food_app/constants.dart';
 import 'package:homemade_food_app/core/utilities/styles.dart';
 import 'package:homemade_food_app/features/dish_details/presentation/views/widgets/variety_options_list_view.dart';
@@ -10,7 +9,6 @@ import '../../../../../core/widgets/chief_info_row.dart';
 import '../../../../../core/widgets/details_options_title.dart';
 import '../../../../../core/widgets/custom_rating.dart';
 import '../../../../all_dishes/data/models/category_model.dart';
-import '../../manager/cubit/dish_details_cubit.dart';
 import 'food_info_row.dart';
 
 class DishInfoSection extends StatefulWidget {
@@ -81,6 +79,9 @@ class _DishInfoSectionState extends State<DishInfoSection> {
                 itemCount: widget.dishModel.varietySections!.length,
                 itemBuilder: (context, index) {
                   final section = widget.dishModel.varietySections![index];
+
+                  if (section.id == null) return const SizedBox.shrink();
+
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -88,11 +89,7 @@ class _DishInfoSectionState extends State<DishInfoSection> {
                       const SizedBox(height: 10),
                       VarietyOptionsListView(
                         options: section.options ?? [],
-                        onChanged: (option) {
-                          context
-                              .read<FetchDishDetailsCubit>()
-                              .updateSelection(option);
-                        },
+                        sectionId: section.id!,
                       ),
                       const SizedBox(height: 30),
                     ],

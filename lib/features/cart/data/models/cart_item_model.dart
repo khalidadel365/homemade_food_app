@@ -3,26 +3,28 @@ import '../../../dish_details/data/models/options_model.dart';
 
 class CartItemModel {
   final DishModel dish;
-  final OptionsModel? selectedOption;
   int quantity;
   final String? specialRequests;
+  final Map<int, OptionsModel> selectedVarieties;
 
   CartItemModel({
     required this.dish,
-    this.selectedOption,
+    required this.selectedVarieties,
     this.quantity = 1,
     this.specialRequests,
   });
 
   double get unitPrice {
     double basePrice = double.tryParse(dish.price ?? '0') ?? 0.0;
-    double adjustment = 0.0;
+    double adjustments = 0.0;
 
-    if (selectedOption != null && selectedOption!.priceAdjustment != null) {
-      adjustment = double.tryParse(selectedOption!.priceAdjustment!) ?? 0.0;
-    }
+    selectedVarieties.forEach((sectionId, option) {
+      if (option.priceAdjustment != null) {
+        adjustments += double.tryParse(option.priceAdjustment!) ?? 0.0;
+      }
+    });
 
-    return basePrice + adjustment;
+    return basePrice + adjustments;
   }
 
   double get totalPrice => unitPrice * quantity;

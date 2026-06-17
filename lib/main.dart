@@ -5,6 +5,7 @@ import 'package:homemade_food_app/core/utilities/app_router.dart';
 import 'package:homemade_food_app/core/utilities/service_locator.dart';
 import 'package:homemade_food_app/features/auth/data/repos/auth_repo_imp.dart';
 import 'package:homemade_food_app/features/auth/presentation/manager/auth_cubit.dart';
+import 'package:homemade_food_app/features/cart/presentation/manager/cubit/cart_cubit.dart';
 import 'bloc_observer.dart';
 import 'core/utilities/api_service.dart';
 import 'core/utilities/cache_helper.dart';
@@ -23,8 +24,15 @@ class HomemadeFoodApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(getIt.get<AuthRepoImp>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthCubit(getIt.get<AuthRepoImp>()),
+        ),
+        BlocProvider(
+          create: (context) => getIt.get<CartCubit>(),
+        ),
+      ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,

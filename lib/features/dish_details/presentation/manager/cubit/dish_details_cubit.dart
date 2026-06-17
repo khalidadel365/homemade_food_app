@@ -2,13 +2,14 @@ import 'package:bloc/bloc.dart';
 import 'package:homemade_food_app/features/dish_details/data/repos/dish_details_repo.dart';
 import 'package:homemade_food_app/features/dish_details/presentation/manager/states/dish_details_states.dart';
 
+import '../../../data/models/options_model.dart';
+
 class FetchDishDetailsCubit extends Cubit<FetchDishDetailsState> {
-  FetchDishDetailsCubit(this.dishDetailsRepo)
-      : super(FetchDishDetailsInitialState());
+  FetchDishDetailsCubit(this.dishDetailsRepo) : super(FetchDishDetailsInitialState());
 
   final DishDetailsRepo dishDetailsRepo;
 
-  dynamic selectedOption;
+  Map<int, OptionsModel> selectedVarietiesMap = {};
   int quantity = 1;
 
   Future<void> fetchDishDetails({required int id}) async {
@@ -18,12 +19,17 @@ class FetchDishDetailsCubit extends Cubit<FetchDishDetailsState> {
       emit(FetchDishDetailsFailureState(failure.errorMessage));
     }, (dish) {
       quantity = 1;
+      selectedVarietiesMap.clear();
       emit(FetchDishDetailsSuccessState(dish));
     });
   }
 
-  void updateSelection(dynamic option) {
-    selectedOption = option;
+  void updateSectionSelection({required int sectionId, required OptionsModel option}) {
+    selectedVarietiesMap[sectionId] = option;
+
+    if (state is FetchDishDetailsSuccessState) {
+      emit(FetchDishDetailsSuccessState((state as FetchDishDetailsSuccessState).dish));
+    }
   }
 
   void updateQuantity(int newQuantity) {
@@ -37,10 +43,13 @@ class FetchDishDetailsCubit extends Cubit<FetchDishDetailsState> {
 
   double calculateTotalPrice(String basePrice) {
     double total = double.tryParse(basePrice) ?? 0.0;
-    if (selectedOption != null) {
-      total +=
-          double.tryParse(selectedOption.priceAdjustment.toString()) ?? 0.0;
-    }
+
+    selectedVarietiesMap.forEach((sectionId, option) {
+      if (option.priceAdjustment != null) {
+        total += double.tryParse(option.priceAdjustment.toString()) ?? 0.0;
+      }
+    });
+
     return total * quantity;
   }
 }

@@ -5,4 +5,11 @@ import '../../../../core/errors/failures.dart';
 
 abstract class HomeRepo {
   Future<Either<Failure, HomeModel>> fetchConsumerHomePage();
+
+  void initOrdersSocket({required String token});
+
+  Stream<dynamic> listenToOrders();
+
+  void closeSocket();
+
 }

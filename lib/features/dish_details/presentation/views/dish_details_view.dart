@@ -20,9 +20,7 @@ class DishDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-      FetchDishDetailsCubit(getIt.get<DishDetailsRepoImp>())
-        ..fetchDishDetails(id: id),
+      create: (context) => FetchDishDetailsCubit(getIt.get<DishDetailsRepoImp>())..fetchDishDetails(id: id),
       child: Scaffold(
         body: const DishDetailsViewBody(),
         bottomNavigationBar: BlocListener<CartCubit, CartStates>(
@@ -47,21 +45,31 @@ class DishDetailsView extends StatelessWidget {
                   onAddToCart: () {
                     var dish = state.dish;
 
-                    bool hasVarieties = dish.varietySections != null &&
-                        dish.varietySections!.isNotEmpty;
+                    bool hasVarieties = dish.varietySections != null && dish.varietySections!.isNotEmpty;
 
-                    if (hasVarieties && cubit.selectedOption == null) {
+                    bool allSelected = true;
+                    if (hasVarieties) {
+                      for (var section in dish.varietySections!) {
+                        if (section.id != null && !cubit.selectedVarietiesMap.containsKey(section.id)) {
+                          allSelected = false;
+                          break;
+                        }
+                      }
+                    }
+
+                    if (hasVarieties && !allSelected) {
                       showSnackBar(
-                          context: context,
-                          message: 'Please select an option before adding to cart.',
-                          color: Colors.red);
+                        context: context,
+                        message: 'Please select options before adding to cart.',
+                        color: Colors.red,
+                      );
                     } else {
                       getIt<CartCubit>().addToCart(
                         CartItemModel(
                           dish: dish,
-                          selectedOption: cubit.selectedOption,
                           quantity: cubit.quantity,
-                          specialRequests: null, // 🎯 جاهزة لو حبيت تباصي الـ Controller.text بتاع الـ Notes هنا بعدين
+                          specialRequests: null,
+                          selectedVarieties: Map.from(cubit.selectedVarietiesMap),
                         ),
                       );
 
@@ -76,7 +84,7 @@ class DishDetailsView extends StatelessWidget {
                   },
                 );
               }
-              return DishDetailsBottomNavBar(totalPrice: 0, onAddToCart: null);
+              return const DishDetailsBottomNavBar(totalPrice: 0, onAddToCart: null);
             },
           ),
         ),

@@ -27,7 +27,7 @@ class CartListViewItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomCartImage(imageUrl: cartItem.dish.imageUrl,),
+          CustomCartImage(imageUrl: cartItem.dish.imageUrl),
           const SizedBox(
             width: 15,
           ),
@@ -60,11 +60,19 @@ class CartListViewItem extends StatelessWidget {
                 const SizedBox(
                   height: 2,
                 ),
-                if (cartItem.selectedOption != null)
-                  Text(
-                    cartItem.selectedOption!.name ?? '',
-                    style: Styles.textStyle11.copyWith(
-                        color: Colors.grey, fontWeight: FontWeight.bold),
+                if (cartItem.selectedVarieties.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: cartItem.selectedVarieties.values.map((option) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 2),
+                        child: Text(
+                          option.name ?? '',
+                          style: Styles.textStyle11.copyWith(
+                              color: Colors.grey, fontWeight: FontWeight.bold),
+                        ),
+                      );
+                    }).toList(),
                   ),
                 const SizedBox(
                   height: 5,

@@ -5,11 +5,30 @@ import 'package:homemade_food_app/core/utilities/api_service.dart';
 import 'package:homemade_food_app/features/home/data/models/home_model.dart';
 import 'package:homemade_food_app/features/home/data/repos/home_repo.dart';
 
+import '../service/orders_socket_service.dart';
+
 class HomeRepoImp implements HomeRepo {
   final ApiService apiService;
+  final OrdersSocketService socketService;
 
-  HomeRepoImp(this.apiService);
+  HomeRepoImp(this.apiService,this.socketService);
 
+  @override
+  void initOrdersSocket({required String token}) {
+    //start connection with server
+    const String socketUrl = 'wss://homemadefood-production-5e66.up.railway.app/ws/orders/';
+    //const String socketUrl = 'ws://10.0.2.2:8000/ws/orders/';
+    socketService.connect('$socketUrl?token=$token');
+  }
+
+  @override
+  Stream<dynamic> listenToOrders() {
+    return socketService.stream;
+  }
+  @override
+  void closeSocket() {
+    socketService.close();
+  }
   @override
   Future<Either<Failure, HomeModel>> fetchConsumerHomePage() async {
     try {
