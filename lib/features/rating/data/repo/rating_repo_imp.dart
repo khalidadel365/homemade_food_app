@@ -19,7 +19,7 @@ class RatingRepoImp implements RatingRepo {
   }) async {
     try {
       await apiService.postData(
-        endpoint: '/api/chef/$chefId/rate/',
+        endpoint: '/api/dishes/$chefId/reviews/',
         data: ratingModel.toJson(),
         token: token,
       );

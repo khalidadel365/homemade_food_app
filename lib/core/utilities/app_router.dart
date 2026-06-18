@@ -57,32 +57,38 @@ abstract class AppRouter {
 
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider(
-            create: (context) => getIt.get<OrdersCubit>()..initSocket(ApiConstants.token!),
-            child: // داخل الـ ShellRoute في AppRouter
-            BlocListener<OrdersCubit, OrdersState>(
-              listener: (context, state) {
-                if (state is NewIncomingOrderSuccess) {
-                  showSnackBar(context: context, message: 'New Order Received!', color: Colors.blue);
-                } else if (state is PreparingSuccess) {
-                  showSnackBar(context: context, message: 'Order is Preparing!', color: Colors.orange);
-                } else if (state is OutForDeliverySuccess) {
-                  showSnackBar(context: context, message: 'Order is Out for Delivery!', color: Colors.purple);
-                } else if (state is OrderDeliveredSuccess) {
-                  showSnackBar(context: context, message: 'Order Delivered!', color: Colors.green);
-                  context.read<RatingCubit>().getOrderDetails(orderId: state.order.orderId, token: ApiConstants.token!);
-                } else if (state is OrderCanceledSuccess) {
-                  showSnackBar(context: context, message: 'Order Canceled', color: Colors.red);
-                }
-              },
-              child: BlocListener<RatingCubit, RatingState>(
-                listener: (context, state) {
-                  if (state is GetOrderDetailsSuccess) {
-                    context.push(kRateChefView, extra: state.orderDetails.chef);
-                  }
-                },
-                child: child,
-              ),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => getIt.get<OrdersCubit>()..initSocket(ApiConstants.token!)),
+              BlocProvider(create: (context) => getIt.get<RatingCubit>()),
+            ],
+            child: MultiBlocListener(
+              listeners: [
+                BlocListener<OrdersCubit, OrdersState>(
+                  listener: (context, state) {
+                    if (state is NewIncomingOrderSuccess) {
+                      showSnackBar(context: context, message: 'New Order Received!', color: Colors.blue);
+                    } else if (state is PreparingSuccess) {
+                      showSnackBar(context: context, message: 'Order is Preparing!', color: Colors.orange);
+                    } else if (state is OutForDeliverySuccess) {
+                      showSnackBar(context: context, message: 'Order is Out for Delivery!', color: Colors.purple);
+                    } else if (state is OrderDeliveredSuccess) {
+                      showSnackBar(context: context, message: 'Order Delivered!', color: Colors.green);
+                      context.read<RatingCubit>().getOrderDetails(orderId: state.order.orderId, token: ApiConstants.token!);
+                    } else if (state is OrderCanceledSuccess) {
+                      showSnackBar(context: context, message: 'Order Canceled', color: Colors.red);
+                    }
+                  },
+                ),
+                BlocListener<RatingCubit, RatingState>(
+                  listener: (context, state) {
+                    if (state is GetOrderDetailsSuccess) {
+                      context.push(kRateChefView, extra: state.orderDetails.chef);
+                    }
+                  },
+                ),
+              ],
+              child: child,
             ),
           );
         },
@@ -93,7 +99,10 @@ abstract class AppRouter {
         ],
       ),
 
-      GoRoute(path: kRateChefView, builder: (context, state) => ChefRatingView(chefId: state.extra as int)),
+      GoRoute(path: kRateChefView, builder: (context, state) => BlocProvider.value(value: getIt.get<RatingCubit>(),
+          child: ChefRatingView(chefId: state.extra as int)
+      )
+      ),
       GoRoute(path: kAllDishesView, builder: (context, state) => const AllDishesView()),
       GoRoute(path: kDishDetailsView, builder: (context, state) => DishDetailsView(id: state.extra as int)),
       GoRoute(path: kSignUpView, builder: (context, state) => SignupView()),

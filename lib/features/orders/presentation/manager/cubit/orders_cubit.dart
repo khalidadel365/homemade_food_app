@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:homemade_food_app/features/orders/presentation/manager/states/orders_states.dart';
 import '../../../data/repos/orders_repo.dart';
-import '../states/orders_states.dart';
 
 class OrdersCubit extends Cubit<OrdersStates> {
   OrdersCubit(this.orderRepo) : super(FetchOrdersInitial());

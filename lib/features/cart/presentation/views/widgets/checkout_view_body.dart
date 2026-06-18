@@ -6,7 +6,6 @@ import 'package:homemade_food_app/features/cart/presentation/manager/states/cart
 import 'package:homemade_food_app/features/cart/presentation/views/widgets/map_section.dart';
 import 'package:homemade_food_app/features/cart/presentation/views/widgets/payment_methods_list_view.dart';
 import 'package:latlong2/latlong.dart';
-
 import '../../../../../core/utilities/functions/show_success_payment_overlay.dart';
 import '../../../../../core/utilities/styles.dart';
 import '../../../../../core/widgets/details_options_title.dart';
@@ -123,7 +122,6 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                                         ),
                                       ),
                                     );
-
                                     if (result != null && result is Map<String, dynamic>) {
                                       cubit.updateOrderAddress(
                                         address: result['address'],

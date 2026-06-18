@@ -39,9 +39,10 @@ class checkout_bottom_nav_bar extends StatelessWidget {
                     style: TextStyle(fontSize: 12),
                   ),
                   Text(
-                    '$total EGP',
+                    '${total.toStringAsFixed(2)} EGP',
                     style: Styles.textStyle18,
                   ),
+
                 ],
               ),
               const SizedBox(width: 20),

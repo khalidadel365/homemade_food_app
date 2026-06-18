@@ -12,6 +12,8 @@ import '../../features/cart/presentation/manager/cubit/cart_cubit.dart';
 import '../../features/home/presentation/manager/orders/cubit/orders_cubit.dart';
 import '../../features/orders/data/repos/orders_repo.dart';
 import '../../features/profile/presentation/manager/cubit/profile_cubit.dart';
+import '../../features/rating/data/repo/rating_repo_imp.dart';
+import '../../features/rating/presentation/manager/cubit/rating_cubit.dart';
 import 'api_service.dart';
 import '../../features/order_details/data/repos/order_details_repo.dart';
 import '../../features/order_details/data/repos/order_details_repo_imp.dart';
@@ -51,4 +53,6 @@ void setupServiceLocator() {
 
   getIt.registerSingleton<OrderDetailsRepo>(OrderDetailsRepoImpl(getIt.get<ApiService>()));
   getIt.registerFactory(() => OrderDetailsCubit(getIt.get<OrderDetailsRepo>()));
+  getIt.registerSingleton(RatingRepoImp(getIt.get<ApiService>()));
+  getIt.registerFactory(() => RatingCubit(getIt.get<RatingRepoImp>()));
 }

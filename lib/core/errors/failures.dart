@@ -18,7 +18,7 @@ class ServerFailure extends Failure {
         return ServerFailure('Receive timeout with API server');
       case DioExceptionType.badCertificate:
         return ServerFailure('Bad certificate with API server');
-      case DioExceptionType.badResponse: //**********
+      case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
             exception.response!.statusCode!, exception.response!.data);
       case DioExceptionType.cancel:
@@ -29,27 +29,36 @@ class ServerFailure extends Failure {
         return ServerFailure('No Internet Connection');
     }
   }
-  factory ServerFailure.fromResponse(int statusCode, dynamic response) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      final editError = response['user'] != null ? response['user'] : null;
-      final loginError = response['detail'] != null ? response['detail'] : null;
-      final emailError =
-          response['email'] != null ? response['email'][0] : null;
-      final changePasswordEmailError =
-          response['detail'] != null ? response['detail'] : null;
 
-      final phoneError =
-          response['phone_number'] != null ? response['phone_number'][0] : null;
+  factory ServerFailure.fromResponse(int statusCode, dynamic response) {
+    Map<String, dynamic> responseData;
+    if (response is Map<String, dynamic>) {
+      responseData = response;
+    } else if (response is String) {
+      return ServerFailure(response);
+    } else {
+      responseData = {};
+    }
+
+    if (responseData['message'] != null) {
+      return ServerFailure(responseData['message'].toString());
+    }
+
+    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+      final editError = responseData['user'];
+      final loginError = responseData['detail'];
+      final emailError = responseData['email'] != null ? responseData['email'][0] : null;
+      final changePasswordEmailError = responseData['detail'];
+      final phoneError = responseData['phone_number'] != null ? responseData['phone_number'][0] : null;
+
       String message;
       if (emailError != null && phoneError != null) {
-        print('email & pass  repeated');
         message = 'Both the email and phone number are already registered.';
       } else if (emailError != null) {
         message = emailError;
       } else if (phoneError != null) {
         message = phoneError;
-      } // login handle if wrong email or pass
-      else if (loginError != null) {
+      } else if (loginError != null) {
         message = loginError;
       } else if (editError != null) {
         message = editError['email'];

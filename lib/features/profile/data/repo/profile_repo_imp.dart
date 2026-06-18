@@ -103,22 +103,21 @@ class ProfileRepoImp implements ProfileRepo {
   late PasswordResetRequestModel passwordResetMessage;
 
   @override
-  Future<Either<Failure, PasswordResetRequestModel>> resetPasswordRequest(
-      {required String token, required String email}) async {
+  Future<Either<Failure, PasswordResetRequestModel>> resetPasswordRequest({
+    required String token,
+    required String email
+  }) async {
     try {
-      final res = await apiService.postData(
+      final response = await apiService.postData(
         endpoint: '/api/auth/password-reset/',
         data: {
           'email': email,
         },
         token: token,
       );
-
-      passwordResetMessage = PasswordResetRequestModel.fromJson(res!.data);
-
+      passwordResetMessage = PasswordResetRequestModel.fromJson(response);
       return right(passwordResetMessage);
     } on DioException catch (e) {
-      print(e.toString());
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
       return left(ServerFailure(e.toString()));
@@ -126,12 +125,9 @@ class ProfileRepoImp implements ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, PasswordConfirmModel>> confirmPassword(
-      {required String password}) async {
+  Future<Either<Failure, PasswordConfirmModel>> confirmPassword({required String password}) async {
     String uid = passwordResetMessage.uId!;
     String token = passwordResetMessage.token!;
-    print(passwordResetMessage.uId!);
-    print(passwordResetMessage.token!);
     try {
       final res = await apiService.postData(
         endpoint: '/api/auth/password-reset-confirm/',
@@ -142,11 +138,10 @@ class ProfileRepoImp implements ProfileRepo {
         },
       );
 
-      final passwordConfirm = PasswordConfirmModel.fromJson(res!.data);
+      final passwordConfirm = PasswordConfirmModel.fromJson(res);
 
       return right(passwordConfirm);
     } on DioException catch (e) {
-      print(e.toString());
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
       return left(ServerFailure(e.toString()));

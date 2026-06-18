@@ -6,7 +6,7 @@ class ApiService {
   void init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://homemadefood-production-5e66.up.railway.app',
+        baseUrl: 'https://wobble-froth-polish.ngrok-free.dev',
       //baseUrl: 'http://10.0.2.2:8000',
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),

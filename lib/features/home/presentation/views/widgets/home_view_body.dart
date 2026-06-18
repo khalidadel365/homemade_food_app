@@ -41,8 +41,7 @@ class HomeViewBody extends StatelessWidget {
                           const Spacer(),
                           TextButton(
                             onPressed: () {
-                              GoRouter.of(context)
-                                  .push(AppRouter.kAllDishesView);
+                              GoRouter.of(context).push(AppRouter.kAllDishesView);
                             },
                             child: Text(
                               'See More',

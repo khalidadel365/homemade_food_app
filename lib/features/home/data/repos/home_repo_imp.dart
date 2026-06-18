@@ -16,7 +16,7 @@ class HomeRepoImp implements HomeRepo {
   @override
   void initOrdersSocket({required String token}) {
     //start connection with server
-    const String socketUrl = 'wss://homemadefood-production-5e66.up.railway.app/ws/orders/';
+    const String socketUrl = 'wss://wobble-froth-polish.ngrok-free.dev/ws/orders/';
     //const String socketUrl = 'ws://10.0.2.2:8000/ws/orders/';
     socketService.connect('$socketUrl?token=$token');
   }
